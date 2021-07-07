@@ -72,7 +72,7 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
     * Stream
 
 ## Wireframes
-<img src="Wireframe.png" width=600/>
+<img src="Wireframe.png" width=1000/>
 
 
 ## Schema 
