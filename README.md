@@ -15,7 +15,7 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
 - **Mobile:** Snack Exchange will allow you to use your location to arrange and reach the trade spot for the snacks. You may also use your phone's camera to take a picture of the snack you wish to exchange easily.
 - **Story:** Allows users to satisfy their snack cravings while using snacks they do not like or do not enjoy as much. 
 - **Market:** Anyone that enjoys snacking could enjoy this app. Ability to search for snacks by categories allows users to find new snacks they may enjoy.
-- **Habit:** Users can search and post snacks at any point in the day. Searching by category encouragea people to use this app to find new snacks
+- **Habit:** Users can search and post snacks at any point in the day. Searching by category encourages people to use this app to find new snacks
 - **Scope:** While this app will be very technically challenging, it has room to grow. It will start by including the ability to post snacks and view recently posted snacks. Then, it will progress to include the searching for snacks. 
 
 ## Product Spec
@@ -72,12 +72,7 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
     * Stream
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
+<img src="https://imgur.com/a/7bWyNIe.jpg" width=600/>
 
 ## Schema 
 [This section will be completed in Unit 9]
