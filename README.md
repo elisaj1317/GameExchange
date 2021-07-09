@@ -36,6 +36,7 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
 * User can search for snacks
 * User can leave a review on another user
 * User can use location to search for trade spots
+* User can chat with other users to make offers
 
 ### 2. Screen Archetypes
 
@@ -76,10 +77,93 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
 
 
 ## Schema 
-[This section will be completed in Unit 9]
+
 ### Models
-[Add table of models]
+#### Request
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user request (default field) |
+   | author        | Pointer to User| author of request |
+   | location      | String   | location request will be based off |
+   | image         | File     | image of user's snack |
+   | itemSelling   | String   | snack user wants to exchange |
+   | itemRequest   | Array    | snacks user is willing to accept |
+   | requestStatus | String   | indicates if request is active, in progress, or sold |
+   | createdAt     | DateTime | date when request is created (default field) |
+   | updatedAt     | DateTime | date when request is last updated (default field) |
+   
+ #### User
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user request (default field) |
+   | username      | String   | the username for the user |
+   | password      | String   | the password for the user |
+   | createdAt     | DateTime | date when request is created (default field) |
+   | updatedAt     | DateTime | date when request is last updated (default field) |
+   
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+- Register Screen
+  - (Create/POST) Create a new user object
+  ``` objc
+   PFUser *newUser = [PFUser user];
+    
+    // set user properties
+    newUser.username = self.usernameField.text;
+    newUser.password = self.passwordField.text;
+    
+    // call sign up function on the object
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"User registered successfully");
+            
+            // TODO: segue to home view
+        }
+    }];
+    ```
+- Home Feed Screen
+  - (Read/GET) Query all requests
+  ``` objc
+  PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+  [query orderByDescending:@"createdAt"];
+  [query includeKey:@"author"];
+  
+  // fetch data asynchronously
+  [query findObjectsInBackgroundWithBlock:^(NSArray *requests, NSError *error) {
+    if (requests != nil) {
+        // TODO: do something with requests
+    } else {
+        NSLog(@"%@", error.localizedDescription);
+    }
+  }];
+  ```
+- Details Screen
+  - (Update/PUT) Update request status
+  ``` objc
+  PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+  // TODO: obtain request's object id
+  // Retrieve the object by id
+  [query getObjectInBackgroundWithId:requestID
+                             block:^(PFObject *request, NSError *error) {
+    request[@"requestStatus"] = @"in progress";
+    [request saveInBackground];
+  }];
+  ```
+- Create Post Screen
+  - (Create/POST) Create a new request object
+  ``` objc
+  // TODO: get correct property values
+  PFObject *request = [[PFObject alloc] initWithClassName:@"Request"];
+  request[@"author"] = [PFUser currentUser];
+  request[@"location"] = location;
+  request[@"image"] = imageFile;
+  request[@"itemSelling"] = itemSelling;
+  request[@"itemRequest"] = itemRequest;
+  request[@"requestStatus"] = @"active";
+  [request saveInBackground];
+  ```
+  
+  
