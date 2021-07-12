@@ -1,4 +1,4 @@
-# Snack Exchange
+# Game Exchange
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -8,15 +8,15 @@
 
 ## Overview
 ### Description
-Go out into your community and exchange snacks with Snack Exchange. If you have way too many of one snack, find a snack you crave and switch with a local. Never fear buying snacks in bulk again.
+Go out into your community and trade games with Game Exchange. If you finished a game or have no more use for it, find a new game that interests you and switch with a local. Game Exchange allows you to easily find people near you that are willing to trade.
 
 ### App Evaluation
 - **Category:** Shopping
-- **Mobile:** Snack Exchange will allow you to use your location to arrange and reach the trade spot for the snacks. You may also use your phone's camera to take a picture of the snack you wish to exchange easily.
-- **Story:** Allows users to satisfy their snack cravings while using snacks they do not like or do not enjoy as much. 
-- **Market:** Anyone that enjoys snacking could enjoy this app. Ability to search for snacks by categories allows users to find new snacks they may enjoy.
-- **Habit:** Users can search and post snacks at any point in the day. Searching by category encourages people to use this app to find new snacks
-- **Scope:** While this app will be very technically challenging, it has room to grow. It will start by including the ability to post snacks and view recently posted snacks. Then, it will progress to include the searching for snacks. 
+- **Mobile:** Game Exchange will allow you to use your location to arrange and reach the trade spot for the games. You may also use your phone's camera to take a picture of the game you wish to exchange easily.
+- **Story:** Allows users to satisfy their game cravings using games they no longer enjoy. 
+- **Market:** Anyone that enjoys gaming could enjoy this app. Ability to search for games by categories allows users to find new games they may enjoy.
+- **Habit:** Users can search and post games at any point in the day. Searching by category encourages people to use this app to find new games to play.
+- **Scope:** While this app will be very technically challenging, it has room to grow. It will start by including the ability to post games and view recently posted trade requests. Then, it will progress to include the searching.
 
 ## Product Spec
 
@@ -24,19 +24,23 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
 
 **Required Must-have Stories**
 
-* User can login
-* User can register a new account
-* User can view snacks that are up for exchange
-* User can create a snack request
+* User can log in and log out of their account
+* User can sign up to create a new account using Parse authentication
+* User can view games that are up for exchange in the home page
+* User can create and post a new game trading request
 * User can agree to a posted exchange
 
 **Optional Nice-to-have Stories**
 
-* User can view snack requests they have made
-* User can search for snacks
+* User Profiles
+  * User can view game requests they have made
+  * User can edit or delete existing requests
+* User can see game requests they can fulfill on the home page
+* User can search for game
+* User can filter home page by category and/or gaming platform
 * User can leave a review on another user
 * User can use location to search for trade spots
-* User can chat with other users to make offers
+* User can chat with other users to make offers or talk about trade spots
 
 ### 2. Screen Archetypes
 
@@ -45,11 +49,11 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
 * Register
     * User can register a new account
 * Stream
-    * User can view snacks that are up for exchange
+    * User can view games that are up for exchange
 * Detail
     * User can agree to a posted exchange
 * Creation
-    * User can create a snack request
+    * User can create a game request
 
 ### 3. Navigation
 
@@ -86,9 +90,9 @@ Go out into your community and exchange snacks with Snack Exchange. If you have 
    | objectId      | String   | unique id for the user request (default field) |
    | author        | Pointer to User| author of request |
    | location      | String   | location request will be based off |
-   | image         | File     | image of user's snack |
-   | itemSelling   | String   | snack user wants to exchange |
-   | itemRequest   | Array    | snacks user is willing to accept |
+   | image         | File     | image of user's game |
+   | itemSelling   | String   | game user wants to exchange |
+   | itemRequest   | Array    | games user is willing to accept |
    | requestStatus | String   | indicates if request is active, in progress, or sold |
    | createdAt     | DateTime | date when request is created (default field) |
    | updatedAt     | DateTime | date when request is last updated (default field) |
