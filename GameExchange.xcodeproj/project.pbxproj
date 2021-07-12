@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -121,6 +121,10 @@
 		5EDF36D4269CDE2F00B63F5B /* GameExchange */ = {
 			isa = PBXGroup;
 			children = (
+				5EDF370D269CFC3F00B63F5B /* View Controllers */,
+				5EDF370C269CFC3700B63F5B /* Views */,
+				5EDF370B269CFC3200B63F5B /* API */,
+				5EDF370A269CFC2800B63F5B /* Models */,
 				5EDF36D5269CDE2F00B63F5B /* AppDelegate.h */,
 				5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */,
 				5EDF36D8269CDE2F00B63F5B /* SceneDelegate.h */,
@@ -154,6 +158,34 @@
 			path = GameExchangeUITests;
 			sourceTree = "<group>";
 		};
+		5EDF370A269CFC2800B63F5B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5EDF370B269CFC3200B63F5B /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5EDF370C269CFC3700B63F5B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5EDF370D269CFC3F00B63F5B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		B05EC09157FDD8F044DC2D6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,7 +206,6 @@
 				914763988FFA44039C3AD0AB /* Pods-GameExchangeTests.debug.xcconfig */,
 				6D242D5062FDBB868D036D39 /* Pods-GameExchangeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
