@@ -26,17 +26,38 @@
 
 - (IBAction)didTapRegister:(id)sender {
     PFUser *newUser = [self initializeUser];
-    
-    // call sign up function on the object
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"User registered successfully");
-            
-            [self performSegueWithIdentifier:@"registerSegue" sender:nil];
-        }
-    }];
+    if ([self checkValidName]) {
+        // call sign up function on the object
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+                [self showRegisterAlertWithMessage:error.localizedDescription];
+            } else {
+                NSLog(@"User registered successfully");
+                
+                [self performSegueWithIdentifier:@"registerSegue" sender:nil];
+            }
+        }];
+    }
+}
+
+- (void)showRegisterAlertWithMessage:(NSString *)message {
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [errorAlert addAction:okAction];
+    [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
+- (bool)checkValidName {
+    if ([self.nameField.text isEqual:@""]) {
+        [self showRegisterAlertWithMessage:@"First name is required"];
+        return NO;
+    }
+    else if ([self.lastNameField.text isEqual:@""]) {
+        [self showRegisterAlertWithMessage:@"Last name is required"];
+        return NO;
+    }
+    return YES;
 }
 
 - (PFUser *) initializeUser {
