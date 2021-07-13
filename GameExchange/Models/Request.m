@@ -25,7 +25,8 @@
     
     Request *newRequest = [Request new];
     newRequest.author = [PFUser currentUser];
-    newRequest.image = [Functions getPFFileFromImage:image];
+    UIImage *resizedImage = [Functions resizeImage:image withSize:CGSizeMake(300.0, 300.0)];
+    newRequest.image = [Functions getPFFileFromImage:resizedImage];
     newRequest.location = location;
     newRequest.itemSelling = name;
     newRequest.itemRequest = requests;
