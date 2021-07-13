@@ -11,7 +11,7 @@
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,7 +285,7 @@
         <!--Register-->
         <scene sceneID="61m-7n-omb">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Ce2-su-rKi" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Ce2-su-rKi" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H5e-I2-44s">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -353,6 +353,9 @@
                                 <rect key="frame" x="167" y="441" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="didTapRegister:" destination="Ce2-su-rKi" eventType="touchUpInside" id="i7G-vV-PUF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X5s-uk-p1o"/>
@@ -360,7 +363,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="gKK-ns-m20"/>
                     <connections>
-                        <segue destination="sJV-7F-Ew0" kind="presentation" id="Wwh-cl-HM7"/>
+                        <outlet property="lastNameField" destination="wRJ-AR-XLa" id="AMN-JE-8Cf"/>
+                        <outlet property="nameField" destination="pZd-17-Gpc" id="mWA-Eb-bj0"/>
+                        <outlet property="passwordField" destination="zNq-Pk-Gzi" id="1D5-rh-J5a"/>
+                        <outlet property="usernameField" destination="xi9-Nh-d7F" id="dmx-9A-Bas"/>
+                        <segue destination="sJV-7F-Ew0" kind="presentation" identifier="registerSegue" id="Wwh-cl-HM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SON-hC-ub2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

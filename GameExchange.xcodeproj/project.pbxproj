@@ -16,6 +16,8 @@
 		5EDF36E8269CDE3000B63F5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36E7269CDE3000B63F5B /* main.m */; };
 		5EDF36F2269CDE3100B63F5B /* GameExchangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36F1269CDE3100B63F5B /* GameExchangeTests.m */; };
 		5EDF36FD269CDE3100B63F5B /* GameExchangeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36FC269CDE3100B63F5B /* GameExchangeUITests.m */; };
+		5EDF3712269D0F3500B63F5B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF3711269D0F3500B63F5B /* LoginViewController.m */; };
+		5EDF3715269D0F4900B63F5B /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF3714269D0F4900B63F5B /* RegisterViewController.m */; };
 		B25EEDD4326D532780CFD8EF /* Pods_GameExchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2EF0B4E23994BEB49F71EB /* Pods_GameExchange.framework */; };
 		D4F699E92B4D2626E64E232F /* Pods_GameExchangeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133A36AC62FD3AF772C7B5C3 /* Pods_GameExchangeTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,10 @@
 		5EDF36F8269CDE3100B63F5B /* GameExchangeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameExchangeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EDF36FC269CDE3100B63F5B /* GameExchangeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameExchangeUITests.m; sourceTree = "<group>"; };
 		5EDF36FE269CDE3100B63F5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EDF3710269D0F3500B63F5B /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		5EDF3711269D0F3500B63F5B /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		5EDF3713269D0F4900B63F5B /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		5EDF3714269D0F4900B63F5B /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		6D242D5062FDBB868D036D39 /* Pods-GameExchangeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameExchangeTests.release.xcconfig"; path = "Target Support Files/Pods-GameExchangeTests/Pods-GameExchangeTests.release.xcconfig"; sourceTree = "<group>"; };
 		7252765BD2BE355875BFB449 /* Pods-GameExchange-GameExchangeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameExchange-GameExchangeUITests.release.xcconfig"; path = "Target Support Files/Pods-GameExchange-GameExchangeUITests/Pods-GameExchange-GameExchangeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		914763988FFA44039C3AD0AB /* Pods-GameExchangeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameExchangeTests.debug.xcconfig"; path = "Target Support Files/Pods-GameExchangeTests/Pods-GameExchangeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +183,10 @@
 		5EDF370D269CFC3F00B63F5B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5EDF3710269D0F3500B63F5B /* LoginViewController.h */,
+				5EDF3711269D0F3500B63F5B /* LoginViewController.m */,
+				5EDF3713269D0F4900B63F5B /* RegisterViewController.h */,
+				5EDF3714269D0F4900B63F5B /* RegisterViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -441,6 +451,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EDF3715269D0F4900B63F5B /* RegisterViewController.m in Sources */,
+				5EDF3712269D0F3500B63F5B /* LoginViewController.m in Sources */,
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
 				5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */,
