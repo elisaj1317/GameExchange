@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.itemImage.image = [UIImage imageNamed:@"placeholder"];
 }
 
 - (IBAction)didTapImage:(id)sender {
@@ -29,15 +29,44 @@
 }
 
 - (IBAction)didTapPost:(id)sender {
-    NSArray *itemsRequested = [NSArray arrayWithObject:self.itemNameField.text];
-    [Request postRequestImage:self.itemImage.image withName:self.nameField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (!error) {
-            [self segueToHome];
-        }
-        else {
-            NSLog(@"Error: %@", error.localizedDescription);
-        }
-    }];
+    if([self checkValidPost]) {
+        NSArray *itemsRequested = [NSArray arrayWithObject:self.itemNameField.text];
+        [Request postRequestImage:self.itemImage.image withName:self.nameField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (!error) {
+                [self segueToHome];
+            }
+            else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+        }];
+    }
+}
+
+- (bool)checkValidPost {
+    if ([self.nameField.text isEqual:@""]) {
+        [self showCreateErrorWithMessage:@"Enter name of item to exchange"];
+        return NO;
+    }
+    else if ([self.locationField.text isEqual:@""]) {
+        [self showCreateErrorWithMessage:@"Enter a location"];
+        return NO;
+    }
+    else if ([self.itemNameField.text isEqual:@""]) {
+        [self showCreateErrorWithMessage:@"Enter name of item request"];
+        return NO;
+    }
+    else if ([self.itemImage.image isEqual:[UIImage imageNamed:@"placeholder"]]) {
+        [self showCreateErrorWithMessage:@"Upload an image"];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)showCreateErrorWithMessage:(NSString *)message{
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [errorAlert addAction:okAction];
+    [self presentViewController:errorAlert animated:YES completion:nil];
 }
 
 - (void)segueToHome {
