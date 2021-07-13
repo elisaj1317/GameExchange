@@ -429,7 +429,7 @@
         <!--Home-->
         <scene sceneID="jgc-JF-4Qf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="COu-2n-3Kr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavBarController" automaticallyAdjustsScrollViewInsets="NO" id="COu-2n-3Kr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="yVr-cX-mBL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oDI-lk-CuF">

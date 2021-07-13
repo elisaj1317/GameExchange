@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *itemRequest;
 @property (nonatomic, strong) NSString *requestStatus;
 
++ (void) postRequestImage: ( UIImage * _Nullable )image withName: ( NSString * _Nullable )name withLocation: ( NSString * _Nullable )location withRequests: ( NSArray * _Nullable )requests withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

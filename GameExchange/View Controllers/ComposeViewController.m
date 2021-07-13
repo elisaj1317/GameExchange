@@ -6,6 +6,8 @@
 //
 
 #import "ComposeViewController.h"
+#import "SceneDelegate.h"
+#import "Request.h"
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
@@ -27,6 +29,23 @@
 }
 
 - (IBAction)didTapPost:(id)sender {
+    NSArray *itemsRequested = [NSArray arrayWithObject:self.itemNameField.text];
+    [Request postRequestImage:self.itemImage.image withName:self.nameField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!error) {
+            [self segueToHome];
+        }
+        else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)segueToHome {
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *homeNavViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeNavBarController"];
+    sceneDelegate.window.rootViewController = homeNavViewController;
 }
 
 - (void)chooseSourceType {
