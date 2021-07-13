@@ -32,6 +32,9 @@
                                 <rect key="frame" x="176" y="349" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="didTapLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AiE-LA-BmY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMc-tc-bTO">
                                 <rect key="frame" x="132" y="404" width="126" height="30"/>
@@ -54,7 +57,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="Ix3-Ny-E5h"/>
                     <connections>
-                        <segue destination="sJV-7F-Ew0" kind="presentation" id="yzd-7v-ELY"/>
+                        <outlet property="passwordField" destination="gHO-iB-lfn" id="ll2-fJ-sOa"/>
+                        <outlet property="usernameField" destination="UW6-Yk-Xxe" id="Q6U-gI-Yb9"/>
+                        <segue destination="sJV-7F-Ew0" kind="presentation" identifier="loginSegue" id="yzd-7v-ELY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -451,7 +456,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Wwh-cl-HM7"/>
+        <segue reference="yzd-7v-ELY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
