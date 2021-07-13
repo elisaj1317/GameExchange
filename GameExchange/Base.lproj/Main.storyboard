@@ -121,6 +121,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="itemImage" destination="RNi-AZ-JR1" id="U4z-MO-wkk"/>
+                                            <outlet property="itemRequestLabel" destination="itY-w8-7fH" id="iCD-da-uI1"/>
+                                            <outlet property="locationLabel" destination="zih-Ya-Kde" id="R7w-jU-ik0"/>
+                                            <outlet property="nameLabel" destination="Gv0-QB-wfN" id="axJ-6j-8Wi"/>
+                                            <outlet property="usernameLabel" destination="uZn-VK-7gC" id="fpZ-Lt-t1K"/>
                                             <segue destination="TKC-gm-QlI" kind="show" id="ZgU-8d-79D"/>
                                         </connections>
                                     </tableViewCell>

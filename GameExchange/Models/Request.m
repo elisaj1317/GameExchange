@@ -6,6 +6,7 @@
 //
 
 #import "Request.h"
+#import "Functions.h"
 
 @implementation Request
 
@@ -24,7 +25,7 @@
     
     Request *newRequest = [Request new];
     newRequest.author = [PFUser currentUser];
-    newRequest.image = [self getPFFileFromImage:image];
+    newRequest.image = [Functions getPFFileFromImage:image];
     newRequest.location = location;
     newRequest.itemSelling = name;
     newRequest.itemRequest = requests;
@@ -33,19 +34,5 @@
     [newRequest saveInBackgroundWithBlock: completion];
 }
 
-+ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
-    // check if image is not nil
-    if (!image) {
-        return nil;
-    }
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
-    // get image data and check if that is not nil
-    if (!imageData) {
-        return nil;
-    }
-    
-    return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
-}
 
 @end

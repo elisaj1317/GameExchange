@@ -12,6 +12,7 @@
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
 		5EA6EE07269E1CE70060F07E /* RequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE06269E1CE70060F07E /* RequestCell.m */; };
+		5EA6EE11269E2F1F0060F07E /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE10269E2F1F0060F07E /* Functions.m */; };
 		5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */; };
 		5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D9269CDE2F00B63F5B /* SceneDelegate.m */; };
 		5EDF36E0269CDE3000B63F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF36DE269CDE2F00B63F5B /* Main.storyboard */; };
@@ -53,6 +54,8 @@
 		5EA6EE03269E03D40060F07E /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		5EA6EE05269E1CE70060F07E /* RequestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestCell.h; sourceTree = "<group>"; };
 		5EA6EE06269E1CE70060F07E /* RequestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestCell.m; sourceTree = "<group>"; };
+		5EA6EE0F269E2F1F0060F07E /* Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		5EA6EE10269E2F1F0060F07E /* Functions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		5EDF36D2269CDE2F00B63F5B /* GameExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EDF36D5269CDE2F00B63F5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 			children = (
 				5EA6EDFC269DF4940060F07E /* Request.h */,
 				5EA6EDFD269DF4940060F07E /* Request.m */,
+				5EA6EE0F269E2F1F0060F07E /* Functions.h */,
+				5EA6EE10269E2F1F0060F07E /* Functions.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
 				5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */,
 				5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */,
+				5EA6EE11269E2F1F0060F07E /* Functions.m in Sources */,
 				5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */,
 				5EA6EDFE269DF4940060F07E /* Request.m in Sources */,
 			);
