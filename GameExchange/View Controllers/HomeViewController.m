@@ -6,10 +6,15 @@
 //
 
 #import "HomeViewController.h"
+#import "RequestCell.h"
+
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
 
-@interface HomeViewController ()
+
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -18,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -36,8 +43,16 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavBarController"];
     sceneDelegate.window.rootViewController = loginViewController;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
     
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
 }
 
 /*
