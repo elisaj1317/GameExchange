@@ -69,7 +69,7 @@
         <!--Home-->
         <scene sceneID="Mcy-yR-HNk">
             <objects>
-                <viewController id="JDE-7Z-C9f" sceneMemberID="viewController">
+                <viewController id="JDE-7Z-C9f" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XwK-xd-cUy">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,7 +130,13 @@
                         <viewLayoutGuide key="safeArea" id="ZUJ-mM-WO6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="Vz5-YO-GfP"/>
+                    <navigationItem key="navigationItem" title="Home" id="Vz5-YO-GfP">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="4oH-Vl-x2F">
+                            <connections>
+                                <action selector="didTapLogout:" destination="JDE-7Z-C9f" id="A6Q-ya-ofJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leY-62-aMX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -440,7 +446,7 @@
         <!--Navigation Controller-->
         <scene sceneID="LWJ-DZ-uMY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ot5-xw-EDW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavBarController" automaticallyAdjustsScrollViewInsets="NO" id="ot5-xw-EDW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CjF-eF-mgq">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
