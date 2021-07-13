@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1244A5AAC90C06BC1273CD09 /* Pods_GameExchange_GameExchangeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682C6C64DB11C62E06B3572 /* Pods_GameExchange_GameExchangeUITests.framework */; };
+		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */; };
 		5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D9269CDE2F00B63F5B /* SceneDelegate.m */; };
 		5EDF36E0269CDE3000B63F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF36DE269CDE2F00B63F5B /* Main.storyboard */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		133A36AC62FD3AF772C7B5C3 /* Pods_GameExchangeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameExchangeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EDF36D2269CDE2F00B63F5B /* GameExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EDF36D5269CDE2F00B63F5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 		5EDF370A269CFC2800B63F5B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5EA6EDFC269DF4940060F07E /* Request.h */,
+				5EA6EDFD269DF4940060F07E /* Request.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
 				5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */,
+				5EA6EDFE269DF4940060F07E /* Request.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
