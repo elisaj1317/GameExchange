@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+
+@property (strong, nonatomic) NSMutableArray *requests;
 @end
 
 @implementation HomeViewController
@@ -25,6 +27,8 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [self fetchRequests];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -34,6 +38,26 @@
             } else {
                 NSLog(@"User log out failed: %@", error.localizedDescription);
             }
+    }];
+}
+
+- (void)fetchRequests {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = 20;
+    
+    // fetch data
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
+        if(!error) {
+            self.requests = [NSMutableArray arrayWithArray:requests];
+            NSLog(@"%@", self.requests);
+            
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
     }];
 }
 
@@ -47,7 +71,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
-    
+    cell.request = self.requests[indexPath.row];
     return cell;
 }
 

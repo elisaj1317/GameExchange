@@ -8,6 +8,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/PFImageView.h>
 
+#import "Request.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RequestCell : UITableViewCell
@@ -17,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *itemRequestLabel;
+
+@property (strong, nonatomic) Request *request;
 
 @end
 
