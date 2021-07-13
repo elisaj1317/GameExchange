@@ -228,7 +228,7 @@
         <!--Create a Request-->
         <scene sceneID="6n4-TI-6ep">
             <objects>
-                <viewController id="Fbh-bm-Z85" sceneMemberID="viewController">
+                <viewController id="Fbh-bm-Z85" customClass="ComposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QGz-tB-nd8">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,6 +243,10 @@
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="s9h-uJ-tab">
                                 <rect key="frame" x="133" y="121" width="125" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="KYd-oE-TEm" appends="YES" id="hPE-3a-JYQ"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcf-Rx-8e9">
                                 <rect key="frame" x="19" y="315" width="57" height="24"/>
@@ -287,9 +291,26 @@
                         <viewLayoutGuide key="safeArea" id="HaJ-XU-E1D"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create a Request" id="n4k-qE-S2M"/>
+                    <navigationItem key="navigationItem" title="Create a Request" id="n4k-qE-S2M">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="7KB-RK-AvF">
+                            <connections>
+                                <action selector="didTapPost:" destination="Fbh-bm-Z85" id="5CU-K1-cOo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="itemImage" destination="s9h-uJ-tab" id="TU8-na-900"/>
+                        <outlet property="itemNameField" destination="534-w4-sdQ" id="y6W-dx-v4G"/>
+                        <outlet property="locationField" destination="1HA-K6-ahD" id="SVt-R0-bkv"/>
+                        <outlet property="nameField" destination="mJM-C9-PYt" id="pSK-j8-oF9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAI-HV-RXN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="KYd-oE-TEm">
+                    <connections>
+                        <action selector="didTapImage:" destination="Fbh-bm-Z85" id="wIS-zu-fjA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3064.6153846153843" y="1579.6208530805686"/>
         </scene>
