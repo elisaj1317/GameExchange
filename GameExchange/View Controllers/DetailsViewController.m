@@ -6,6 +6,8 @@
 //
 
 #import "DetailsViewController.h"
+#import "OfferCell.h"
+#import "Request.h"
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -29,11 +31,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.request.itemRequest.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OfferCell"];
+    OfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OfferCell"];
+    cell.gameName = self.request.itemRequest[indexPath.row];
     return cell;
 }
 
@@ -41,10 +44,6 @@
     return self.headerView;
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 180;
-}
 
 /*
 #pragma mark - Navigation
