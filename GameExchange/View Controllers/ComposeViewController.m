@@ -74,25 +74,25 @@
 
 - (bool)checkValidPostWithArray:(NSArray *)itemsRequested {
     if ([self.nameField.text isEqual:@""]) {
-        [self showCreateErrorWithMessage:@"Enter name of item to exchange"];
+        [self showErrorWithMessage:@"Enter name of item to exchange"];
         return NO;
     }
     else if ([self.locationField.text isEqual:@""]) {
-        [self showCreateErrorWithMessage:@"Enter a location"];
+        [self showErrorWithMessage:@"Enter a location"];
         return NO;
     }
     else if (itemsRequested.count == 0) {
-        [self showCreateErrorWithMessage:@"Enter name of item request"];
+        [self showErrorWithMessage:@"Enter name of item request"];
         return NO;
     }
     else if ([self.itemImage.image isEqual:[UIImage imageNamed:@"placeholder"]]) {
-        [self showCreateErrorWithMessage:@"Upload an image"];
+        [self showErrorWithMessage:@"Upload an image"];
         return NO;
     }
     return YES;
 }
 
-- (void)showCreateErrorWithMessage:(NSString *)message{
+- (void)showErrorWithMessage:(NSString *)message{
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [errorAlert addAction:okAction];
@@ -101,16 +101,24 @@
 
 - (IBAction)didTapAddRow:(id)sender {   
     NSInteger oldRowValue = [self.numberOfRows intValue];
-    self.numberOfRows = @(oldRowValue + 1);
-    
-    [self.tableView reloadData];
+    if (oldRowValue == 5) {
+        [self showErrorWithMessage:@"A maximum of 5 offers can be made"];
+    } else {
+        self.numberOfRows = @(oldRowValue + 1);
+        
+        [self.tableView reloadData];
+    }
 }
 
 - (IBAction)didTapRemoveRow:(id)sender {
     NSInteger oldRowValue = [self.numberOfRows intValue];
-    self.numberOfRows = @(oldRowValue - 1);
-    
-    [self.tableView reloadData];
+    if (oldRowValue == 1) {
+        [self showErrorWithMessage:@"At least one offer is required"];
+    } else {
+        self.numberOfRows = @(oldRowValue - 1);
+        
+        [self.tableView reloadData];
+    }
 }
 
 - (void)segueToHome {
