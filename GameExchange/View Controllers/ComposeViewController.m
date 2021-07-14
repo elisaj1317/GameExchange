@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
-@property (weak, nonatomic) IBOutlet UITextField *itemNameField;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -41,8 +40,8 @@
 }
 
 - (IBAction)didTapPost:(id)sender {
-    if([self checkValidPost]) {
-        NSArray *itemsRequested = [NSArray arrayWithObject:self.itemNameField.text];
+    NSArray *itemsRequested = [self createRequestedArray];
+    if([self checkValidPostWithArray:itemsRequested]) {
         [Request postRequestImage:self.itemImage.image withName:self.nameField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (!error) {
                 [self segueToHome];
@@ -54,7 +53,21 @@
     }
 }
 
-- (bool)checkValidPost {
+- (NSArray *)createRequestedArray {
+    NSMutableArray *itemsRequested = [[NSMutableArray alloc]init];
+    NSArray *cells = [self.tableView visibleCells];
+    
+    for (ComposeOfferCell *cell in cells) {
+        if (![cell.itemNameField.text isEqual:@""]) {
+            [itemsRequested addObject:cell.itemNameField.text];
+        }
+    }
+    
+    return [NSArray arrayWithArray:itemsRequested];
+    
+}
+
+- (bool)checkValidPostWithArray:(NSArray *)itemsRequested {
     if ([self.nameField.text isEqual:@""]) {
         [self showCreateErrorWithMessage:@"Enter name of item to exchange"];
         return NO;
@@ -63,7 +76,7 @@
         [self showCreateErrorWithMessage:@"Enter a location"];
         return NO;
     }
-    else if ([self.itemNameField.text isEqual:@""]) {
+    else if (itemsRequested.count == 0) {
         [self showCreateErrorWithMessage:@"Enter name of item request"];
         return NO;
     }
