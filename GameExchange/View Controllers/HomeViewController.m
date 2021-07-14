@@ -6,6 +6,7 @@
 //
 
 #import "HomeViewController.h"
+#import "DetailsViewController.h"
 #import "RequestCell.h"
 
 #import "SceneDelegate.h"
@@ -79,14 +80,22 @@
     return self.requests.count;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"detailsSegue"]) {
+        // Passes selected Request into DetailsViewController
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Request *request = self.requests[indexPath.row];
+        
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        
+        detailsViewController.request = request;
+    }
 }
-*/
+
 
 @end
