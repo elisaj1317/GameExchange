@@ -58,6 +58,12 @@
     }
 }
 
+- (IBAction)didTapReset:(id)sender {
+    [self resetHeader];
+    [self resetOfferTextBoxes];
+}
+
+
 - (IBAction)didTapAddRow:(id)sender {   
     NSInteger oldRowValue = [self.numberOfRows intValue];
     if (oldRowValue == 5) {
@@ -112,6 +118,24 @@
         return NO;
     }
     return YES;
+}
+
+- (void)resetHeader {
+    self.nameField.text = @"";
+    self.locationField.text = @"";
+    self.itemImage.image = [UIImage imageNamed:@"placeholder"];
+}
+
+- (void)resetOfferTextBoxes {
+    self.numberOfRows = @(5);
+    [self.tableView reloadData];
+    for (int i = 0; i< [self.numberOfRows intValue]; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            ComposeOfferCell *cell = [self.tableView cellForRowAtIndexPath:indexPath]; // change with your cell's class
+            cell.itemNameField.text = @"";
+        }
+    self.numberOfRows = @(1);
+    [self.tableView reloadData];
 }
 
 - (void)showErrorWithMessage:(NSString *)message{

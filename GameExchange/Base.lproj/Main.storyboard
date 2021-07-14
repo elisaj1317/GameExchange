@@ -368,7 +368,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Request" id="n4k-qE-S2M">
-                        <barButtonItem key="leftBarButtonItem" title="Reset" id="sPd-2p-Vq2"/>
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="sPd-2p-Vq2">
+                            <connections>
+                                <action selector="didTapReset:" destination="Fbh-bm-Z85" id="nq2-sb-mcw"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post" id="7KB-RK-AvF">
                             <connections>
                                 <action selector="didTapPost:" destination="Fbh-bm-Z85" id="5CU-K1-cOo"/>
