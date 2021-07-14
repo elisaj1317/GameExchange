@@ -17,7 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSMutableArray *requests;
 @end
 
@@ -29,6 +29,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self setUpRefresh];
     [self fetchRequests];
 }
 
@@ -40,6 +41,12 @@
                 NSLog(@"User log out failed: %@", error.localizedDescription);
             }
     }];
+}
+
+- (void)setUpRefresh {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchRequests) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)fetchRequests {
@@ -55,6 +62,7 @@
             self.requests = [NSMutableArray arrayWithArray:requests];
             
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
