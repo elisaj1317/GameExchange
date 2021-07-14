@@ -125,8 +125,8 @@
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *homeNavViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeNavBarController"];
-    sceneDelegate.window.rootViewController = homeNavViewController;
+    UIViewController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+    sceneDelegate.window.rootViewController = tabBarController;
 }
 
 - (void)chooseSourceType {
