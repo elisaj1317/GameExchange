@@ -334,6 +334,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <state key="normal" title="Remove Row"/>
+                                            <connections>
+                                                <action selector="didTapRemoveRow:" destination="Fbh-bm-Z85" eventType="touchUpInside" id="AbU-aH-JsR"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>

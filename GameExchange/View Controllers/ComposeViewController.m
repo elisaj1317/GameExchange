@@ -106,6 +106,12 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)didTapRemoveRow:(id)sender {
+    NSInteger oldRowValue = [self.numberOfRows intValue];
+    self.numberOfRows = @(oldRowValue - 1);
+    
+    [self.tableView reloadData];
+}
 
 - (void)segueToHome {
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
