@@ -10,6 +10,7 @@
 		1244A5AAC90C06BC1273CD09 /* Pods_GameExchange_GameExchangeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682C6C64DB11C62E06B3572 /* Pods_GameExchange_GameExchangeUITests.framework */; };
 		5E4A2936269E484800B29ECC /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2935269E484800B29ECC /* DetailsViewController.m */; };
 		5E4A2941269E6E1800B29ECC /* OfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2940269E6E1800B29ECC /* OfferCell.m */; };
+		5E4A2944269F408000B29ECC /* ComposeOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2943269F408000B29ECC /* ComposeOfferCell.m */; };
 		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
@@ -52,6 +53,8 @@
 		5E4A2935269E484800B29ECC /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		5E4A293F269E6E1800B29ECC /* OfferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfferCell.h; sourceTree = "<group>"; };
 		5E4A2940269E6E1800B29ECC /* OfferCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfferCell.m; sourceTree = "<group>"; };
+		5E4A2942269F408000B29ECC /* ComposeOfferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeOfferCell.h; sourceTree = "<group>"; };
+		5E4A2943269F408000B29ECC /* ComposeOfferCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeOfferCell.m; sourceTree = "<group>"; };
 		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EA6EDFF269DFFA10060F07E /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 				5EA6EE06269E1CE70060F07E /* RequestCell.m */,
 				5E4A293F269E6E1800B29ECC /* OfferCell.h */,
 				5E4A2940269E6E1800B29ECC /* OfferCell.m */,
+				5E4A2942269F408000B29ECC /* ComposeOfferCell.h */,
+				5E4A2943269F408000B29ECC /* ComposeOfferCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				5E4A2941269E6E1800B29ECC /* OfferCell.m in Sources */,
 				5EDF3715269D0F4900B63F5B /* RegisterViewController.m in Sources */,
 				5EA6EE07269E1CE70060F07E /* RequestCell.m in Sources */,
+				5E4A2944269F408000B29ECC /* ComposeOfferCell.m in Sources */,
 				5E4A2936269E484800B29ECC /* DetailsViewController.m in Sources */,
 				5EDF3712269D0F3500B63F5B /* LoginViewController.m in Sources */,
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,

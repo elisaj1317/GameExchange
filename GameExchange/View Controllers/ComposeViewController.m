@@ -8,12 +8,19 @@
 #import "ComposeViewController.h"
 #import "SceneDelegate.h"
 #import "Request.h"
+#import "ComposeOfferCell.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
+@property (weak, nonatomic) IBOutlet UIView *footerView;
+
 @property (weak, nonatomic) IBOutlet UITextField *itemNameField;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -22,6 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
 }
 
 - (IBAction)didTapImage:(id)sender {
@@ -148,6 +160,20 @@
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ComposeOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ComposeOfferCell"];
+    
+    return cell;
 }
 
 
