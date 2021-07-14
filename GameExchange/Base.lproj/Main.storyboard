@@ -166,7 +166,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="180"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fp5-NY-5z8">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fp5-NY-5z8" customClass="PFImageView">
                                             <rect key="frame" x="20" y="20" width="125" height="140"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -237,6 +237,11 @@
                     <navigationItem key="navigationItem" title="Detail" id="Zbw-N4-3Vg"/>
                     <connections>
                         <outlet property="headerView" destination="d6f-b1-tFv" id="JxB-zb-wuq"/>
+                        <outlet property="itemImageView" destination="fp5-NY-5z8" id="5mU-fE-gP0"/>
+                        <outlet property="itemSellingLabel" destination="100-lp-sNZ" id="JdU-lZ-kJ6"/>
+                        <outlet property="locationLabel" destination="BWd-5d-Lfv" id="VfX-Ey-tzX"/>
+                        <outlet property="sellerNameLabel" destination="hi0-yQ-bCJ" id="SdW-MH-ouq"/>
+                        <outlet property="sellerUsernameLabel" destination="4PY-8E-Oby" id="Xi2-Bb-bls"/>
                         <outlet property="tableView" destination="FcA-uC-GiZ" id="LZd-sE-heN"/>
                     </connections>
                 </viewController>

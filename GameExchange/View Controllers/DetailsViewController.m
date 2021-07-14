@@ -9,10 +9,20 @@
 #import "OfferCell.h"
 #import "Request.h"
 
+#import <Parse/PFImageView.h>
+
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+
+
+@property (weak, nonatomic) IBOutlet PFImageView *itemImageView;
+@property (weak, nonatomic) IBOutlet UILabel *itemSellingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sellerNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sellerUsernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+
 
 @end
 
@@ -24,6 +34,27 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headerView;
     
+    [self setUpHeader];
+}
+
+- (void)setUpHeader {
+    // set up image
+    self.itemImageView.file = self.request.image;
+    [self.itemImageView loadInBackground];
+    
+    [self setUpHeaderLabels];
+    
+}
+
+- (void)setUpHeaderLabels {
+    self.itemSellingLabel.text = self.request.itemSelling;
+    
+    NSString *fullName = [NSString stringWithFormat:@"%@ %@", [self.request.author objectForKey:@"firstName"], [self.request.author objectForKey:@"lastName"]];
+    self.sellerNameLabel.text = fullName;
+    
+    self.sellerUsernameLabel.text = self.request.author.username;
+    
+    self.locationLabel.text = self.request.location;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
