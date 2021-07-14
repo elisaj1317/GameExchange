@@ -53,7 +53,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
         if(!error) {
             self.requests = [NSMutableArray arrayWithArray:requests];
-            NSLog(@"%@", self.requests);
             
             [self.tableView reloadData];
         } else {

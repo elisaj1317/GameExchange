@@ -325,6 +325,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <state key="normal" title="Add Row"/>
+                                            <connections>
+                                                <action selector="didTapAddRow:" destination="Fbh-bm-Z85" eventType="touchUpInside" id="2x2-oU-FUT"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1j-KV-JW4">
                                             <rect key="frame" x="262" y="5" width="104" height="34"/>

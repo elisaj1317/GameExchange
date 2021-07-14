@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
+@property (strong, nonatomic) NSNumber *numberOfRows;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,6 +34,10 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
+    
+    self.numberOfRows = @(1);
+    
+    [self.tableView reloadData];
 }
 
 - (IBAction)didTapImage:(id)sender {
@@ -93,6 +98,14 @@
     [errorAlert addAction:okAction];
     [self presentViewController:errorAlert animated:YES completion:nil];
 }
+
+- (IBAction)didTapAddRow:(id)sender {   
+    NSInteger oldRowValue = [self.numberOfRows intValue];
+    self.numberOfRows = @(oldRowValue + 1);
+    
+    [self.tableView reloadData];
+}
+
 
 - (void)segueToHome {
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
@@ -180,7 +193,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [self.numberOfRows intValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
