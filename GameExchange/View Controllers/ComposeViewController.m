@@ -58,6 +58,28 @@
     }
 }
 
+- (IBAction)didTapAddRow:(id)sender {   
+    NSInteger oldRowValue = [self.numberOfRows intValue];
+    if (oldRowValue == 5) {
+        [self showErrorWithMessage:@"A maximum of 5 offers can be made"];
+    } else {
+        self.numberOfRows = @(oldRowValue + 1);
+        
+        [self.tableView reloadData];
+    }
+}
+
+- (IBAction)didTapRemoveRow:(id)sender {
+    NSInteger oldRowValue = [self.numberOfRows intValue];
+    if (oldRowValue == 1) {
+        [self showErrorWithMessage:@"At least one offer is required"];
+    } else {
+        self.numberOfRows = @(oldRowValue - 1);
+        
+        [self.tableView reloadData];
+    }
+}
+
 - (NSArray *)createRequestedArray {
     NSMutableArray *itemsRequested = [[NSMutableArray alloc]init];
     NSArray *cells = [self.tableView visibleCells];
@@ -97,28 +119,6 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [errorAlert addAction:okAction];
     [self presentViewController:errorAlert animated:YES completion:nil];
-}
-
-- (IBAction)didTapAddRow:(id)sender {   
-    NSInteger oldRowValue = [self.numberOfRows intValue];
-    if (oldRowValue == 5) {
-        [self showErrorWithMessage:@"A maximum of 5 offers can be made"];
-    } else {
-        self.numberOfRows = @(oldRowValue + 1);
-        
-        [self.tableView reloadData];
-    }
-}
-
-- (IBAction)didTapRemoveRow:(id)sender {
-    NSInteger oldRowValue = [self.numberOfRows intValue];
-    if (oldRowValue == 1) {
-        [self showErrorWithMessage:@"At least one offer is required"];
-    } else {
-        self.numberOfRows = @(oldRowValue - 1);
-        
-        [self.tableView reloadData];
-    }
 }
 
 - (void)segueToHome {
