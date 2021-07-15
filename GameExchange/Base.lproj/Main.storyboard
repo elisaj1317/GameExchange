@@ -315,7 +315,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZb-kV-Elf">
                                                     <rect key="frame" x="304" y="8" width="71" height="37.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
-                                                    <state key="normal" title="Accept"/>
+                                                    <state key="normal" title="Accept">
+                                                        <color key="titleColor" name="royalBlue"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -434,6 +436,7 @@
                                             <rect key="frame" x="22" y="5.0000000000001137" width="82" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
+                                            <color key="tintColor" name="royalBlue"/>
                                             <state key="normal" title="Add Row"/>
                                             <connections>
                                                 <action selector="didTapAddRow:" destination="Fbh-bm-Z85" eventType="touchUpInside" id="2x2-oU-FUT"/>
@@ -443,6 +446,7 @@
                                             <rect key="frame" x="256" y="5.0000000000001137" width="119" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
+                                            <color key="tintColor" name="royalBlue"/>
                                             <state key="normal" title="Remove Row"/>
                                             <connections>
                                                 <action selector="didTapRemoveRow:" destination="Fbh-bm-Z85" eventType="touchUpInside" id="AbU-aH-JsR"/>
@@ -639,6 +643,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WND-m4-9Jh">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="royalBlue"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                         </textAttributes>
