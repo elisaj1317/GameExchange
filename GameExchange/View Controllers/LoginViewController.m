@@ -7,10 +7,12 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "MaterialTextControls+FilledTextFields.h"
 
 @interface LoginViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *usernameField;
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *passwordField;
 
 @end
 
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupTextFields];
 }
 
 - (IBAction)didTapLogin:(id)sender {
@@ -41,6 +44,28 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [errorAlert addAction:okAction];
     [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
+- (void)setupTextFields {
+    UIColor *royalBlue = [UIColor colorNamed:@"royalBlue"];
+    
+    // set up username text field
+    self.usernameField.label.text = @"Username";
+    self.usernameField.placeholder = @"Input text";
+    
+    self.usernameField.tintColor = royalBlue;
+    [self.usernameField setFloatingLabelColor:royalBlue forState:MDCTextControlStateEditing];
+    [self.usernameField setUnderlineColor:royalBlue forState:MDCTextControlStateEditing];
+    
+    
+    
+    // set up password text field
+    self.passwordField.label.text = @"Password";
+    self.passwordField.placeholder = @"Input text";
+    
+    self.passwordField.tintColor = royalBlue;
+    [self.passwordField setFloatingLabelColor:royalBlue forState:MDCTextControlStateEditing];
+    [self. passwordField setUnderlineColor:royalBlue forState:MDCTextControlStateEditing];
 }
 
 /*
