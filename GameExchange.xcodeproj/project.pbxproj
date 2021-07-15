@@ -18,6 +18,7 @@
 		5E4A2972269FCC8500B29ECC /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A2952269FCC2B00B29ECC /* Montserrat-Medium.ttf */; };
 		5E4A2973269FCC8500B29ECC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A2954269FCC2B00B29ECC /* Montserrat-Regular.ttf */; };
 		5E4A2974269FCC8500B29ECC /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A294B269FCC2A00B29ECC /* Montserrat-Thin.ttf */; };
+		5E70BC4026A0EE5E002E9CE7 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E70BC3F26A0EE5E002E9CE7 /* Keys.plist */; };
 		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
@@ -69,6 +70,7 @@
 		5E4A2952269FCC2B00B29ECC /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../../../../../Downloads/Montserrat/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		5E4A2954269FCC2B00B29ECC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../../../../../Downloads/Montserrat/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		5E4A2955269FCC2B00B29ECC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.ttf"; path = "../../../../../Downloads/Montserrat/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		5E70BC3F26A0EE5E002E9CE7 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Keys.plist; sourceTree = "<group>"; };
 		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EA6EDFF269DFFA10060F07E /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				5EDF36E1269CDE3000B63F5B /* Assets.xcassets */,
 				5EDF36E3269CDE3000B63F5B /* LaunchScreen.storyboard */,
 				5EDF36E6269CDE3000B63F5B /* Info.plist */,
+				5E70BC3F26A0EE5E002E9CE7 /* Keys.plist */,
 				5EDF36E7269CDE3000B63F5B /* main.m */,
 			);
 			path = GameExchange;
@@ -392,6 +395,7 @@
 			files = (
 				5E4A296B269FCC8500B29ECC /* Montserrat-Light.ttf in Resources */,
 				5E4A296F269FCC8500B29ECC /* Montserrat-SemiBold.ttf in Resources */,
+				5E70BC4026A0EE5E002E9CE7 /* Keys.plist in Resources */,
 				5E4A2973269FCC8500B29ECC /* Montserrat-Regular.ttf in Resources */,
 				5E4A296A269FCC8500B29ECC /* Montserrat-ExtraLight.ttf in Resources */,
 				5EDF36E5269CDE3000B63F5B /* LaunchScreen.storyboard in Resources */,
