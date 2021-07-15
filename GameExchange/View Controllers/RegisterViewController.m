@@ -7,11 +7,14 @@
 
 #import "RegisterViewController.h"
 #import <Parse/Parse.h>
+#import "MaterialTextControls+FilledTextFields.h"
 
 @interface RegisterViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *nameField;
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *usernameField;
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *passwordField;
+
 
 @end
 
@@ -20,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setUpTextFields];
 }
 
 
@@ -38,6 +42,40 @@
             }
         }];
     }
+}
+
+- (void)setUpTextFields {
+    UIColor *royalBlue = [UIColor colorNamed:@"royalBlue"];
+    [self setupNameFieldWithColor:royalBlue];
+    [self setupUsernameFieldWithColor:royalBlue];
+    [self setupPasswordFieldWithColor:royalBlue];
+}
+
+- (void)setupNameFieldWithColor:(UIColor *)color {
+    self.nameField.label.text = @"Full Name";
+    self.nameField.placeholder = @"Input text";
+    
+    self.nameField.tintColor = color;
+    [self.nameField setFloatingLabelColor:color forState:MDCTextControlStateEditing];
+    [self.nameField setUnderlineColor:color forState:MDCTextControlStateEditing];
+}
+
+- (void)setupUsernameFieldWithColor:(UIColor *)color {
+    self.usernameField.label.text = @"Username";
+    self.usernameField.placeholder = @"Input text";
+    
+    self.usernameField.tintColor = color;
+    [self.usernameField setFloatingLabelColor:color forState:MDCTextControlStateEditing];
+    [self.usernameField setUnderlineColor:color forState:MDCTextControlStateEditing];
+}
+
+- (void)setupPasswordFieldWithColor:(UIColor *)color {
+    self.passwordField.label.text = @"Password";
+    self.passwordField.placeholder = @"Input text";
+    
+    self.passwordField.tintColor = color;
+    [self.passwordField setFloatingLabelColor:color forState:MDCTextControlStateEditing];
+    [self. passwordField setUnderlineColor:color forState:MDCTextControlStateEditing];
 }
 
 - (void)showRegisterAlertWithMessage:(NSString *)message {
