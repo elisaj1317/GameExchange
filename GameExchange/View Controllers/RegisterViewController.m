@@ -32,6 +32,8 @@
 
 
 - (IBAction)didTapRegister:(id)sender {
+    [self dismissKeyboards];
+    
     PFUser *newUser = [self initializeUser];
     if ([self checkValidName]) {
         MDCActivityIndicator *activityIndicator = [Functions startActivityIndicatorAtPosition:CGPointMake(self.view.bounds.size.width / 2, 4*self.view.bounds.size.height / 6)];
@@ -49,6 +51,10 @@
             }
         }];
     }
+}
+
+- (IBAction)didTapScreen:(id)sender {
+    [self dismissKeyboards];
 }
 
 - (void)setUpTextFields {
@@ -83,6 +89,12 @@
     self.passwordField.tintColor = color;
     [self.passwordField setFloatingLabelColor:color forState:MDCTextControlStateEditing];
     [self. passwordField setUnderlineColor:color forState:MDCTextControlStateEditing];
+}
+
+- (void)dismissKeyboards {
+    [self.nameField resignFirstResponder];
+    [self.usernameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
 }
 
 - (void)showRegisterAlertWithMessage:(NSString *)message {

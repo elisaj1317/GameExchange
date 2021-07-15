@@ -84,6 +84,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UW6-Yk-Xxe" secondAttribute="trailing" constant="40" id="0ld-iA-exE"/>
                             <constraint firstItem="B30-wr-omc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="1AF-7N-I7Q"/>
@@ -106,6 +107,9 @@
                             <constraint firstItem="4mG-99-y1I" firstAttribute="centerY" secondItem="dBN-eu-dQw" secondAttribute="centerY" id="z0j-Gb-QIs"/>
                             <constraint firstItem="B30-wr-omc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zmb-Dy-iqr"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ILK-JZ-ONn" appends="YES" id="F2W-PL-Ws2"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="Ix3-Ny-E5h"/>
                     <connections>
@@ -115,6 +119,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ILK-JZ-ONn">
+                    <connections>
+                        <action selector="didTapScreen:" destination="BYZ-38-t0r" id="0wS-K0-YXi"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1066.1538461538462" y="87.440758293838854"/>
         </scene>
@@ -491,6 +500,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X5s-uk-p1o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="xi9-Nh-d7F" firstAttribute="top" secondItem="pZd-17-Gpc" secondAttribute="bottom" constant="8" id="3Lt-ci-7oP"/>
                             <constraint firstItem="pcy-hI-8ns" firstAttribute="centerX" secondItem="H5e-I2-44s" secondAttribute="centerX" id="8Za-s3-JLY"/>
@@ -506,6 +516,9 @@
                             <constraint firstItem="xi9-Nh-d7F" firstAttribute="leading" secondItem="X5s-uk-p1o" secondAttribute="leading" constant="40" id="nfO-ap-MuT"/>
                             <constraint firstItem="pcy-hI-8ns" firstAttribute="top" secondItem="X5s-uk-p1o" secondAttribute="top" constant="80" id="xVL-pr-hG6"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="6F0-sk-HVp" appends="YES" id="QbR-ba-sUX"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="gKK-ns-m20"/>
                     <connections>
@@ -516,6 +529,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SON-hC-ub2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6F0-sk-HVp">
+                    <connections>
+                        <action selector="didTapScreen:" destination="Ce2-su-rKi" id="KM1-h0-qL0"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2178.4615384615386" y="87.440758293838854"/>
         </scene>
@@ -607,7 +625,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yzd-7v-ELY"/>
+        <segue reference="Wwh-cl-HM7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Create" width="25" height="25"/>
