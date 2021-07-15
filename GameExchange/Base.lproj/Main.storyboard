@@ -463,13 +463,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZd-17-Gpc">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZd-17-Gpc">
                                 <rect key="frame" x="40" y="255" width="310" height="34"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="env-52-QQ7">
-                                <rect key="frame" x="159.66666666666666" y="435" width="71" height="33"/>
+                                <rect key="frame" x="159.66666666666666" y="393" width="71" height="33"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                 <state key="normal" title="Register">
                                     <color key="titleColor" name="royalBlue"/>
@@ -478,18 +478,13 @@
                                     <action selector="didTapRegister:" destination="Ce2-su-rKi" eventType="touchUpInside" id="i7G-vV-PUF"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wRJ-AR-XLa">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xi9-Nh-d7F">
                                 <rect key="frame" x="40" y="297" width="310" height="34"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xi9-Nh-d7F">
-                                <rect key="frame" x="40" y="339" width="310" height="34"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNq-Pk-Gzi">
-                                <rect key="frame" x="40" y="381" width="310" height="34"/>
+                                <rect key="frame" x="40" y="339" width="310" height="34"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
@@ -497,8 +492,7 @@
                         <viewLayoutGuide key="safeArea" id="X5s-uk-p1o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="X5s-uk-p1o" firstAttribute="trailing" secondItem="wRJ-AR-XLa" secondAttribute="trailing" constant="40" id="24G-lU-AGR"/>
-                            <constraint firstItem="xi9-Nh-d7F" firstAttribute="top" secondItem="wRJ-AR-XLa" secondAttribute="bottom" constant="8" id="7Jc-UR-G8T"/>
+                            <constraint firstItem="xi9-Nh-d7F" firstAttribute="top" secondItem="pZd-17-Gpc" secondAttribute="bottom" constant="8" id="3Lt-ci-7oP"/>
                             <constraint firstItem="pcy-hI-8ns" firstAttribute="centerX" secondItem="H5e-I2-44s" secondAttribute="centerX" id="8Za-s3-JLY"/>
                             <constraint firstItem="zNq-Pk-Gzi" firstAttribute="top" secondItem="xi9-Nh-d7F" secondAttribute="bottom" constant="8" id="8yB-Dj-fEE"/>
                             <constraint firstItem="pZd-17-Gpc" firstAttribute="top" secondItem="pcy-hI-8ns" secondAttribute="bottom" constant="50" id="Cpa-lN-4gy"/>
@@ -510,14 +504,11 @@
                             <constraint firstItem="X5s-uk-p1o" firstAttribute="trailing" secondItem="pZd-17-Gpc" secondAttribute="trailing" constant="40" id="VNe-cv-DGv"/>
                             <constraint firstItem="env-52-QQ7" firstAttribute="centerX" secondItem="H5e-I2-44s" secondAttribute="centerX" id="i4Q-aa-FtB"/>
                             <constraint firstItem="xi9-Nh-d7F" firstAttribute="leading" secondItem="X5s-uk-p1o" secondAttribute="leading" constant="40" id="nfO-ap-MuT"/>
-                            <constraint firstItem="wRJ-AR-XLa" firstAttribute="leading" secondItem="X5s-uk-p1o" secondAttribute="leading" constant="40" id="usB-dN-jLx"/>
-                            <constraint firstItem="wRJ-AR-XLa" firstAttribute="top" secondItem="pZd-17-Gpc" secondAttribute="bottom" constant="8" id="wQ2-1r-4C4"/>
                             <constraint firstItem="pcy-hI-8ns" firstAttribute="top" secondItem="X5s-uk-p1o" secondAttribute="top" constant="80" id="xVL-pr-hG6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="gKK-ns-m20"/>
                     <connections>
-                        <outlet property="lastNameField" destination="wRJ-AR-XLa" id="AMN-JE-8Cf"/>
                         <outlet property="nameField" destination="pZd-17-Gpc" id="mWA-Eb-bj0"/>
                         <outlet property="passwordField" destination="zNq-Pk-Gzi" id="1D5-rh-J5a"/>
                         <outlet property="usernameField" destination="xi9-Nh-d7F" id="dmx-9A-Bas"/>

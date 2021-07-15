@@ -10,7 +10,6 @@
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
@@ -50,11 +49,7 @@
 
 - (bool)checkValidName {
     if ([self.nameField.text isEqual:@""]) {
-        [self showRegisterAlertWithMessage:@"First name is required"];
-        return NO;
-    }
-    else if ([self.lastNameField.text isEqual:@""]) {
-        [self showRegisterAlertWithMessage:@"Last name is required"];
+        [self showRegisterAlertWithMessage:@"Name is required"];
         return NO;
     }
     return YES;
@@ -66,8 +61,7 @@
     // set user properties
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
-    [newUser setObject:self.nameField.text forKey:@"firstName"];
-    [newUser setObject:self.lastNameField.text forKey:@"lastName"];
+    [newUser setObject:self.nameField.text forKey:@"fullName"];
     
     return newUser;
     

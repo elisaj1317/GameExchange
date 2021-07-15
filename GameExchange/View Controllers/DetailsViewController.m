@@ -48,12 +48,8 @@
 
 - (void)setUpHeaderLabels {
     self.itemSellingLabel.text = self.request.itemSelling;
-    
-    NSString *fullName = [NSString stringWithFormat:@"%@ %@", [self.request.author objectForKey:@"firstName"], [self.request.author objectForKey:@"lastName"]];
-    self.sellerNameLabel.text = fullName;
-    
+    self.sellerNameLabel.text = [self.request.author objectForKey:@"fullName"];
     self.sellerUsernameLabel.text = self.request.author.username;
-    
     self.locationLabel.text = self.request.location;
 }
 
