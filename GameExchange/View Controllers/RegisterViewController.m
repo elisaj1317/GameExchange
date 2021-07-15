@@ -6,8 +6,12 @@
 //
 
 #import "RegisterViewController.h"
+
 #import <Parse/Parse.h>
 #import "MaterialTextControls+FilledTextFields.h"
+#import "MaterialActivityIndicator.h"
+
+#import "Functions.h"
 
 @interface RegisterViewController ()
 
@@ -30,8 +34,11 @@
 - (IBAction)didTapRegister:(id)sender {
     PFUser *newUser = [self initializeUser];
     if ([self checkValidName]) {
+        MDCActivityIndicator *activityIndicator = [Functions startActivityIndicatorAtPosition:CGPointMake(self.view.bounds.size.width / 2, 4*self.view.bounds.size.height / 6)];
+        [self.view addSubview:activityIndicator];
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            [activityIndicator stopAnimating];
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
                 [self showRegisterAlertWithMessage:error.localizedDescription];

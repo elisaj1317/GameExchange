@@ -9,6 +9,7 @@ target 'GameExchange' do
   pod 'Parse'
   pod 'Parse/UI' 
   pod 'MaterialComponents/TextControls+FilledTextFields'
+  pod 'MaterialComponents/ActivityIndicator'
 
   target 'GameExchangeTests' do
     inherit! :search_paths

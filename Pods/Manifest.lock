@@ -1,7 +1,14 @@
 PODS:
   - Bolts/Tasks (1.9.1)
+  - MaterialComponents/ActivityIndicator (124.2.0):
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Application
+    - MDFInternationalization
+    - MotionAnimator (~> 4.0)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
+  - MaterialComponents/Palettes (124.2.0)
+  - MaterialComponents/private/Application (124.2.0)
   - MaterialComponents/private/Math (124.2.0)
   - "MaterialComponents/private/TextControlsPrivate+BaseStyle (124.2.0)":
     - MaterialComponents/AnimationTiming
@@ -36,6 +43,9 @@ PODS:
     - "MaterialComponents/private/TextControlsPrivate+FilledStyle"
     - "MaterialComponents/TextControls+BaseTextFields"
   - MDFInternationalization (3.0.0)
+  - MotionAnimator (4.0.1):
+    - MotionInterchange (~> 3.0)
+  - MotionInterchange (3.0.0)
   - Parse (1.19.2):
     - Parse/Core (= 1.19.2)
   - Parse/Core (1.19.2):
@@ -44,6 +54,7 @@ PODS:
     - Parse/Core
 
 DEPENDENCIES:
+  - MaterialComponents/ActivityIndicator
   - "MaterialComponents/TextControls+FilledTextFields"
   - Parse
   - Parse/UI
@@ -53,14 +64,18 @@ SPEC REPOS:
     - Bolts
     - MaterialComponents
     - MDFInternationalization
+    - MotionAnimator
+    - MotionInterchange
     - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
+  MotionAnimator: 5f99d7c9592928c0f28a66283eda9c3b657dc480
+  MotionInterchange: 13adae439b377e31d1674cc165539d50e1d1566a
   Parse: 081fb8755c3000fd11df817eec235def233d0af3
 
-PODFILE CHECKSUM: bf0e32f457d51e8b7febf607a12918ee0273b117
+PODFILE CHECKSUM: 6c0fa81935d60f1fadcccbc9124ae9d6d8792587
 
 COCOAPODS: 1.10.1

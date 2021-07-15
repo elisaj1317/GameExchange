@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "MaterialActivityIndicator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
++ (MDCActivityIndicator *)startActivityIndicatorAtPosition:(CGPoint)position;
 
 @end
 

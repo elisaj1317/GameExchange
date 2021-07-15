@@ -6,8 +6,12 @@
 //
 
 #import "LoginViewController.h"
+
 #import <Parse/Parse.h>
 #import "MaterialTextControls+FilledTextFields.h"
+#import "MaterialActivityIndicator.h"
+
+#import "Functions.h"
 
 @interface LoginViewController ()
 
@@ -27,8 +31,12 @@
 - (IBAction)didTapLogin:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
+    
+    MDCActivityIndicator *activityIndicator = [Functions startActivityIndicatorAtPosition:CGPointMake(self.view.bounds.size.width / 2, 3*self.view.bounds.size.height / 5)];
+    [self.view addSubview:activityIndicator];
         
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
+        [activityIndicator stopAnimating];
         if (error != nil) {
             [self showLoginAlertWithError:error];
             NSLog(@"User log in failed: %@", error.localizedDescription);

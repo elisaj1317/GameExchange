@@ -38,4 +38,18 @@
     
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
+
++ (MDCActivityIndicator *)startActivityIndicatorAtPosition:(CGPoint)position {
+    MDCActivityIndicator *activityIndicator = [[MDCActivityIndicator alloc] init];
+    [activityIndicator sizeToFit];
+    activityIndicator.center = position;
+    UIColor *royalBlue = [UIColor colorNamed:@"royalBlue"];
+    activityIndicator.cycleColors = @[royalBlue];
+
+    // To make the activity indicator appear:
+    [activityIndicator startAnimating];
+
+    return activityIndicator;
+}
+
 @end
