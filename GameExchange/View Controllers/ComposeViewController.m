@@ -44,7 +44,12 @@
     [self chooseSourceType];
 }
 
+- (IBAction)didTapScreen:(id)sender {
+    [self dismissKeyboards];
+}
+
 - (IBAction)didTapPost:(id)sender {
+    [self dismissKeyboards];
     NSArray *itemsRequested = [self createRequestedArray];
     if([self checkValidPostWithArray:itemsRequested]) {
         [Request postRequestImage:self.itemImage.image withName:self.nameField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
@@ -59,6 +64,7 @@
 }
 
 - (IBAction)didTapReset:(id)sender {
+    [self dismissKeyboards];
     [self resetHeader];
     [self resetOfferTextBoxes];
 }
@@ -224,6 +230,16 @@
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)dismissKeyboards {
+    [self.nameField resignFirstResponder];
+    [self.locationField resignFirstResponder];
+    for (int i = 0; i< [self.numberOfRows intValue]; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            ComposeOfferCell *cell = [self.tableView cellForRowAtIndexPath:indexPath]; // change with your cell's class
+            [cell.itemNameField resignFirstResponder];
+        }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

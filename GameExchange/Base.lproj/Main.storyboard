@@ -484,12 +484,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HaJ-XU-E1D"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ILN-gT-e7L" firstAttribute="bottom" secondItem="HaJ-XU-E1D" secondAttribute="bottom" id="Mkg-0Q-FQi"/>
                             <constraint firstItem="ILN-gT-e7L" firstAttribute="top" secondItem="HaJ-XU-E1D" secondAttribute="top" id="cWZ-zG-puZ"/>
                             <constraint firstItem="ILN-gT-e7L" firstAttribute="leading" secondItem="HaJ-XU-E1D" secondAttribute="leading" id="iok-Dq-Gnf"/>
                             <constraint firstItem="HaJ-XU-E1D" firstAttribute="trailing" secondItem="ILN-gT-e7L" secondAttribute="trailing" id="yVG-wx-NY3"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="oMq-zN-oRp" appends="YES" id="76J-UV-hT0"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Request" id="n4k-qE-S2M">
                         <barButtonItem key="leftBarButtonItem" title="Reset" id="sPd-2p-Vq2">
@@ -516,6 +520,11 @@
                 <tapGestureRecognizer id="KYd-oE-TEm">
                     <connections>
                         <action selector="didTapImage:" destination="Fbh-bm-Z85" id="wIS-zu-fjA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="oMq-zN-oRp">
+                    <connections>
+                        <action selector="didTapScreen:" destination="Fbh-bm-Z85" id="1P7-Ig-8wt"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
