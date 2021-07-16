@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "MaterialTextControls+FilledTextFields.h"
 #import "MaterialActivityIndicator.h"
+#import "APIManager.h"
 
 #import "Functions.h"
 
@@ -26,6 +27,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupTextFields];
+    
+    // test authentication
+    [[APIManager shared] authenticateWithCompletion:^(NSDictionary *data, NSError *error) {
+        if(error){
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Data: %@", data);
+        }
+    }];
 }
 
 - (IBAction)didTapLogin:(id)sender {

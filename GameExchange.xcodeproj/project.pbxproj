@@ -19,6 +19,7 @@
 		5E4A2973269FCC8500B29ECC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A2954269FCC2B00B29ECC /* Montserrat-Regular.ttf */; };
 		5E4A2974269FCC8500B29ECC /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E4A294B269FCC2A00B29ECC /* Montserrat-Thin.ttf */; };
 		5E70BC4026A0EE5E002E9CE7 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E70BC3F26A0EE5E002E9CE7 /* Keys.plist */; };
+		5E96EB3C26A1E69F00EFBE9A /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E96EB3B26A1E69F00EFBE9A /* APIManager.m */; };
 		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
@@ -71,6 +72,8 @@
 		5E4A2954269FCC2B00B29ECC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../../../../../Downloads/Montserrat/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		5E4A2955269FCC2B00B29ECC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.ttf"; path = "../../../../../Downloads/Montserrat/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		5E70BC3F26A0EE5E002E9CE7 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Keys.plist; sourceTree = "<group>"; };
+		5E96EB3A26A1E69F00EFBE9A /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		5E96EB3B26A1E69F00EFBE9A /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EA6EDFF269DFFA10060F07E /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 		5EDF370B269CFC3200B63F5B /* API */ = {
 			isa = PBXGroup;
 			children = (
+				5E96EB3A26A1E69F00EFBE9A /* APIManager.h */,
+				5E96EB3B26A1E69F00EFBE9A /* APIManager.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				5EDF3715269D0F4900B63F5B /* RegisterViewController.m in Sources */,
 				5EA6EE07269E1CE70060F07E /* RequestCell.m in Sources */,
 				5E4A2944269F408000B29ECC /* ComposeOfferCell.m in Sources */,
+				5E96EB3C26A1E69F00EFBE9A /* APIManager.m in Sources */,
 				5E4A2936269E484800B29ECC /* DetailsViewController.m in Sources */,
 				5EDF3712269D0F3500B63F5B /* LoginViewController.m in Sources */,
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,
