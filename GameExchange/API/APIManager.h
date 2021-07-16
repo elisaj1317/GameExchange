@@ -12,8 +12,10 @@
 @interface APIManager : NSObject
 
 @property (nonatomic, retain) NSString *access_token;
+@property (nonatomic, retain) NSString *client_key;
 
 + (instancetype)shared;
+- (void)getGamesWithCompletion:(void (^)(NSDictionary *, NSError *))completion;
 
 @end
 

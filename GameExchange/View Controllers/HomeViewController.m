@@ -10,6 +10,7 @@
 #import "RequestCell.h"
 
 #import "SceneDelegate.h"
+#import "APIManager.h"
 #import <Parse/Parse.h>
 
 
@@ -31,6 +32,16 @@
     
     [self setUpRefresh];
     [self fetchRequests];
+    
+    [[APIManager shared] getGamesWithCompletion:^(NSDictionary *data, NSError *error) {
+        if(error){
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Data2: %@", data);
+        }
+    }];
+    
+    
 }
 
 - (IBAction)didTapLogout:(id)sender {

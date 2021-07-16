@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 #import "MaterialTextControls+FilledTextFields.h"
 #import "MaterialActivityIndicator.h"
-#import "APIManager.h"
 
 #import "Functions.h"
 
