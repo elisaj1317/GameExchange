@@ -9,6 +9,8 @@
 
 @implementation APIManager
 
+@synthesize access_token;
+
 
 + (instancetype)shared {
     static APIManager *sharedManager = nil;
@@ -17,6 +19,22 @@
         sharedManager = [[self alloc] init];
     });
     return sharedManager;
+}
+
+- (id)init {
+    if (self = [super init]) {
+        [self authenticateWithCompletion:^(NSDictionary *data, NSError *error) {
+            
+            if(error) {
+                NSLog(@"Error getting token: %@", error.localizedDescription);
+            } else {
+                NSLog(@"Got Data: %@", data);
+                self.access_token = [data valueForKey:@"access_token"];
+            }
+            
+        }];
+      }
+      return self;
 }
 
 - (void)authenticateWithCompletion:(void (^)(NSDictionary * _Nonnull, NSError * _Nonnull))completion {

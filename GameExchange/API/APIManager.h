@@ -11,8 +11,9 @@
 
 @interface APIManager : NSObject
 
+@property (nonatomic, retain) NSString *access_token;
+
 + (instancetype)shared;
-- (void)authenticateWithCompletion:(void (^)(NSDictionary *, NSError *))completion;
 
 @end
 

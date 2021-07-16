@@ -28,14 +28,6 @@
     // Do any additional setup after loading the view.
     [self setupTextFields];
     
-    // test authentication
-    [[APIManager shared] authenticateWithCompletion:^(NSDictionary *data, NSError *error) {
-        if(error){
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Data: %@", data);
-        }
-    }];
 }
 
 - (IBAction)didTapLogin:(id)sender {
