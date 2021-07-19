@@ -32,9 +32,6 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
             } else {
                 NSLog(@"Got Data: %@", data);
                 self.access_token = [data valueForKey:@"access_token"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"managerDidInitialize"
-                                                                    object:self
-                                                                  userInfo:nil];
             }
             
         }];

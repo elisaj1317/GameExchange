@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "APIManager.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,9 @@
     }];
 
     [Parse initializeWithConfiguration:config];
+    
+    [APIManager shared];
+    
 
     return YES;
 }
