@@ -71,6 +71,12 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
     [task resume];
 }
 
+-(NSURL *)createGameURL {
+    NSString *fullgameURLString = [NSString stringWithFormat:@"%@%@", baseURLString, @"games"];
+    NSURL *gameURL = [NSURL URLWithString:fullgameURLString];
+    return gameURL;
+}
+
 -(NSMutableURLRequest *)createRequestFormat {
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:baseURLString] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -84,16 +90,11 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
     return request;
 }
 
-- (void)getGamesWithCompletion:(void (^)(NSDictionary *, NSError *))completion {
-    // set correct url
+- (void)sendNetworkRequestWithPath:(NSURL *)pathURL withBody:(NSString *)requestBodyString completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableURLRequest *request = [self createRequestFormat];
-    NSString *fullgameURLString = [NSString stringWithFormat:@"%@%@", baseURLString, @"games"];
-    NSURL *gameURL = [NSURL URLWithString:fullgameURLString];
-    [request setURL:gameURL];
+    [request setURL:pathURL];
     
-    
-    NSData *requestBody = [@"fields *;" dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-    
+    NSData *requestBody = [requestBodyString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     [request setHTTPBody:requestBody];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -109,6 +110,31 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
            }
        }];
     [task resume];
+}
+
+- (void)getAutocompleteWithWord:(NSString *)word completion:(void (^)(NSDictionary *, NSError *))completion {
+    NSURL *gameURL = [self createGameURL];
+    NSString *fullrequestBody = [NSString stringWithFormat:@"fields name; search \"%@\";", word];
+    
+    [self sendNetworkRequestWithPath:gameURL withBody:fullrequestBody completion:^(NSDictionary *data, NSError *error) {
+            if(error != nil) {
+                completion(nil, error);
+            } else {
+                completion(data, nil);
+            }
+    }];
+}
+
+- (void)getGamesWithCompletion:(void (^)(NSDictionary *, NSError *))completion {
+    NSURL *gameURL = [self createGameURL];
+    
+    [self sendNetworkRequestWithPath:gameURL withBody:@"fields *;" completion:^(NSDictionary *data, NSError *error) {
+            if(error != nil) {
+                completion(nil, error);
+            } else {
+                completion(data, nil);
+            }
+    }];
 }
 
 - (void)managerDidInitialize {

@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString *client_key;
 
 + (instancetype)shared;
+- (void)getAutocompleteWithWord:(NSString *)word completion:(void (^)(NSDictionary *, NSError *))completion;
 - (void)getGamesWithCompletion:(void (^)(NSDictionary *, NSError *))completion;
 
 @end
