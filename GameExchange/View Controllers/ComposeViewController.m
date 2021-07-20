@@ -10,6 +10,8 @@
 #import "Request.h"
 #import "ComposeOfferCell.h"
 
+#import "APIManager.h"
+
 @interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
@@ -22,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSTimer * searchTimer;
+@property (strong, nonatomic) NSMutableArray *autocompleteArray;
 
 
 @end
@@ -109,10 +112,24 @@
 
 
 - (void)fetchAutocomplete:(NSTimer *)timer {
-    if ([timer.userInfo isEqual:@""]) {
+    NSString *wordToSearch = (NSString *)timer.userInfo;
+    if ([wordToSearch isEqual:@""]) {
         return;
     }
-    NSLog(@"search for: %@", timer.userInfo);
+    
+    NSLog(@"search for: %@", wordToSearch);
+    
+    [[APIManager shared] getAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
+            if (!error) {
+                self.autocompleteArray = [[NSMutableArray alloc] init];
+                for (NSDictionary *game in data) {
+                    NSLog(@"game: %@", game);
+                    [self.autocompleteArray addObject:game[@"name"]];
+                }
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+    }];
     
 }
 

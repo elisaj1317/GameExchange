@@ -33,7 +33,7 @@
     [self setUpRefresh];
     [self fetchRequests];
     
-    [[APIManager shared] getGamesWithCompletion:^(NSDictionary *data, NSError *error) {
+    [[APIManager shared] getGamesWithCompletion:^(NSArray *data, NSError *error) {
         if(error){
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
