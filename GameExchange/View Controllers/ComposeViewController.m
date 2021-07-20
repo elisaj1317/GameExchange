@@ -10,7 +10,7 @@
 #import "Request.h"
 #import "ComposeOfferCell.h"
 
-@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -20,6 +20,8 @@
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) NSTimer * searchTimer;
 
 
 @end
@@ -34,6 +36,8 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
+    
+    self.nameField.delegate = self;
     
     self.numberOfRows = @(1);
     
@@ -90,6 +94,26 @@
         
         [self.tableView reloadData];
     }
+}
+
+- (IBAction)didChange:(id)sender {
+    // if a timer is already active, prevent it from firing
+    if (self.searchTimer != nil) {
+        [self.searchTimer invalidate];
+        self.searchTimer = nil;
+    }
+
+    // reschedule the search: in 1.0 second
+    self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(fetchAutocomplete:) userInfo:self.nameField.text repeats:NO];
+}
+
+
+- (void)fetchAutocomplete:(NSTimer *)timer {
+    if ([timer.userInfo isEqual:@""]) {
+        return;
+    }
+    NSLog(@"search for: %@", timer.userInfo);
+    
 }
 
 - (NSArray *)createRequestedArray {

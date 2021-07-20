@@ -385,6 +385,9 @@
                                             <rect key="frame" x="40" y="185" width="310" height="41.333333333333343"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="didChange:" destination="Fbh-bm-Z85" eventType="editingChanged" id="Qn2-pT-hMW"/>
+                                            </connections>
                                         </textField>
                                         <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="s9h-uJ-tab">
                                             <rect key="frame" x="132.66666666666666" y="15" width="124.99999999999997" height="140"/>
