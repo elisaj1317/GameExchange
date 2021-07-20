@@ -9,6 +9,7 @@
 #import "SceneDelegate.h"
 #import "Request.h"
 #import "ComposeOfferCell.h"
+#import "AutocompleteCell.h"
 
 #import "APIManager.h"
 
@@ -22,6 +23,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *autocompleteTableView;
 
 @property (strong, nonatomic) NSTimer * searchTimer;
 @property (strong, nonatomic) NSMutableArray *autocompleteArray;
@@ -39,6 +41,9 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
+    
+    self.autocompleteTableView.delegate = self;
+    self.autocompleteTableView.dataSource = self;
     
     self.nameField.delegate = self;
     
@@ -114,8 +119,10 @@
 - (void)fetchAutocomplete:(NSTimer *)timer {
     NSString *wordToSearch = (NSString *)timer.userInfo;
     if ([wordToSearch isEqual:@""]) {
+        [self.autocompleteTableView setHidden:YES];
         return;
     }
+    
     
     NSLog(@"search for: %@", wordToSearch);
     
@@ -126,6 +133,8 @@
                     NSLog(@"game: %@", game);
                     [self.autocompleteArray addObject:game[@"name"]];
                 }
+                [self.autocompleteTableView setHidden:NO];
+                [self.autocompleteTableView reloadData];
             } else {
                 NSLog(@"Error: %@", error.localizedDescription);
             }
@@ -288,10 +297,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tableView == self.autocompleteTableView) {
+        return self.autocompleteArray.count;
+    }
     return [self.numberOfRows intValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.autocompleteTableView) {
+        AutocompleteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AutocompleteCell"];
+        
+        cell.gameName = self.autocompleteArray[indexPath.row];
+        return cell;
+    }
+    
     ComposeOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ComposeOfferCell"];
     
     return cell;
