@@ -9,21 +9,23 @@
 #import "SceneDelegate.h"
 #import "Request.h"
 #import "ComposeOfferCell.h"
-#import "AutocompleteCell.h"
+#import "AutocompleteView.h"
 
 #import "APIManager.h"
 
 @interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
+@property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
+
+
+
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) NSNumber *numberOfRows;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITableView *autocompleteTableView;
 
 @property (strong, nonatomic) NSTimer * searchTimer;
 @property (strong, nonatomic) NSMutableArray *autocompleteArray;
@@ -42,11 +44,6 @@
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     
-    self.autocompleteTableView.delegate = self;
-    self.autocompleteTableView.dataSource = self;
-    
-    self.nameField.delegate = self;
-    
     self.numberOfRows = @(1);
     
     [self.tableView reloadData];
@@ -64,7 +61,7 @@
     [self dismissKeyboards];
     NSArray *itemsRequested = [self createRequestedArray];
     if([self checkValidPostWithArray:itemsRequested]) {
-        [Request postRequestImage:self.itemImage.image withName:self.nameField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Request postRequestImage:self.itemImage.image withName:self.nameView.textField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (!error) {
                 [self segueToHome];
             }
@@ -104,43 +101,6 @@
     }
 }
 
-- (IBAction)didChange:(id)sender {
-    // if a timer is already active, prevent it from firing
-    if (self.searchTimer != nil) {
-        [self.searchTimer invalidate];
-        self.searchTimer = nil;
-    }
-
-    // reschedule the search: in 1.0 second
-    self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(fetchAutocomplete:) userInfo:self.nameField.text repeats:NO];
-}
-
-
-- (void)fetchAutocomplete:(NSTimer *)timer {
-    NSString *wordToSearch = (NSString *)timer.userInfo;
-    if ([wordToSearch isEqual:@""]) {
-        [self.autocompleteTableView setHidden:YES];
-        return;
-    }
-    
-    
-    NSLog(@"search for: %@", wordToSearch);
-    
-    [[APIManager shared] getAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
-            if (!error) {
-                self.autocompleteArray = [[NSMutableArray alloc] init];
-                for (NSDictionary *game in data) {
-                    NSLog(@"game: %@", game);
-                    [self.autocompleteArray addObject:game[@"name"]];
-                }
-                [self.autocompleteTableView setHidden:NO];
-                [self.autocompleteTableView reloadData];
-            } else {
-                NSLog(@"Error: %@", error.localizedDescription);
-            }
-    }];
-    
-}
 
 - (NSArray *)createRequestedArray {
     NSMutableArray *itemsRequested = [[NSMutableArray alloc]init];
@@ -157,7 +117,7 @@
 }
 
 - (bool)checkValidPostWithArray:(NSArray *)itemsRequested {
-    if ([self.nameField.text isEqual:@""]) {
+    if ([self.nameView.textField.text isEqual:@""]) {
         [self showErrorWithMessage:@"Enter name of item to exchange"];
         return NO;
     }
@@ -177,7 +137,7 @@
 }
 
 - (void)resetHeader {
-    self.nameField.text = @"";
+    [self.nameView resetAutocomplete];
     self.locationField.text = @"";
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
 }
@@ -283,7 +243,7 @@
 }
 
 - (void)dismissKeyboards {
-    [self.nameField resignFirstResponder];
+    [self.nameView hideAutocomplete];
     [self.locationField resignFirstResponder];
     for (int i = 0; i< [self.numberOfRows intValue]; i++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
@@ -297,33 +257,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.autocompleteTableView) {
-        return self.autocompleteArray.count;
-    }
     return [self.numberOfRows intValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.autocompleteTableView) {
-        AutocompleteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AutocompleteCell"];
-        
-        cell.gameName = self.autocompleteArray[indexPath.row];
-        return cell;
-    }
-    
     ComposeOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ComposeOfferCell"];
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.autocompleteTableView) {
-        self.nameField.text = self.autocompleteArray[indexPath.row];
-        self.autocompleteArray = [[NSMutableArray alloc] init];
-        [self.autocompleteTableView setHidden:YES];
-        [self.autocompleteTableView reloadData];
-    }
-    
 }
 
 

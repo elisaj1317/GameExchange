@@ -61,16 +61,16 @@
 }
 
 - (IBAction)didChangeEditing:(id)sender {
-    
-    if ([self.textField.text isEqual:@""]) {
-        [self.tableView setHidden:YES];
-        return;
-    }
-    
     // if a timer is already active, prevent it from firing
     if (self.searchTimer != nil) {
         [self.searchTimer invalidate];
         self.searchTimer = nil;
+    }
+    
+    // if textfield empty immediatly hide autocomplete results
+    if ([self.textField.text isEqual:@""]) {
+        [self.tableView setHidden:YES];
+        return;
     }
 
     // reschedule the search: in 1.0 second
@@ -125,7 +125,7 @@
     return self.autocompleteArray.count;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     self.textField.text = [NSString stringWithFormat:@"%@", self.autocompleteArray[indexPath.row]];
     [self.tableView reloadData];
     [self.tableView setHidden:YES];

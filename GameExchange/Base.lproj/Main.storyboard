@@ -520,6 +520,7 @@
                         <outlet property="headerView" destination="iLp-jB-kGa" id="t7f-Bo-iYI"/>
                         <outlet property="itemImage" destination="s9h-uJ-tab" id="TU8-na-900"/>
                         <outlet property="locationField" destination="1HA-K6-ahD" id="SVt-R0-bkv"/>
+                        <outlet property="nameView" destination="EwX-Qa-tB7" id="d1C-Sx-Jeq"/>
                         <outlet property="tableView" destination="ILN-gT-e7L" id="kHc-6x-36R"/>
                     </connections>
                 </viewController>
