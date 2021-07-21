@@ -316,6 +316,16 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.autocompleteTableView) {
+        self.nameField.text = self.autocompleteArray[indexPath.row];
+        self.autocompleteArray = [[NSMutableArray alloc] init];
+        [self.autocompleteTableView setHidden:YES];
+        [self.autocompleteTableView reloadData];
+    }
+    
+}
+
 
 /*
 #pragma mark - Navigation
