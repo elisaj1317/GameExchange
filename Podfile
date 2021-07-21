@@ -10,7 +10,6 @@ target 'GameExchange' do
   pod 'Parse/UI' 
   pod 'MaterialComponents/TextControls+FilledTextFields'
   pod 'MaterialComponents/ActivityIndicator'
-  pod 'MKDropdownMenu'
 
   target 'GameExchangeTests' do
     inherit! :search_paths

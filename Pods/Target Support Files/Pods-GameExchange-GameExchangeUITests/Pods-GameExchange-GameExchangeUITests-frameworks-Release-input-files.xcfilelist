@@ -1,7 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-GameExchange-GameExchangeUITests/Pods-GameExchange-GameExchangeUITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework
-${BUILT_PRODUCTS_DIR}/MKDropdownMenu/MKDropdownMenu.framework
 ${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework
 ${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework
 ${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework
