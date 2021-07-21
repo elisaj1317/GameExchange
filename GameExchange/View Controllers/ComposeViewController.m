@@ -13,7 +13,9 @@
 
 #import "APIManager.h"
 
-@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+#import "MKDropdownMenu.h"
+
+@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MKDropdownMenuDelegate, MKDropdownMenuDataSource>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -27,6 +29,9 @@
 
 @property (strong, nonatomic) NSTimer * searchTimer;
 @property (strong, nonatomic) NSMutableArray *autocompleteArray;
+
+@property (weak, nonatomic) IBOutlet MKDropdownMenu *dropdownMenuView;
+
 
 
 @end
@@ -46,6 +51,9 @@
     self.autocompleteTableView.dataSource = self;
     
     self.nameField.delegate = self;
+    
+    self.dropdownMenuView.dataSource = self;
+    self.dropdownMenuView.delegate = self;
     
     self.numberOfRows = @(1);
     
@@ -324,6 +332,26 @@
         [self.autocompleteTableView reloadData];
     }
     
+}
+
+- (NSInteger)numberOfComponentsInDropdownMenu:(MKDropdownMenu *)dropdownMenu {
+    return 1;
+}
+
+- (NSInteger)dropdownMenu:(MKDropdownMenu *)dropdownMenu numberOfRowsInComponent:(NSInteger)component {
+    return 3;
+}
+
+- (NSString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu titleForComponent:(NSInteger)component {
+    return @"Component Title";
+}
+
+- (NSString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return @"Row Title";
+}
+
+- (void)dropdownMenu:(MKDropdownMenu *)dropdownMenu didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    //TODO: selected row is now component title
 }
 
 
