@@ -21,6 +21,8 @@
 		5E70BC4026A0EE5E002E9CE7 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E70BC3F26A0EE5E002E9CE7 /* Keys.plist */; };
 		5E96EB3C26A1E69F00EFBE9A /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E96EB3B26A1E69F00EFBE9A /* APIManager.m */; };
 		5E96EB3F26A7632D00EFBE9A /* AutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E96EB3E26A7632D00EFBE9A /* AutocompleteCell.m */; };
+		5E9B172126A897FE00CC92D5 /* AutocompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B172026A897FE00CC92D5 /* AutocompleteView.xib */; };
+		5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172326A89B1300CC92D5 /* AutocompleteView.m */; };
 		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
@@ -77,6 +79,9 @@
 		5E96EB3B26A1E69F00EFBE9A /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		5E96EB3D26A7632D00EFBE9A /* AutocompleteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocompleteCell.h; sourceTree = "<group>"; };
 		5E96EB3E26A7632D00EFBE9A /* AutocompleteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocompleteCell.m; sourceTree = "<group>"; };
+		5E9B172026A897FE00CC92D5 /* AutocompleteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutocompleteView.xib; sourceTree = "<group>"; };
+		5E9B172226A89B1300CC92D5 /* AutocompleteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocompleteView.h; sourceTree = "<group>"; };
+		5E9B172326A89B1300CC92D5 /* AutocompleteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocompleteView.m; sourceTree = "<group>"; };
 		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EA6EDFF269DFFA10060F07E /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -252,6 +257,9 @@
 				5E4A2943269F408000B29ECC /* ComposeOfferCell.m */,
 				5E96EB3D26A7632D00EFBE9A /* AutocompleteCell.h */,
 				5E96EB3E26A7632D00EFBE9A /* AutocompleteCell.m */,
+				5E9B172026A897FE00CC92D5 /* AutocompleteView.xib */,
+				5E9B172226A89B1300CC92D5 /* AutocompleteView.h */,
+				5E9B172326A89B1300CC92D5 /* AutocompleteView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -409,6 +417,7 @@
 				5E4A2973269FCC8500B29ECC /* Montserrat-Regular.ttf in Resources */,
 				5E4A296A269FCC8500B29ECC /* Montserrat-ExtraLight.ttf in Resources */,
 				5EDF36E5269CDE3000B63F5B /* LaunchScreen.storyboard in Resources */,
+				5E9B172126A897FE00CC92D5 /* AutocompleteView.xib in Resources */,
 				5E4A2970269FCC8500B29ECC /* Montserrat-Bold.ttf in Resources */,
 				5E4A2972269FCC8500B29ECC /* Montserrat-Medium.ttf in Resources */,
 				5EDF36E2269CDE3000B63F5B /* Assets.xcassets in Resources */,
@@ -551,6 +560,7 @@
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,
 				5E96EB3F26A7632D00EFBE9A /* AutocompleteCell.m in Sources */,
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
+				5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */,
 				5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */,
 				5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */,
 				5EA6EE11269E2F1F0060F07E /* Functions.m in Sources */,

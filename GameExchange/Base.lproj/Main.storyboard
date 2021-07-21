@@ -417,24 +417,24 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AutocompleteCell" id="fdD-xB-FAv" customClass="AutocompleteCell">
-                                                    <rect key="frame" x="0.0" y="24.333333969116211" width="310" height="27.333333969116211"/>
+                                                    <rect key="frame" x="0.0" y="24.333333969116211" width="310" height="39"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fdD-xB-FAv" id="F3l-kW-zLu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="310" height="27.333333969116211"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="310" height="39"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QL-df-jo5">
-                                                                <rect key="frame" x="4" y="4" width="302" height="19.333333333333332"/>
+                                                                <rect key="frame" x="8" y="10" width="294" height="19"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="4QL-df-jo5" secondAttribute="trailing" constant="4" id="8n7-K6-gGe"/>
-                                                            <constraint firstAttribute="bottom" secondItem="4QL-df-jo5" secondAttribute="bottom" constant="4" id="Utn-Xo-Tv2"/>
-                                                            <constraint firstItem="4QL-df-jo5" firstAttribute="top" secondItem="F3l-kW-zLu" secondAttribute="top" constant="4" id="sLW-zr-iK8"/>
-                                                            <constraint firstItem="4QL-df-jo5" firstAttribute="leading" secondItem="F3l-kW-zLu" secondAttribute="leading" constant="4" id="udu-rD-A1E"/>
+                                                            <constraint firstAttribute="trailing" secondItem="4QL-df-jo5" secondAttribute="trailing" constant="8" id="8n7-K6-gGe"/>
+                                                            <constraint firstAttribute="bottom" secondItem="4QL-df-jo5" secondAttribute="bottom" constant="10" id="Utn-Xo-Tv2"/>
+                                                            <constraint firstItem="4QL-df-jo5" firstAttribute="top" secondItem="F3l-kW-zLu" secondAttribute="top" constant="10" id="sLW-zr-iK8"/>
+                                                            <constraint firstItem="4QL-df-jo5" firstAttribute="leading" secondItem="F3l-kW-zLu" secondAttribute="leading" constant="8" id="udu-rD-A1E"/>
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <connections>
