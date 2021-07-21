@@ -71,8 +71,8 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
     [task resume];
 }
 
--(NSURL *)createGameURL {
-    NSString *fullgameURLString = [NSString stringWithFormat:@"%@%@", baseURLString, @"games"];
+-(NSURL *)createURLwithEndpoint:(NSString *)endpoint {
+    NSString *fullgameURLString = [NSString stringWithFormat:@"%@%@", baseURLString, endpoint];
     NSURL *gameURL = [NSURL URLWithString:fullgameURLString];
     return gameURL;
 }
@@ -113,7 +113,7 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
 }
 
 - (void)getAutocompleteWithWord:(NSString *)word completion:(void (^)(NSArray *data, NSError *error))completion {
-    NSURL *gameURL = [self createGameURL];
+    NSURL *gameURL = [self createURLwithEndpoint:@"games"];
     NSString *fullrequestBody = [NSString stringWithFormat:@"fields name,rating; where name ~ *\"%@\"* & rating != null; sort rating desc; limit 10;", word];
     
     [self sendNetworkRequestWithPath:gameURL withBody:fullrequestBody completion:^(NSArray *data, NSError *error) {
@@ -126,7 +126,7 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
 }
 
 - (void)getGamesWithCompletion:(void (^)(NSArray *data, NSError *error))completion {
-    NSURL *gameURL = [self createGameURL];
+    NSURL *gameURL = [self createURLwithEndpoint:@"games"];
     
     [self sendNetworkRequestWithPath:gameURL withBody:@"fields *;" completion:^(NSArray *data, NSError *error) {
             if(error != nil) {
