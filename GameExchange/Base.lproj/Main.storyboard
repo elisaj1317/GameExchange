@@ -382,19 +382,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="330"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-K6-ahD">
-                                            <rect key="frame" x="40" y="232.66666666666666" width="310" height="37.666666666666657"/>
-                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mJM-C9-PYt">
-                                            <rect key="frame" x="40" y="185" width="310" height="37.666666666666657"/>
-                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <action selector="didChange:" destination="Fbh-bm-Z85" eventType="editingChanged" id="Qn2-pT-hMW"/>
-                                            </connections>
-                                        </textField>
                                         <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="s9h-uJ-tab">
                                             <rect key="frame" x="132.66666666666666" y="15" width="124.99999999999997" height="140"/>
                                             <gestureRecognizers/>
@@ -406,63 +393,39 @@
                                                 <outletCollection property="gestureRecognizers" destination="KYd-oE-TEm" appends="YES" id="hPE-3a-JYQ"/>
                                             </connections>
                                         </imageView>
+                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-K6-ahD">
+                                            <rect key="frame" x="40" y="222" width="310" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="37" id="ria-29-eBT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn3-6d-vta">
                                             <rect key="frame" x="15" y="290.33333333333331" width="64.333333333333329" height="24.666666666666686"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oMD-9x-yuX">
-                                            <rect key="frame" x="40" y="222.66666666666666" width="310" height="107.33333333333334"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <prototypes>
-                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AutocompleteCell" id="fdD-xB-FAv" customClass="AutocompleteCell">
-                                                    <rect key="frame" x="0.0" y="24.333333969116211" width="310" height="39"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fdD-xB-FAv" id="F3l-kW-zLu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="310" height="39"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QL-df-jo5">
-                                                                <rect key="frame" x="8" y="10" width="294" height="19"/>
-                                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="4QL-df-jo5" secondAttribute="trailing" constant="8" id="8n7-K6-gGe"/>
-                                                            <constraint firstAttribute="bottom" secondItem="4QL-df-jo5" secondAttribute="bottom" constant="10" id="Utn-Xo-Tv2"/>
-                                                            <constraint firstItem="4QL-df-jo5" firstAttribute="top" secondItem="F3l-kW-zLu" secondAttribute="top" constant="10" id="sLW-zr-iK8"/>
-                                                            <constraint firstItem="4QL-df-jo5" firstAttribute="leading" secondItem="F3l-kW-zLu" secondAttribute="leading" constant="8" id="udu-rD-A1E"/>
-                                                        </constraints>
-                                                    </tableViewCellContentView>
-                                                    <connections>
-                                                        <outlet property="autocompleteNameLabel" destination="4QL-df-jo5" id="4C8-bZ-CFD"/>
-                                                    </connections>
-                                                </tableViewCell>
-                                            </prototypes>
-                                        </tableView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EwX-Qa-tB7" customClass="AutocompleteView">
+                                            <rect key="frame" x="40" y="175" width="310" height="155"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="oMD-9x-yuX" firstAttribute="top" secondItem="mJM-C9-PYt" secondAttribute="bottom" id="Iwn-Jz-UM5"/>
-                                        <constraint firstItem="mJM-C9-PYt" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="40" id="Kjm-C9-GS4"/>
-                                        <constraint firstItem="1HA-K6-ahD" firstAttribute="top" secondItem="mJM-C9-PYt" secondAttribute="bottom" constant="10" id="PoN-Vg-5C6"/>
-                                        <constraint firstItem="1HA-K6-ahD" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="40" id="Qal-hC-XII"/>
-                                        <constraint firstItem="1HA-K6-ahD" firstAttribute="height" secondItem="mJM-C9-PYt" secondAttribute="height" id="SRF-km-PNs"/>
-                                        <constraint firstAttribute="bottom" secondItem="oMD-9x-yuX" secondAttribute="bottom" id="SwB-Ux-rhn"/>
-                                        <constraint firstAttribute="trailing" secondItem="oMD-9x-yuX" secondAttribute="trailing" constant="40" id="WfR-Mg-sWf"/>
-                                        <constraint firstItem="mJM-C9-PYt" firstAttribute="top" secondItem="s9h-uJ-tab" secondAttribute="bottom" constant="30" id="afz-mo-4JK"/>
-                                        <constraint firstItem="tn3-6d-vta" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="15" id="bf0-de-1Gb"/>
+                                        <constraint firstItem="EwX-Qa-tB7" firstAttribute="top" secondItem="s9h-uJ-tab" secondAttribute="bottom" constant="20" id="6s6-hl-LSg"/>
+                                        <constraint firstItem="tn3-6d-vta" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="15" id="Ajp-1E-ldR"/>
+                                        <constraint firstItem="EwX-Qa-tB7" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="40" id="LhT-YK-oZg"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tn3-6d-vta" secondAttribute="trailing" constant="15" id="QQc-Q8-oxD"/>
+                                        <constraint firstAttribute="bottom" secondItem="tn3-6d-vta" secondAttribute="bottom" constant="15" id="XR4-4N-iJh"/>
+                                        <constraint firstAttribute="trailing" secondItem="1HA-K6-ahD" secondAttribute="trailing" constant="40" id="bQb-0l-0Y8"/>
+                                        <constraint firstAttribute="bottom" secondItem="EwX-Qa-tB7" secondAttribute="bottom" id="c3Y-Hz-rXr"/>
                                         <constraint firstItem="s9h-uJ-tab" firstAttribute="top" secondItem="iLp-jB-kGa" secondAttribute="top" constant="15" id="cPv-Rv-a3f"/>
-                                        <constraint firstAttribute="trailing" secondItem="1HA-K6-ahD" secondAttribute="trailing" constant="40" id="dzL-id-18s"/>
-                                        <constraint firstItem="tn3-6d-vta" firstAttribute="top" secondItem="1HA-K6-ahD" secondAttribute="bottom" constant="20" id="o3I-65-x9q"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tn3-6d-vta" secondAttribute="trailing" constant="15" id="orr-A8-vOh"/>
-                                        <constraint firstAttribute="bottom" secondItem="tn3-6d-vta" secondAttribute="bottom" constant="15" id="tgE-uo-QbY"/>
-                                        <constraint firstItem="oMD-9x-yuX" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="40" id="tph-AA-MwL"/>
-                                        <constraint firstAttribute="trailing" secondItem="mJM-C9-PYt" secondAttribute="trailing" constant="40" id="uea-G7-Ozl"/>
+                                        <constraint firstItem="tn3-6d-vta" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1HA-K6-ahD" secondAttribute="bottom" constant="15" id="dYR-La-th2"/>
+                                        <constraint firstItem="1HA-K6-ahD" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="40" id="pIX-Cf-97F"/>
                                         <constraint firstItem="s9h-uJ-tab" firstAttribute="centerX" secondItem="iLp-jB-kGa" secondAttribute="centerX" id="xaS-gq-OtL"/>
+                                        <constraint firstItem="1HA-K6-ahD" firstAttribute="top" secondItem="EwX-Qa-tB7" secondAttribute="top" constant="47" id="y4p-2o-iME"/>
+                                        <constraint firstAttribute="trailing" secondItem="EwX-Qa-tB7" secondAttribute="trailing" constant="40" id="zHs-ec-atJ"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="8bJ-Q2-Z3e">
@@ -553,12 +516,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="autocompleteTableView" destination="oMD-9x-yuX" id="oKc-EI-Xzz"/>
                         <outlet property="footerView" destination="8bJ-Q2-Z3e" id="iiE-uH-m2k"/>
                         <outlet property="headerView" destination="iLp-jB-kGa" id="t7f-Bo-iYI"/>
                         <outlet property="itemImage" destination="s9h-uJ-tab" id="TU8-na-900"/>
                         <outlet property="locationField" destination="1HA-K6-ahD" id="SVt-R0-bkv"/>
-                        <outlet property="nameField" destination="mJM-C9-PYt" id="pSK-j8-oF9"/>
                         <outlet property="tableView" destination="ILN-gT-e7L" id="kHc-6x-36R"/>
                     </connections>
                 </viewController>
