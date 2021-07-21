@@ -138,9 +138,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="46N-Cr-Rj0">
                                 <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="wNL-6r-JdN">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RequestCell" id="F84-hg-7WI" customClass="RequestCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="170.33332824707031"/>
+                                        <rect key="frame" x="0.0" y="68.333333969116211" width="390" height="170.33332824707031"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F84-hg-7WI" id="nfj-n9-O7I">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="170.33332824707031"/>
@@ -225,6 +230,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="wNL-6r-JdN" id="3Ow-Ln-TGN"/>
                         <outlet property="tableView" destination="46N-Cr-Rj0" id="lCZ-C2-fpR"/>
                     </connections>
                 </viewController>

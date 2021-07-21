@@ -14,12 +14,15 @@
 #import <Parse/Parse.h>
 
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSMutableArray *requests;
+@property (strong, nonatomic) NSMutableArray *filteredRequests;
 @end
 
 @implementation HomeViewController
@@ -29,6 +32,8 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.searchBar.delegate = self;
     
     [self setUpRefresh];
     [self fetchRequests];
@@ -72,8 +77,29 @@
         if(!error) {
             self.requests = [NSMutableArray arrayWithArray:requests];
             
+            self.filteredRequests = self.requests;
+            
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)fetchFilteredRequestsWithString:(NSString *)searchString {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+    [query whereKey:@"itemSelling" containsString:searchString];
+    [query includeKey:@"author"];
+    query.limit = 20;
+    
+    // fetch data
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
+        if(!error) {
+            self.filteredRequests = [NSMutableArray arrayWithArray:requests];
+            
+            [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -90,12 +116,41 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
-    cell.request = self.requests[indexPath.row];
+    cell.request = self.filteredRequests[indexPath.row];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.requests.count;
+    return self.filteredRequests.count;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        [self fetchFilteredRequestsWithString:searchText];
+            
+        }
+        else {
+            self.filteredRequests = self.requests;
+        }
+        
+        [self.tableView reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    
+    self.filteredRequests = self.requests;
+    [self.tableView reloadData];
+    [self.searchBar resignFirstResponder];
 }
 
 
