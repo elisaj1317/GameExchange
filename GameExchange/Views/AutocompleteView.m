@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSTimer * searchTimer;
 @property (strong, nonatomic) NSMutableArray *autocompleteArray;
+@property (strong, nonatomic) UIFont *regularFont;
 
 
 @end
@@ -44,12 +45,15 @@
     [[NSBundle mainBundle] loadNibNamed:@"AutocompleteView" owner:self options:nil];
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
+    
+    self.regularFont = [UIFont fontWithName:@"Montserrat-Regular" size:15];
 
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView setHidden:YES];
     
     self.textField.delegate = self;
+    [self.textField setFont:self.regularFont];
     [Functions setUpWithBlueMDCTextField:self.textField];
     
     self.autocompleteArray = [[NSMutableArray alloc] init];
@@ -126,7 +130,12 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.autocompleteArray[indexPath.row]];
+    
+    NSString *cellContentString = [NSString stringWithFormat:@"%@", self.autocompleteArray[indexPath.row]];
+    NSMutableAttributedString *cellContent = [[NSMutableAttributedString alloc] initWithString:cellContentString];
+    [cellContent addAttribute:NSFontAttributeName value:self.regularFont range:NSMakeRange(0,cellContent.length)];
+    
+    cell.textLabel.attributedText = cellContent;
     
     return cell;
 }
