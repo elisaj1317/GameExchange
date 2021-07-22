@@ -23,6 +23,7 @@
 		5E9B172126A897FE00CC92D5 /* AutocompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B172026A897FE00CC92D5 /* AutocompleteView.xib */; };
 		5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172326A89B1300CC92D5 /* AutocompleteView.m */; };
 		5E9B172726A8FABE00CC92D5 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172626A8FABE00CC92D5 /* FilterViewController.m */; };
+		5E9B172A26AA1D3200CC92D5 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172926AA1D3200CC92D5 /* Game.m */; };
 		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
@@ -82,6 +83,8 @@
 		5E9B172326A89B1300CC92D5 /* AutocompleteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocompleteView.m; sourceTree = "<group>"; };
 		5E9B172526A8FABE00CC92D5 /* FilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		5E9B172626A8FABE00CC92D5 /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		5E9B172826AA1D3200CC92D5 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		5E9B172926AA1D3200CC92D5 /* Game.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EA6EDFF269DFFA10060F07E /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				5EA6EDFD269DF4940060F07E /* Request.m */,
 				5EA6EE0F269E2F1F0060F07E /* Functions.h */,
 				5EA6EE10269E2F1F0060F07E /* Functions.m */,
+				5E9B172826AA1D3200CC92D5 /* Game.h */,
+				5E9B172926AA1D3200CC92D5 /* Game.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9B172A26AA1D3200CC92D5 /* Game.m in Sources */,
 				5E4A2941269E6E1800B29ECC /* OfferCell.m in Sources */,
 				5EDF3715269D0F4900B63F5B /* RegisterViewController.m in Sources */,
 				5EA6EE07269E1CE70060F07E /* RequestCell.m in Sources */,

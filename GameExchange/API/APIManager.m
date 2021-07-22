@@ -114,7 +114,7 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
 
 - (void)getAutocompleteWithWord:(NSString *)word completion:(void (^)(NSArray *data, NSError *error))completion {
     NSURL *gameURL = [self createURLwithEndpoint:@"games"];
-    NSString *fullrequestBody = [NSString stringWithFormat:@"fields name,rating; where name ~ *\"%@\"* & rating != null; sort rating desc; limit 10;", word];
+    NSString *fullrequestBody = [NSString stringWithFormat:@"fields name,rating,genres.name,platforms.name; where name ~ *\"%@\"* & rating != null; sort rating desc; limit 10;", word];
     
     [self sendNetworkRequestWithPath:gameURL withBody:fullrequestBody completion:^(NSArray *data, NSError *error) {
             if(error != nil) {

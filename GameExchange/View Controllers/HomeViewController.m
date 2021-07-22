@@ -38,15 +38,6 @@
     [self setUpRefresh];
     [self fetchRequests];
     
-    [[APIManager shared] getGamesWithCompletion:^(NSArray *data, NSError *error) {
-        if(error){
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Data2: %@", data);
-        }
-    }];
-    
-    
 }
 
 - (IBAction)didTapLogout:(id)sender {
