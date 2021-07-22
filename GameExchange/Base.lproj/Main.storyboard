@@ -698,7 +698,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uaz-ef-BbB">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableCell" id="94F-IA-oYL">
@@ -715,9 +715,9 @@
                         <viewLayoutGuide key="safeArea" id="AXT-AP-sIm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uaz-ef-BbB" firstAttribute="top" secondItem="jQ8-BJ-TrH" secondAttribute="top" id="1ZD-EH-P7I"/>
+                            <constraint firstItem="uaz-ef-BbB" firstAttribute="top" secondItem="AXT-AP-sIm" secondAttribute="top" id="1ZD-EH-P7I"/>
                             <constraint firstItem="uaz-ef-BbB" firstAttribute="trailing" secondItem="AXT-AP-sIm" secondAttribute="trailing" id="2aa-BA-mSt"/>
-                            <constraint firstAttribute="bottom" secondItem="uaz-ef-BbB" secondAttribute="bottom" id="3NL-0w-vY5"/>
+                            <constraint firstItem="AXT-AP-sIm" firstAttribute="bottom" secondItem="uaz-ef-BbB" secondAttribute="bottom" id="3NL-0w-vY5"/>
                             <constraint firstItem="uaz-ef-BbB" firstAttribute="leading" secondItem="AXT-AP-sIm" secondAttribute="leading" id="pzE-cM-JJP"/>
                         </constraints>
                     </view>

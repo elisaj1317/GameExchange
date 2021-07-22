@@ -15,6 +15,8 @@
 @property (strong) NSArray *sectionItems;
 @property (strong) NSArray *sectionNames;
 
+@property (strong, nonatomic) NSMutableArray *selectedRows;
+
 @end
 
 @implementation FilterViewController
@@ -24,13 +26,15 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.expandedSectionHeaderNumber = -1;
+    
+    self.selectedRows = [[NSMutableArray alloc] init];
     
     //TODO: Change mock data
     self.sectionNames = @[ @"iPhone", @"iPad", @"Apple Watch" ];
-       self.sectionItems = @[ @[@"iPhone 5", @"iPhone 5s", @"iPhone 6", @"iPhone 6 Plus",
-    @"iPhone 7", @"iPhone 7 Plus"],
-                              @[@"iPad Mini", @"iPad Air 2", @"iPad Pro", @"iPad Pro 9.7"],
-                              @[@"Apple Watch", @"Apple Watch 2", @"Apple Watch 2 (Nike)"]
+    self.sectionItems = @[ @[@"iPhone 5", @"iPhone 5s", @"iPhone 6", @"iPhone 6 Plus", @"iPhone 7", @"iPhone 7 Plus"],
+                           @[@"iPad Mini", @"iPad Air 2", @"iPad Pro", @"iPad Pro 9.7"],
+                           @[@"Apple Watch", @"Apple Watch 2", @"Apple Watch 2 (Nike)"]
                             ];
 }
 
@@ -72,12 +76,6 @@
     header.contentView.backgroundColor = [UIColor grayColor];
     header.textLabel.textColor = [UIColor blackColor];
     
-    // remove previous arrow image
-    UIImageView *viewWithTag = [self.view viewWithTag:section + self.sectionNames.count];
-    if (viewWithTag) {
-        [viewWithTag removeFromSuperview];
-    }
-    
     // add the arrow image
     CGSize headerFrame = self.view.frame.size;
     UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, header.frame.size.height/2.0 - 9, 18, 18)];
@@ -96,30 +94,52 @@
     NSArray *section = [self.sectionItems objectAtIndex:indexPath.section];
     cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.text = [section objectAtIndex:indexPath.row];
+    
+    if ([self.selectedRows containsObject:indexPath]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.selectedRows containsObject:indexPath]) {
+        [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+        [self.selectedRows removeObject:indexPath];
+        
+    } else {
+        [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+        [self.selectedRows addObject:indexPath];
+    }
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //TODO: this never runs, see if necessary
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)sectionHeaderWasTouched:(UITapGestureRecognizer *)sender {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)sender.view;
     NSInteger section = headerView.tag;
-    UIImageView *eImageView = (UIImageView *)[headerView viewWithTag:section + self.sectionNames.count];
+    UIImageView *clickedImageView = (UIImageView *)[headerView viewWithTag:section + self.sectionNames.count];
     self.expandedSectionHeader = headerView;
+    // no section is currently expanded
     if (self.expandedSectionHeaderNumber == -1) {
         self.expandedSectionHeaderNumber = section;
-        [self tableViewExpandSection:section withImage:eImageView];
+        [self tableViewExpandSection:section withImage:clickedImageView];
     } else {
+        // clicked on expanded section, collapse
         if (self.expandedSectionHeaderNumber == section) {
-            [self tableViewCollapeSection:section withImage:eImageView];
+            [self tableViewCollapeSection:section withImage:clickedImageView];
             self.expandedSectionHeader = nil;
+        // clicked on new section, collapse previous, expand new
         } else {
-            UIImageView *cImageView  = (UIImageView *)[self.view viewWithTag:self.sectionNames.count + self.expandedSectionHeaderNumber];
-            [self tableViewCollapeSection:self.expandedSectionHeaderNumber withImage:cImageView];
-            [self tableViewExpandSection:section withImage:eImageView];
+            UIImageView *expandedImageView  = (UIImageView *)[self.view viewWithTag:self.sectionNames.count + self.expandedSectionHeaderNumber];
+            [self tableViewCollapeSection:self.expandedSectionHeaderNumber withImage:expandedImageView];
+            [self tableViewExpandSection:section withImage:clickedImageView];
         }
     }
 }
@@ -133,11 +153,13 @@
         [UIView animateWithDuration:0.4 animations:^{
             imageView.transform = CGAffineTransformMakeRotation((0.0 * M_PI) / 180.0);
         }];
+        // collect index path of section row
         NSMutableArray *arrayOfIndexPaths = [NSMutableArray array];
         for (int i=0; i< sectionData.count; i++) {
             NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:section];
             [arrayOfIndexPaths addObject:index];
         }
+        // collapse section rows
         [self.tableView beginUpdates];
         [self.tableView deleteRowsAtIndexPaths:arrayOfIndexPaths withRowAnimation: UITableViewRowAnimationFade];
         [self.tableView endUpdates];
@@ -153,17 +175,20 @@
         [UIView animateWithDuration:0.4 animations:^{
             imageView.transform = CGAffineTransformMakeRotation((180.0 * M_PI) / 180.0);
         }];
+        // collect index path of expanding section rows
         NSMutableArray *arrayOfIndexPaths = [NSMutableArray array];
         for (int i=0; i< sectionData.count; i++) {
             NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:section];
             [arrayOfIndexPaths addObject:index];
         }
+        // expand section rows
         self.expandedSectionHeaderNumber = section;
         [self.tableView beginUpdates];
         [self.tableView insertRowsAtIndexPaths:arrayOfIndexPaths withRowAnimation: UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     }
 }
+
     
 
 
