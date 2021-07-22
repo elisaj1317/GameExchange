@@ -6,12 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MaterialTextControls+FilledTextFields.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AutocompleteView : UIView 
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *textField;
+
 
 - (void)resetAutocomplete;
 - (void)hideAutocomplete;

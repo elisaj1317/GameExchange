@@ -52,4 +52,11 @@
     return activityIndicator;
 }
 
++ (void)setUpWithBlueMDCTextField:(MDCFilledTextField *)textField {
+    UIColor *royalBlue = [UIColor colorNamed:@"royalBlue"];
+    textField.tintColor = royalBlue;
+    [textField setFloatingLabelColor:royalBlue forState:MDCTextControlStateEditing];
+    [textField setUnderlineColor:royalBlue forState:MDCTextControlStateEditing];
+}
+
 @end

@@ -65,25 +65,17 @@
 }
 
 - (void)setupTextFields {
-    UIColor *royalBlue = [UIColor colorNamed:@"royalBlue"];
-    
     // set up username text field
     self.usernameField.label.text = @"Username";
     self.usernameField.placeholder = @"Input text";
-    
-    self.usernameField.tintColor = royalBlue;
-    [self.usernameField setFloatingLabelColor:royalBlue forState:MDCTextControlStateEditing];
-    [self.usernameField setUnderlineColor:royalBlue forState:MDCTextControlStateEditing];
+    [Functions setUpWithBlueMDCTextField:self.usernameField];
     
     
     
     // set up password text field
     self.passwordField.label.text = @"Password";
     self.passwordField.placeholder = @"Input text";
-    
-    self.passwordField.tintColor = royalBlue;
-    [self.passwordField setFloatingLabelColor:royalBlue forState:MDCTextControlStateEditing];
-    [self. passwordField setUnderlineColor:royalBlue forState:MDCTextControlStateEditing];
+    [Functions setUpWithBlueMDCTextField:self.passwordField];
 }
 
 - (void)dismissKeyboards {

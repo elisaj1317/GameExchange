@@ -47,6 +47,9 @@
     self.numberOfRows = @(1);
     
     [self.tableView reloadData];
+    
+    self.nameView.textField.label.text = @"Name";
+    self.nameView.textField.placeholder = @"Input text";
 }
 
 - (IBAction)didTapImage:(id)sender {

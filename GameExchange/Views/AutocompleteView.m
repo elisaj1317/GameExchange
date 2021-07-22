@@ -7,6 +7,7 @@
 
 #import "AutocompleteView.h"
 #import "APIManager.h"
+#import "Functions.h"
 
 @interface AutocompleteView () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
@@ -49,9 +50,18 @@
     [self.tableView setHidden:YES];
     
     self.textField.delegate = self;
+    [Functions setUpWithBlueMDCTextField:self.textField];
     
     self.autocompleteArray = [[NSMutableArray alloc] init];
     
+}
+
+-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    for (UIView *view in self.contentView.subviews) {
+        if (!view.hidden && view.userInteractionEnabled && [view pointInside:[self convertPoint:point toView:view] withEvent:event])
+            return YES;
+    }
+    return NO;
 }
 
 - (void)setAutocompleteArray:(NSMutableArray *)autocompleteArray {
