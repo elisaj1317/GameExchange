@@ -8,6 +8,7 @@
 #import "AutocompleteView.h"
 #import "APIManager.h"
 #import "Functions.h"
+#import "Game.h"
 
 @interface AutocompleteView () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
@@ -103,11 +104,7 @@
     
     [[APIManager shared] getAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
             if (!error) {
-                self.autocompleteArray = [[NSMutableArray alloc] init];
-                for (NSDictionary *game in data) {
-                    NSLog(@"game: %@", game);
-                    [self.autocompleteArray addObject:game[@"name"]];
-                }
+                self.autocompleteArray = [Game gamesWithArray:data];
                 [self.tableView setHidden:NO];
                 [self.tableView reloadData];
             } else {
@@ -130,9 +127,9 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
+    Game *currentGame = self.autocompleteArray[indexPath.row];
     
-    NSString *cellContentString = [NSString stringWithFormat:@"%@", self.autocompleteArray[indexPath.row]];
-    NSMutableAttributedString *cellContent = [[NSMutableAttributedString alloc] initWithString:cellContentString];
+    NSMutableAttributedString *cellContent = [[NSMutableAttributedString alloc] initWithString:currentGame.name];
     [cellContent addAttribute:NSFontAttributeName value:self.regularFont range:NSMakeRange(0,cellContent.length)];
     
     cell.textLabel.attributedText = cellContent;
@@ -145,7 +142,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.textField.text = [NSString stringWithFormat:@"%@", self.autocompleteArray[indexPath.row]];
+    Game *currentGame = self.autocompleteArray[indexPath.row];
+    
+    self.textField.text = currentGame.name;
     [self.tableView reloadData];
     [self.tableView setHidden:YES];
     [self.textField resignFirstResponder];

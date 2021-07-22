@@ -30,7 +30,6 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
             if(error) {
                 NSLog(@"Error getting token: %@", error.localizedDescription);
             } else {
-                NSLog(@"Got Data: %@", data);
                 self.access_token = [data valueForKey:@"access_token"];
             }
             
