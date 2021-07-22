@@ -22,6 +22,7 @@
 		5E96EB3C26A1E69F00EFBE9A /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E96EB3B26A1E69F00EFBE9A /* APIManager.m */; };
 		5E9B172126A897FE00CC92D5 /* AutocompleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B172026A897FE00CC92D5 /* AutocompleteView.xib */; };
 		5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172326A89B1300CC92D5 /* AutocompleteView.m */; };
+		5E9B172726A8FABE00CC92D5 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172626A8FABE00CC92D5 /* FilterViewController.m */; };
 		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
@@ -79,6 +80,8 @@
 		5E9B172026A897FE00CC92D5 /* AutocompleteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutocompleteView.xib; sourceTree = "<group>"; };
 		5E9B172226A89B1300CC92D5 /* AutocompleteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocompleteView.h; sourceTree = "<group>"; };
 		5E9B172326A89B1300CC92D5 /* AutocompleteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocompleteView.m; sourceTree = "<group>"; };
+		5E9B172526A8FABE00CC92D5 /* FilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		5E9B172626A8FABE00CC92D5 /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EA6EDFF269DFFA10060F07E /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				5EA6EE03269E03D40060F07E /* ComposeViewController.m */,
 				5E4A2934269E484800B29ECC /* DetailsViewController.h */,
 				5E4A2935269E484800B29ECC /* DetailsViewController.m */,
+				5E9B172526A8FABE00CC92D5 /* FilterViewController.h */,
+				5E9B172626A8FABE00CC92D5 /* FilterViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 				5E4A2944269F408000B29ECC /* ComposeOfferCell.m in Sources */,
 				5E96EB3C26A1E69F00EFBE9A /* APIManager.m in Sources */,
 				5E4A2936269E484800B29ECC /* DetailsViewController.m in Sources */,
+				5E9B172726A8FABE00CC92D5 /* FilterViewController.m in Sources */,
 				5EDF3712269D0F3500B63F5B /* LoginViewController.m in Sources */,
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
