@@ -141,6 +141,7 @@
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="wNL-6r-JdN">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" name="royalBlue"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
@@ -381,11 +382,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="340" sectionFooterHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ILN-gT-e7L">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="180" sectionHeaderHeight="355" estimatedSectionHeaderHeight="-1" sectionFooterHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ILN-gT-e7L">
                                 <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="iLp-jB-kGa">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="340"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="355"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="s9h-uJ-tab">
@@ -399,7 +400,7 @@
                                                 <outletCollection property="gestureRecognizers" destination="KYd-oE-TEm" appends="YES" id="hPE-3a-JYQ"/>
                                             </connections>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-K6-ahD">
+                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-K6-ahD" customClass="MDCFilledTextField">
                                             <rect key="frame" x="40" y="242" width="310" height="37"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="37" id="ria-29-eBT"/>
@@ -408,13 +409,13 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willing to Accept:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn3-6d-vta">
-                                            <rect key="frame" x="15" y="300.33333333333331" width="176" height="24.666666666666686"/>
+                                            <rect key="frame" x="15" y="315.33333333333331" width="176" height="24.666666666666686"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EwX-Qa-tB7" customClass="AutocompleteView">
-                                            <rect key="frame" x="40" y="175" width="310" height="165"/>
+                                            <rect key="frame" x="40" y="175" width="310" height="180"/>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -427,7 +428,7 @@
                                         <constraint firstAttribute="trailing" secondItem="1HA-K6-ahD" secondAttribute="trailing" constant="40" id="bQb-0l-0Y8"/>
                                         <constraint firstAttribute="bottom" secondItem="EwX-Qa-tB7" secondAttribute="bottom" id="c3Y-Hz-rXr"/>
                                         <constraint firstItem="s9h-uJ-tab" firstAttribute="top" secondItem="iLp-jB-kGa" secondAttribute="top" constant="15" id="cPv-Rv-a3f"/>
-                                        <constraint firstItem="tn3-6d-vta" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1HA-K6-ahD" secondAttribute="bottom" constant="15" id="dYR-La-th2"/>
+                                        <constraint firstItem="tn3-6d-vta" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1HA-K6-ahD" secondAttribute="bottom" constant="35" id="dYR-La-th2"/>
                                         <constraint firstItem="1HA-K6-ahD" firstAttribute="leading" secondItem="iLp-jB-kGa" secondAttribute="leading" constant="40" id="pIX-Cf-97F"/>
                                         <constraint firstItem="s9h-uJ-tab" firstAttribute="centerX" secondItem="iLp-jB-kGa" secondAttribute="centerX" id="xaS-gq-OtL"/>
                                         <constraint firstItem="1HA-K6-ahD" firstAttribute="top" secondItem="EwX-Qa-tB7" secondAttribute="top" constant="67" id="y4p-2o-iME"/>
@@ -435,7 +436,7 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="8bJ-Q2-Z3e">
-                                    <rect key="frame" x="0.0" y="443.66666828502309" width="390" height="44"/>
+                                    <rect key="frame" x="0.0" y="454.00000034679067" width="390" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfV-iu-EkC">
@@ -470,14 +471,14 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ComposeOfferCell" id="Im0-Y4-09B" customClass="ComposeOfferCell">
-                                        <rect key="frame" x="0.0" y="364.33333396911621" width="390" height="55"/>
+                                        <rect key="frame" x="0.0" y="379.33333396911621" width="390" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Im0-Y4-09B" id="Zcr-0V-JYY">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="50.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="534-w4-sdQ">
-                                                    <rect key="frame" x="40" y="8" width="310" height="39"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="534-w4-sdQ" customClass="MDCFilledTextField">
+                                                    <rect key="frame" x="40" y="8" width="310" height="34.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -490,7 +491,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="itemNameField" destination="534-w4-sdQ" id="e7j-Hk-Hya"/>
+                                            <outlet property="itemNameField" destination="534-w4-sdQ" id="cbx-Hi-CjF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -525,7 +526,7 @@
                         <outlet property="footerView" destination="8bJ-Q2-Z3e" id="iiE-uH-m2k"/>
                         <outlet property="headerView" destination="iLp-jB-kGa" id="t7f-Bo-iYI"/>
                         <outlet property="itemImage" destination="s9h-uJ-tab" id="TU8-na-900"/>
-                        <outlet property="locationField" destination="1HA-K6-ahD" id="SVt-R0-bkv"/>
+                        <outlet property="locationField" destination="1HA-K6-ahD" id="FAV-8v-Wbo"/>
                         <outlet property="nameView" destination="EwX-Qa-tB7" id="d1C-Sx-Jeq"/>
                         <outlet property="tableView" destination="ILN-gT-e7L" id="kHc-6x-36R"/>
                     </connections>

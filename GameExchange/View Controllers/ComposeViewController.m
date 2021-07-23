@@ -10,13 +10,14 @@
 #import "Request.h"
 #import "ComposeOfferCell.h"
 #import "AutocompleteView.h"
+#import "Functions.h"
 
 #import "APIManager.h"
 
 @interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
-@property (weak, nonatomic) IBOutlet UITextField *locationField;
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *locationField;
 @property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
 
 
@@ -42,13 +43,16 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
-    
     self.numberOfRows = @(1);
-    
     [self.tableView reloadData];
     
     self.nameView.textField.label.text = @"Name";
     self.nameView.textField.placeholder = @"Input text";
+    
+    self.locationField.label.text = @"Location";
+    self.locationField.placeholder = @"Input text";
+    [Functions setUpWithBlueMDCTextField:self.locationField];
+    self.headerView.frame = self.tableView.tableHeaderView.frame;
 }
 
 - (IBAction)didTapImage:(id)sender {
@@ -264,6 +268,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ComposeOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ComposeOfferCell"];
+    
+    cell.itemNameField.label.text = @"Item Name";
+    cell.itemNameField.placeholder = @"Input text";
+    [Functions setUpWithBlueMDCTextField:cell.itemNameField];
     
     return cell;
 }
