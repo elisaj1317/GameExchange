@@ -15,44 +15,29 @@
 #import "APIManager.h"
 
 @interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+// MARK: Table Header Properties
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *locationField;
 @property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
+@property (weak, nonatomic) IBOutlet AutocompleteView *platformView;
 
-
-
+// MARK: Table Footer Properties
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) NSNumber *numberOfRows;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (strong, nonatomic) NSTimer * searchTimer;
-
-
 @end
 
 @implementation ComposeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = self.footerView;
-    self.numberOfRows = @(1);
-    [self.tableView reloadData];
-    
-    self.nameView.textField.label.text = @"Name";
-    self.nameView.textField.placeholder = @"Input text";
-    
-    self.locationField.label.text = @"Location";
-    self.locationField.placeholder = @"Input text";
-    [Functions setUpWithBlueMDCTextField:self.locationField];
-    self.headerView.frame = self.tableView.tableHeaderView.frame;
+    [self setUpTableView];
+    [self setupTextFields];
 }
 
 - (IBAction)didTapImage:(id)sender {
@@ -65,7 +50,9 @@
 
 - (IBAction)didTapPost:(id)sender {
     [self dismissKeyboards];
+    
     NSArray *itemsRequested = [self createRequestedArray];
+    
     if([self checkValidPostWithArray:itemsRequested]) {
         [Request postRequestImage:self.itemImage.image withName:self.nameView.textField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (!error) {
@@ -107,6 +94,27 @@
     }
 }
 
+- (void)setUpTableView {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
+    self.numberOfRows = @(1);
+    [self.tableView reloadData];
+}
+
+- (void)setupTextFields {
+    self.nameView.textField.label.text = @"Name";
+    self.nameView.textField.placeholder = @"Input text";
+    
+    self.platformView.textField.label.text = @"Platform";
+    self.platformView.textField.placeholder = @"Input text";
+    
+    self.locationField.label.text = @"Location";
+    self.locationField.placeholder = @"Input text";
+    [Functions setUpWithBlueMDCTextField:self.locationField];
+}
+
 
 - (NSArray *)createRequestedArray {
     NSMutableArray *itemsRequested = [[NSMutableArray alloc]init];
@@ -144,6 +152,7 @@
 
 - (void)resetHeader {
     [self.nameView resetAutocomplete];
+    [self.platformView resetAutocomplete];
     self.locationField.text = @"";
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
 }
@@ -250,6 +259,7 @@
 
 - (void)dismissKeyboards {
     [self.nameView hideAutocomplete];
+    [self.platformView hideAutocomplete];
     [self.locationField resignFirstResponder];
     for (int i = 0; i< [self.numberOfRows intValue]; i++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
@@ -274,6 +284,19 @@
     [Functions setUpWithBlueMDCTextField:cell.itemNameField];
     
     return cell;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    UIView *header = self.tableView.tableHeaderView;
+    CGSize size = [header systemLayoutSizeFittingSize:CGSizeMake(self.tableView.frame.size.width, UILayoutFittingCompressedSize.height)];
+    
+    if (header.frame.size.height != size.height) {
+        header.frame = CGRectMake(header.frame.origin.x, header.frame.origin.y, header.frame.size.width, size.height);
+        
+        self.tableView.tableHeaderView = header;
+    }
 }
 
 
