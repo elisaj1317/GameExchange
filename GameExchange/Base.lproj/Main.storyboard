@@ -265,7 +265,7 @@
                                                 <constraint firstAttribute="height" constant="140" id="nf8-Pb-DDk"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selling Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="100-lp-sNZ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selling Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="100-lp-sNZ">
                                             <rect key="frame" x="150" y="15.000000000000002" width="139.33333333333337" height="24.666666666666671"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="20"/>
                                             <nil key="textColor"/>
@@ -307,6 +307,7 @@
                                         <constraint firstItem="hi0-yQ-bCJ" firstAttribute="leading" secondItem="fp5-NY-5z8" secondAttribute="trailing" constant="10" id="tFx-c2-k4L"/>
                                         <constraint firstItem="BWd-5d-Lfv" firstAttribute="leading" secondItem="fp5-NY-5z8" secondAttribute="trailing" constant="10" id="ukG-1G-gQZ"/>
                                         <constraint firstItem="4PY-8E-Oby" firstAttribute="top" secondItem="hi0-yQ-bCJ" secondAttribute="bottom" constant="8" id="ur4-Mb-44c"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BWd-5d-Lfv" secondAttribute="bottom" constant="15" id="ybZ-z5-jAZ"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -372,7 +373,7 @@
             </objects>
             <point key="canvasLocation" x="1166.1538461538462" y="1579.6208530805686"/>
         </scene>
-        <!--Create a Request-->
+        <!--Willing to Exchange-->
         <scene sceneID="6n4-TI-6ep">
             <objects>
                 <viewController id="Fbh-bm-Z85" customClass="ComposeViewController" sceneMemberID="viewController">
@@ -380,7 +381,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="340" sectionFooterHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ILN-gT-e7L">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="340" sectionFooterHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ILN-gT-e7L">
                                 <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="iLp-jB-kGa">
@@ -406,8 +407,8 @@
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn3-6d-vta">
-                                            <rect key="frame" x="15" y="300.33333333333331" width="64.333333333333329" height="24.666666666666686"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willing to Accept:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn3-6d-vta">
+                                            <rect key="frame" x="15" y="300.33333333333331" width="176" height="24.666666666666686"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -434,7 +435,7 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="8bJ-Q2-Z3e">
-                                    <rect key="frame" x="0.0" y="432.66666828502309" width="390" height="44"/>
+                                    <rect key="frame" x="0.0" y="443.66666828502309" width="390" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfV-iu-EkC">
@@ -469,14 +470,14 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ComposeOfferCell" id="Im0-Y4-09B" customClass="ComposeOfferCell">
-                                        <rect key="frame" x="0.0" y="364.33333396911621" width="390" height="44"/>
+                                        <rect key="frame" x="0.0" y="364.33333396911621" width="390" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Im0-Y4-09B" id="Zcr-0V-JYY">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="534-w4-sdQ">
-                                                    <rect key="frame" x="40" y="8" width="310" height="28"/>
+                                                    <rect key="frame" x="40" y="8" width="310" height="39"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -508,7 +509,7 @@
                             <outletCollection property="gestureRecognizers" destination="oMq-zN-oRp" appends="YES" id="76J-UV-hT0"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Create a Request" id="n4k-qE-S2M">
+                    <navigationItem key="navigationItem" title="Willing to Exchange" id="n4k-qE-S2M">
                         <barButtonItem key="leftBarButtonItem" title="Reset" id="sPd-2p-Vq2">
                             <connections>
                                 <action selector="didTapReset:" destination="Fbh-bm-Z85" id="nq2-sb-mcw"/>

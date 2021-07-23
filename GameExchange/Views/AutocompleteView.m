@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSTimer * searchTimer;
-@property (strong, nonatomic) NSMutableArray *autocompleteArray;
 @property (strong, nonatomic) UIFont *regularFont;
 
 

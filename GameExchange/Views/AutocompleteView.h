@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AutocompleteView : UIView 
 
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *textField;
+@property (strong, nonatomic) NSMutableArray *autocompleteArray;
 
 
 - (void)resetAutocomplete;
