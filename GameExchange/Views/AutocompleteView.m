@@ -106,8 +106,12 @@
     
     if (self.game) {
         [self fetchGameWithWord:wordToSearch];
-    } else if (self.platform){
+    } else if (self.platform) {
         [self fetchPlatformWithWord:wordToSearch];
+    } else if (self.genre) {
+        [self fetchGenreWithWord:wordToSearch];
+    } else {
+        NSLog(@"No fetching method specified");
     }
 }
 
@@ -126,6 +130,18 @@
 
 - (void)fetchPlatformWithWord:(NSString *)wordToSearch {
     [[APIManager shared] getPlatformAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
+            if (!error) {
+                self.autocompleteArray = [Game gamesWithArray:data];
+                [self.tableView setHidden:NO];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+    }];
+}
+
+- (void)fetchGenreWithWord:(NSString *)wordToSearch {
+    [[APIManager shared] getGenreAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
             if (!error) {
                 self.autocompleteArray = [Game gamesWithArray:data];
                 [self.tableView setHidden:NO];

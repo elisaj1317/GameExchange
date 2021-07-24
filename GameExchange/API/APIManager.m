@@ -137,6 +137,19 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
     }];
 }
 
+- (void)getGenreAutocompleteWithWord:(NSString *)word completion:(void (^)(NSArray *data, NSError *error))completion {
+    NSURL *genreURL = [self createURLwithEndpoint:@"genres"];
+    NSString *fullrequestBody = [NSString stringWithFormat:@"fields name; where name ~ *\"%@\"*; sort rating desc; limit 10;", word];
+    
+    [self sendNetworkRequestWithPath:genreURL withBody:fullrequestBody completion:^(NSArray *data, NSError *error) {
+            if(error != nil) {
+                completion(nil, error);
+            } else {
+                completion(data, nil);
+            }
+    }];
+}
+
 - (void)getGamesWithCompletion:(void (^)(NSArray *data, NSError *error))completion {
     NSURL *gameURL = [self createURLwithEndpoint:@"games"];
     

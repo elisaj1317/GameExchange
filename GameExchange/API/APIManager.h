@@ -17,6 +17,7 @@
 + (instancetype)shared;
 - (void)getGameAutocompleteWithWord:(NSString *)word completion:(void (^)(NSArray *data, NSError *error))completion;
 - (void)getPlatformAutocompleteWithWord:(NSString *)word completion:(void (^)(NSArray *data, NSError *error))completion;
+- (void)getGenreAutocompleteWithWord:(NSString *)word completion:(void (^)(NSArray *data, NSError *error))completion;
 - (void)getGamesWithCompletion:(void (^)(NSArray *data, NSError *error))completion;
 
 @end
