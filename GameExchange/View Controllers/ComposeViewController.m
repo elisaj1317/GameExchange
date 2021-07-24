@@ -106,9 +106,11 @@
 - (void)setupTextFields {
     self.nameView.textField.label.text = @"Name";
     self.nameView.textField.placeholder = @"Input text";
+    self.nameView.game = YES;
     
     self.platformView.textField.label.text = @"Platform";
     self.platformView.textField.placeholder = @"Input text";
+    self.platformView.platform = YES;
     
     self.locationField.label.text = @"Location";
     self.locationField.placeholder = @"Input text";

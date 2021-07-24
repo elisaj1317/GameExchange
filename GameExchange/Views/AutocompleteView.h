@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *textField;
 @property (strong, nonatomic) NSMutableArray *autocompleteArray;
-
+@property (assign) BOOL game;
+@property (assign) BOOL platform;
+@property (assign) BOOL genre;
 
 - (void)resetAutocomplete;
 - (void)hideAutocomplete;

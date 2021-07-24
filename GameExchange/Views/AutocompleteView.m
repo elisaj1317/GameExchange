@@ -53,6 +53,7 @@
     [self.tableView setHidden:YES];
     
     self.textField.delegate = self;
+    self.textField.placeholder = @"Input text";
     [self.textField setFont:self.regularFont];
     [Functions setUpWithBlueMDCTextField:self.textField];
     
@@ -91,17 +92,27 @@
     self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(fetchAutocomplete:) userInfo:self.textField.text repeats:NO];
 }
 
+- (IBAction)didBeginEditing:(id)sender {
+    [self.tableView setHidden:NO];
+    [self.tableView reloadData];
+}
+
+
 - (void)fetchAutocomplete:(NSTimer *)timer {
     NSString *wordToSearch = (NSString *)timer.userInfo;
-    if ([wordToSearch isEqual:@""]) {
-        [self.tableView setHidden:YES];
-        return;
-    }
     
     
     NSLog(@"search for: %@", wordToSearch);
     
-    [[APIManager shared] getAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
+    if (self.game) {
+        [self fetchGameWithWord:wordToSearch];
+    } else if (self.platform){
+        [self fetchPlatformWithWord:wordToSearch];
+    }
+}
+
+- (void)fetchGameWithWord:(NSString *)wordToSearch {
+    [[APIManager shared] getGameAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
             if (!error) {
                 self.autocompleteArray = [Game gamesWithArray:data];
                 [self.tableView setHidden:NO];
@@ -111,6 +122,18 @@
             }
     }];
     
+}
+
+- (void)fetchPlatformWithWord:(NSString *)wordToSearch {
+    [[APIManager shared] getPlatformAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
+            if (!error) {
+                self.autocompleteArray = [Game gamesWithArray:data];
+                [self.tableView setHidden:NO];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+    }];
 }
 
 - (void)hideAutocomplete {
@@ -137,6 +160,9 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.autocompleteArray.count == 0) {
+        [self.tableView setHidden:YES];
+    }
     return self.autocompleteArray.count;
 }
 
@@ -144,7 +170,6 @@
     Game *currentGame = self.autocompleteArray[indexPath.row];
     
     self.textField.text = currentGame.name;
-    [self.tableView reloadData];
     [self.tableView setHidden:YES];
     [self.textField resignFirstResponder];
 }

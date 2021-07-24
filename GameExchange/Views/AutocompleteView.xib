@@ -30,6 +30,7 @@
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
+                        <action selector="didBeginEditing:" destination="-1" eventType="editingDidBegin" id="yJD-d6-5S4"/>
                         <action selector="didChangeEditing:" destination="-1" eventType="editingChanged" id="oMu-Qd-we3"/>
                     </connections>
                 </textField>
