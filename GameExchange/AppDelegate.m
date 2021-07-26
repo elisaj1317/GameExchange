@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "IQKeyboardManager.h"
 #import "APIManager.h"
 
 @interface AppDelegate ()
@@ -27,6 +28,9 @@
     [Parse initializeWithConfiguration:config];
     
     [APIManager shared];
+    
+    [IQKeyboardManager.sharedManager setToolbarTintColor:[UIColor colorNamed:@"royalBlue"]];
+    [IQKeyboardManager.sharedManager setShouldShowToolbarPlaceholder:NO];
     
 
     return YES;
