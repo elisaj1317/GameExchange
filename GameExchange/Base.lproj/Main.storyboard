@@ -409,7 +409,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willing to Accept:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn3-6d-vta">
-                                            <rect key="frame" x="15" y="516.66666666666663" width="157" height="23.333333333333371"/>
+                                            <rect key="frame" x="15" y="515.33333333333337" width="176" height="24.666666666666629"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -460,7 +460,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfV-iu-EkC">
-                                            <rect key="frame" x="15" y="8" width="75" height="28"/>
+                                            <rect key="frame" x="15" y="8" width="82" height="28"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                             <color key="tintColor" name="royalBlue"/>
                                             <state key="normal" title="Add Row"/>
@@ -469,7 +469,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1j-KV-JW4">
-                                            <rect key="frame" x="267" y="8" width="108" height="28"/>
+                                            <rect key="frame" x="256" y="8" width="119" height="28"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                             <color key="tintColor" name="royalBlue"/>
                                             <state key="normal" title="Remove Row"/>

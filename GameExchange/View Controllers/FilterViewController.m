@@ -6,14 +6,19 @@
 //
 
 #import "FilterViewController.h"
+
 #import <Parse/Parse.h>
+#import <MaterialComponents/MaterialActivityIndicator.h>
+
 #import "Request.h"
+#import "Functions.h"
 
 @interface FilterViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (assign) NSInteger expandedSectionHeaderNumber;
 @property (assign) UITableViewHeaderFooterView *expandedSectionHeader;
+
 @property (strong) NSMutableArray *sectionItems;
 @property (strong) NSArray *sectionNames;
 
@@ -47,7 +52,8 @@
 
 
 - (void)fetchSectionItems {
-    self.sectionNames = @[ @"Platform", @"Genre", @"Apple Watch" ];
+    MDCActivityIndicator *activityIndicator = [Functions startActivityIndicatorAtPosition:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
+    [self.view addSubview:activityIndicator];
     self.sectionItems = [[NSMutableArray alloc] init];
     
     NSMutableSet *platformNames = [[NSMutableSet alloc] init];
@@ -60,10 +66,15 @@
                 [platformNames addObject:item.platform];
                 [genreNames addObject:item.genre];
             }
+            self.sectionNames = @[ @"Platform", @"Genre"];
             NSArray *sortedPlatformNames = [[platformNames allObjects] sortedArrayUsingSelector:@selector(compare:)];
-            [self.sectionItems addObject:sortedPlatformNames];
             NSArray *sortedGenreNames = [[genreNames allObjects] sortedArrayUsingSelector:@selector(compare:)];
+            
+            [self.sectionItems addObject:sortedPlatformNames];
             [self.sectionItems addObject:sortedGenreNames];
+            
+            [activityIndicator stopAnimating];
+            [self.tableView reloadData];
             
             
         } else {
@@ -78,14 +89,6 @@
         self.tableView.backgroundView = nil;
         return self.sectionNames.count;
     } else {
-        //TODO: Add custom loading state for data
-        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        messageLabel.text = @"Retrieving data.\nPlease wait.";
-        messageLabel.numberOfLines = 0;
-        messageLabel.textAlignment = NSTextAlignmentCenter;
-        messageLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:20];
-        [messageLabel sizeToFit];
-        self.tableView.backgroundView = messageLabel;
         return 0;
     }
 }
