@@ -55,14 +55,21 @@
     NSArray *itemsRequested = [self createRequestedArray];
     
     if([self checkValidPostWithArray:itemsRequested]) {
-        [Request postRequestImage:self.itemImage.image withName:self.nameView.textField.text withPlatform:self.platformView.textField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            if (!error) {
-                [self segueToHome];
-            }
-            else {
-                NSLog(@"Error: %@", error.localizedDescription);
-            }
+        NSMutableDictionary *requestValues = [NSMutableDictionary dictionary];
+        [requestValues setValue:self.nameView.textField.text forKey:@"itemName"];
+        [requestValues setValue:self.platformView.textField.text forKey:@"platform"];
+        [requestValues setValue:self.genreView.textField.text forKey:@"genre"];
+        [requestValues setValue:self.locationField.text forKey:@"location"];
+        [requestValues setValue:itemsRequested forKey:@"itemRequest"];
+        
+        [Request postRequestImage:self.itemImage.image withValues:requestValues withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (!error) {
+                        [self segueToHome];
+                    } else {
+                        NSLog(@"Error: %@", error.localizedDescription);
+                    }
         }];
+        
     }
 }
 
