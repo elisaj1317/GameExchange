@@ -6,13 +6,15 @@
 //
 
 #import "FilterViewController.h"
+#import <Parse/Parse.h>
+#import "Request.h"
 
 @interface FilterViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (assign) NSInteger expandedSectionHeaderNumber;
 @property (assign) UITableViewHeaderFooterView *expandedSectionHeader;
-@property (strong) NSArray *sectionItems;
+@property (strong) NSMutableArray *sectionItems;
 @property (strong) NSArray *sectionNames;
 
 @property (strong, nonatomic) NSMutableArray *selectedRows;
@@ -30,12 +32,31 @@
     
     self.selectedRows = [[NSMutableArray alloc] init];
     
-    //TODO: Change mock data
-    self.sectionNames = @[ @"iPhone", @"iPad", @"Apple Watch" ];
-    self.sectionItems = @[ @[@"iPhone 5", @"iPhone 5s", @"iPhone 6", @"iPhone 6 Plus", @"iPhone 7", @"iPhone 7 Plus"],
-                           @[@"iPad Mini", @"iPad Air 2", @"iPad Pro", @"iPad Pro 9.7"],
-                           @[@"Apple Watch", @"Apple Watch 2", @"Apple Watch 2 (Nike)"]
-                            ];
+    [self fetchSectionItems];
+
+}
+
+- (void)fetchSectionItems {
+    self.sectionNames = @[ @"Platform", @"Genre", @"Apple Watch" ];
+    self.sectionItems = [[NSMutableArray alloc] init];
+    
+    NSMutableSet *platformNames = [[NSMutableSet alloc] init];
+    NSMutableSet *genreNames = [[NSMutableSet alloc] init];
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            for (Request *item in objects) {
+                [platformNames addObject:item.platform];
+            }
+            NSArray *sortedPlatformNames = [[platformNames allObjects] sortedArrayUsingSelector:@selector(compare:)];
+            [self.sectionItems addObject:sortedPlatformNames];
+            [self.sectionItems addObject:genreNames];
+            
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
