@@ -22,6 +22,13 @@
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
 		5EA6EE07269E1CE70060F07E /* RequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE06269E1CE70060F07E /* RequestCell.m */; };
 		5EA6EE11269E2F1F0060F07E /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE10269E2F1F0060F07E /* Functions.m */; };
+		5EA7435A26AF4D8C004A25E5 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435826AF4B04004A25E5 /* Montserrat-Bold.ttf */; };
+		5EA7435B26AF4D90004A25E5 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435326AF4B04004A25E5 /* Montserrat-ExtraLight.ttf */; };
+		5EA7435C26AF4D90004A25E5 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435926AF4B04004A25E5 /* Montserrat-Medium.ttf */; };
+		5EA7435D26AF4D90004A25E5 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435526AF4B04004A25E5 /* Montserrat-SemiBold.ttf */; };
+		5EA7435E26AF4D90004A25E5 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435626AF4B04004A25E5 /* Montserrat-Light.ttf */; };
+		5EA7435F26AF4D90004A25E5 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435426AF4B04004A25E5 /* Montserrat-Regular.ttf */; };
+		5EA7436026AF4D90004A25E5 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435726AF4B04004A25E5 /* Montserrat-Thin.ttf */; };
 		5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */; };
 		5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D9269CDE2F00B63F5B /* SceneDelegate.m */; };
 		5EDF36E0269CDE3000B63F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF36DE269CDE2F00B63F5B /* Main.storyboard */; };
@@ -409,10 +416,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EA7435E26AF4D90004A25E5 /* Montserrat-Light.ttf in Resources */,
+				5EA7435F26AF4D90004A25E5 /* Montserrat-Regular.ttf in Resources */,
 				5E70BC4026A0EE5E002E9CE7 /* Keys.plist in Resources */,
 				5EDF36E5269CDE3000B63F5B /* LaunchScreen.storyboard in Resources */,
+				5EA7435A26AF4D8C004A25E5 /* Montserrat-Bold.ttf in Resources */,
+				5EA7435B26AF4D90004A25E5 /* Montserrat-ExtraLight.ttf in Resources */,
 				5E9B172126A897FE00CC92D5 /* AutocompleteView.xib in Resources */,
 				5EDF36E2269CDE3000B63F5B /* Assets.xcassets in Resources */,
+				5EA7435D26AF4D90004A25E5 /* Montserrat-SemiBold.ttf in Resources */,
+				5EA7435C26AF4D90004A25E5 /* Montserrat-Medium.ttf in Resources */,
+				5EA7436026AF4D90004A25E5 /* Montserrat-Thin.ttf in Resources */,
 				5EDF36E0269CDE3000B63F5B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

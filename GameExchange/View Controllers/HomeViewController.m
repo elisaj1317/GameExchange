@@ -24,6 +24,7 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSMutableArray *requests;
 @property (strong, nonatomic) NSMutableArray *filteredRequests;
+@property (strong, nonatomic) NSDictionary *filtersDictionary;
 @end
 
 @implementation HomeViewController
@@ -59,16 +60,13 @@
 
 - (void)fetchRequests {
     // construct query
-    PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+    PFQuery *query = [self setUpQueryWithFilters];
     [query orderByDescending:@"createdAt"];
-    [query includeKey:@"author"];
-    query.limit = 20;
     
     // fetch data
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
         if(!error) {
             self.requests = [NSMutableArray arrayWithArray:requests];
-            
             self.filteredRequests = self.requests;
             
             [self.tableView reloadData];
@@ -81,10 +79,8 @@
 
 - (void)fetchFilteredRequestsWithString:(NSString *)searchString {
     // construct query
-    PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+    PFQuery *query = [self setUpQueryWithFilters];
     [query whereKey:@"itemSelling" containsString:searchString];
-    [query includeKey:@"author"];
-    query.limit = 20;
     
     // fetch data
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
@@ -107,14 +103,10 @@
 }
 
 - (void)didFilter:(NSDictionary *)filters {
-    PFQuery *mainQuery = [PFQuery queryWithClassName:@"Request"];
-    [mainQuery orderByDescending:@"createdAt"];
-    [mainQuery includeKey:@"author"];
-    mainQuery.limit = 20;
+    self.filtersDictionary = filters;
     
-    for (NSString *key in filters) {
-        [mainQuery whereKey:key containedIn:filters[key]];
-    }
+    PFQuery *mainQuery = [self setUpQueryWithFilters];
+    [mainQuery orderByDescending:@"createdAt"];
     
     [mainQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (!error) {
@@ -126,6 +118,18 @@
                 NSLog(@"Error: %@", error.localizedDescription);
             }
     }];
+}
+
+- (PFQuery *)setUpQueryWithFilters {
+    PFQuery *query = [PFQuery queryWithClassName:@"Request"];
+    [query includeKey:@"author"];
+    query.limit = 20;
+    
+    for (NSString *key in self.filtersDictionary) {
+        [query whereKey:key containedIn:self.filtersDictionary[key]];
+    }
+    
+    return query;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
