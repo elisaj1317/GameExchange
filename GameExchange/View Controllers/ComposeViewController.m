@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *locationField;
 @property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
 @property (weak, nonatomic) IBOutlet AutocompleteView *platformView;
+@property (weak, nonatomic) IBOutlet AutocompleteView *genreView;
 
 // MARK: Table Footer Properties
 @property (weak, nonatomic) IBOutlet UIView *footerView;
@@ -105,12 +106,14 @@
 
 - (void)setupTextFields {
     self.nameView.textField.label.text = @"Name";
-    self.nameView.textField.placeholder = @"Input text";
     self.nameView.game = YES;
     
     self.platformView.textField.label.text = @"Platform";
-    self.platformView.textField.placeholder = @"Input text";
     self.platformView.platform = YES;
+    
+    self.genreView.textField.label.text = @"Genre";
+    self.genreView.genre = YES;
+    
     
     self.locationField.label.text = @"Location";
     self.locationField.placeholder = @"Input text";
@@ -155,6 +158,8 @@
 - (void)resetHeader {
     [self.nameView resetAutocomplete];
     [self.platformView resetAutocomplete];
+    [self.genreView resetAutocomplete];
+    
     self.locationField.text = @"";
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
 }
@@ -262,6 +267,8 @@
 - (void)dismissKeyboards {
     [self.nameView hideAutocomplete];
     [self.platformView hideAutocomplete];
+    [self.genreView hideAutocomplete];
+    
     [self.locationField resignFirstResponder];
     for (int i = 0; i< [self.numberOfRows intValue]; i++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];

@@ -16,6 +16,7 @@
 @dynamic itemSelling;
 @dynamic itemRequest;
 @dynamic requestStatus;
+@dynamic platform;
 
 + (nonnull NSString *)parseClassName {
     return @"Request";
