@@ -231,7 +231,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Filters" id="4dP-fe-Ujm">
                             <connections>
-                                <segue destination="MLB-55-vmy" kind="presentation" id="BZV-Ik-Kg1"/>
+                                <segue destination="MLB-55-vmy" kind="presentation" identifier="filterSegue" id="BZV-Ik-Kg1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

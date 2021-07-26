@@ -7,6 +7,7 @@
 
 #import "HomeViewController.h"
 #import "DetailsViewController.h"
+#import "FilterViewController.h"
 #import "RequestCell.h"
 
 #import "SceneDelegate.h"
@@ -14,7 +15,7 @@
 #import <Parse/Parse.h>
 
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface HomeViewController () <FilterViewControllerDelegate,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -105,6 +106,27 @@
     sceneDelegate.window.rootViewController = loginViewController;
 }
 
+- (void)didFilter:(NSDictionary *)filters {
+    PFQuery *mainQuery = [PFQuery queryWithClassName:@"Request"];
+    [mainQuery orderByDescending:@"createdAt"];
+    [mainQuery includeKey:@"author"];
+    
+    for (NSString *key in filters) {
+        [mainQuery whereKey:key containedIn:filters[key]];
+    }
+    
+    [mainQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            if (!error) {
+                self.requests = [NSMutableArray arrayWithArray:objects];
+                self.filteredRequests = self.requests;
+                
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+    }];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
     cell.request = self.filteredRequests[indexPath.row];
@@ -158,6 +180,10 @@
         DetailsViewController *detailsViewController = [segue destinationViewController];
         
         detailsViewController.request = request;
+    } else if ([segue.identifier isEqual:@"filterSegue"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        FilterViewController *filterController = (FilterViewController*)navigationController.topViewController;
+        filterController.delegate = self;
     }
 }
 

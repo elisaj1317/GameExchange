@@ -71,7 +71,7 @@
     }];
 }
 
-- (NSArray *)getFiltersApplied {
+- (NSDictionary *)getFiltersApplied {
     NSMutableArray *platformFiltersApplied = [[NSMutableArray alloc] init];
     
     // add all filters applied to proper array
@@ -82,8 +82,8 @@
             [platformFiltersApplied addObject:selectedItem];
         }
     }
-    NSMutableArray *filtersApplied = [[NSMutableArray alloc] init];
-    [filtersApplied addObject:platformFiltersApplied];
+    NSMutableDictionary *filtersApplied = [[NSMutableDictionary alloc] init];
+    [filtersApplied setValue:platformFiltersApplied forKey:@"platform"];
     
     return filtersApplied;
 }

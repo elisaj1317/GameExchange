@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FilterViewControllerDelegate
 
-- (void)didFilter:(NSArray *)filters;
+- (void)didFilter:(NSDictionary *)filters;
 
 @end
 
