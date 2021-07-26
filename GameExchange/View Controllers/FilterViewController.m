@@ -58,10 +58,12 @@
         if (!error) {
             for (Request *item in objects) {
                 [platformNames addObject:item.platform];
+                [genreNames addObject:item.genre];
             }
             NSArray *sortedPlatformNames = [[platformNames allObjects] sortedArrayUsingSelector:@selector(compare:)];
             [self.sectionItems addObject:sortedPlatformNames];
-            [self.sectionItems addObject:genreNames];
+            NSArray *sortedGenreNames = [[genreNames allObjects] sortedArrayUsingSelector:@selector(compare:)];
+            [self.sectionItems addObject:sortedGenreNames];
             
             
         } else {
