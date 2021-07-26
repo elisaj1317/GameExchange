@@ -110,6 +110,7 @@
     PFQuery *mainQuery = [PFQuery queryWithClassName:@"Request"];
     [mainQuery orderByDescending:@"createdAt"];
     [mainQuery includeKey:@"author"];
+    mainQuery.limit = 20;
     
     for (NSString *key in filters) {
         [mainQuery whereKey:key containedIn:filters[key]];
