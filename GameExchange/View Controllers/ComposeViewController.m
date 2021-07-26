@@ -54,7 +54,7 @@
     NSArray *itemsRequested = [self createRequestedArray];
     
     if([self checkValidPostWithArray:itemsRequested]) {
-        [Request postRequestImage:self.itemImage.image withName:self.nameView.textField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [Request postRequestImage:self.itemImage.image withName:self.nameView.textField.text withPlatform:self.platformView.textField.text withLocation:self.locationField.text withRequests:itemsRequested withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (!error) {
                 [self segueToHome];
             }
