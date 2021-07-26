@@ -36,6 +36,18 @@
 
 }
 
+- (IBAction)didTapCancel:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+
+- (IBAction)didTapApply:(id)sender {
+    NSArray *filtersApplied = [self getFiltersApplied];
+    [self.delegate didFilter:filtersApplied];
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+
 - (void)fetchSectionItems {
     self.sectionNames = @[ @"Platform", @"Genre", @"Apple Watch" ];
     self.sectionItems = [[NSMutableArray alloc] init];
@@ -57,6 +69,23 @@
             NSLog(@"Error: %@", error.localizedDescription);
         }
     }];
+}
+
+- (NSArray *)getFiltersApplied {
+    NSMutableArray *platformFiltersApplied = [[NSMutableArray alloc] init];
+    
+    // add all filters applied to proper array
+    for (NSIndexPath *selectedPath in self.selectedRows) {
+        
+        NSString *selectedItem = self.sectionItems[selectedPath.section][selectedPath.row];
+        if (selectedPath.section == 0) {
+            [platformFiltersApplied addObject:selectedItem];
+        }
+    }
+    NSMutableArray *filtersApplied = [[NSMutableArray alloc] init];
+    [filtersApplied addObject:platformFiltersApplied];
+    
+    return filtersApplied;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
