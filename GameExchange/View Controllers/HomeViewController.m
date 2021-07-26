@@ -126,7 +126,10 @@
     query.limit = 20;
     
     for (NSString *key in self.filtersDictionary) {
-        [query whereKey:key containedIn:self.filtersDictionary[key]];
+        NSArray *keyFilters = self.filtersDictionary[key];
+        if (keyFilters.count != 0) {
+            [query whereKey:key containedIn:self.filtersDictionary[key]];
+        }
     }
     
     return query;
@@ -189,6 +192,7 @@
         UINavigationController *navigationController = [segue destinationViewController];
         FilterViewController *filterController = (FilterViewController*)navigationController.topViewController;
         filterController.delegate = self;
+        filterController.filtersDictionary = self.filtersDictionary;
     }
 }
 

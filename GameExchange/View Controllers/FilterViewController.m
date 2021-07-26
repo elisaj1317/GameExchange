@@ -28,7 +28,9 @@
     self.tableView.dataSource = self;
     self.expandedSectionHeaderNumber = -1;
     
-    self.filtersDictionary = [NSMutableDictionary dictionary];
+    if (self.filtersDictionary == nil) {
+        self.filtersDictionary = [NSMutableDictionary dictionary];
+    }
     
     [self fetchSectionItems];
 }
@@ -61,7 +63,6 @@
             [self.sectionItems addObject:sortedPlatformNames];
             [self.sectionItems addObject:genreNames];
             
-            [self.tableView reloadData];
             
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
