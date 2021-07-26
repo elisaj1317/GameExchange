@@ -17,8 +17,6 @@
 @property (strong) NSMutableArray *sectionItems;
 @property (strong) NSArray *sectionNames;
 
-@property (strong, nonatomic) NSMutableArray *selectedRows;
-
 @end
 
 @implementation FilterViewController
@@ -30,10 +28,9 @@
     self.tableView.dataSource = self;
     self.expandedSectionHeaderNumber = -1;
     
-    self.selectedRows = [[NSMutableArray alloc] init];
+    self.filtersDictionary = [NSMutableDictionary dictionary];
     
     [self fetchSectionItems];
-
 }
 
 - (IBAction)didTapCancel:(id)sender {
@@ -42,8 +39,7 @@
 
 
 - (IBAction)didTapApply:(id)sender {
-    NSArray *filtersApplied = [self getFiltersApplied];
-    [self.delegate didFilter:filtersApplied];
+    [self.delegate didFilter:self.filtersDictionary];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
@@ -65,28 +61,14 @@
             [self.sectionItems addObject:sortedPlatformNames];
             [self.sectionItems addObject:genreNames];
             
+            [self.tableView reloadData];
+            
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
     }];
 }
 
-- (NSDictionary *)getFiltersApplied {
-    NSMutableArray *platformFiltersApplied = [[NSMutableArray alloc] init];
-    
-    // add all filters applied to proper array
-    for (NSIndexPath *selectedPath in self.selectedRows) {
-        
-        NSString *selectedItem = self.sectionItems[selectedPath.section][selectedPath.row];
-        if (selectedPath.section == 0) {
-            [platformFiltersApplied addObject:selectedItem];
-        }
-    }
-    NSMutableDictionary *filtersApplied = [[NSMutableDictionary alloc] init];
-    [filtersApplied setValue:platformFiltersApplied forKey:@"platform"];
-    
-    return filtersApplied;
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.sectionNames.count > 0) {
@@ -142,10 +124,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
     NSArray *section = [self.sectionItems objectAtIndex:indexPath.section];
-    cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.text = [section objectAtIndex:indexPath.row];
+    NSString *selectedItem = [section objectAtIndex:indexPath.row];
+    cell.textLabel.text = selectedItem;
     
-    if ([self.selectedRows containsObject:indexPath]) {
+    NSString *currentSectionName = [self.sectionNames[indexPath.section] lowercaseString];
+    NSMutableArray *selectedInSection = self.filtersDictionary[currentSectionName];
+    
+    if ([selectedInSection containsObject:selectedItem]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -155,15 +140,24 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.selectedRows containsObject:indexPath]) {
-        [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
-        [self.selectedRows removeObject:indexPath];
-        
-    } else {
-        [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
-        [self.selectedRows addObject:indexPath];
+    NSString *currentSectionName = [self.sectionNames[indexPath.section] lowercaseString];
+    NSString *selectedItem = self.sectionItems[indexPath.section][indexPath.row];
+    NSMutableArray *selectedInSection = self.filtersDictionary[currentSectionName];
+    
+    if (selectedInSection == nil) {
+        selectedInSection = [[NSMutableArray alloc] init];
     }
     
+    if ([selectedInSection containsObject:selectedItem]) {
+        [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+        [selectedInSection removeObject:selectedItem];
+
+    } else {
+        [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+        [selectedInSection addObject:selectedItem];
+    }
+    
+    [self.filtersDictionary setValue:selectedInSection forKey:currentSectionName];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
