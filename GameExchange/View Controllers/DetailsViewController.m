@@ -16,9 +16,13 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 
-
+//MARK: Game Info
 @property (weak, nonatomic) IBOutlet PFImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *itemSellingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *platformLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
+
+//MARK: Seller Info
 @property (weak, nonatomic) IBOutlet UILabel *sellerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sellerUsernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -34,6 +38,8 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headerView;
     
+    self.title = self.request.itemSelling;
+    
     [self setUpHeader];
 }
 
@@ -42,12 +48,18 @@
     self.itemImageView.file = self.request.image;
     [self.itemImageView loadInBackground];
     
-    [self setUpHeaderLabels];
+    [self setUpHeaderGameLabels];
+    [self setUpHeaderSellerLabels];
     
 }
 
-- (void)setUpHeaderLabels {
+- (void)setUpHeaderGameLabels {
     self.itemSellingLabel.text = self.request.itemSelling;
+    self.platformLabel.text = self.request.platform;
+    self.genreLabel.text = self.request.genre;
+}
+
+- (void)setUpHeaderSellerLabels {
     self.sellerNameLabel.text = [self.request.author objectForKey:@"fullName"];
     self.sellerUsernameLabel.text = self.request.author.username;
     self.locationLabel.text = self.request.location;
@@ -67,9 +79,7 @@
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return self.headerView;
-}
+
 
 
 /*
