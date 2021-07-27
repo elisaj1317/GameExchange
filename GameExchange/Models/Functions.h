@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 + (MDCActivityIndicator *)startActivityIndicatorAtPosition:(CGPoint)position;
 + (void)setUpWithBlueMDCTextField:(MDCFilledTextField *)textField;
++ (UIAlertController *)createErrorWithMessage:(NSString *)message;
 
 @end
 

@@ -43,7 +43,8 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         [activityIndicator stopAnimating];
         if (error != nil) {
-            [self showLoginAlertWithError:error];
+            UIAlertController *errorAlert =  [Functions createErrorWithMessage:error.localizedDescription];
+            [self presentViewController:errorAlert animated:YES completion:nil];
             NSLog(@"User log in failed: %@", error.localizedDescription);
         } else {
             NSLog(@"User logged in successfully");
@@ -54,14 +55,6 @@
 
 - (IBAction)didTapScreen:(id)sender {
     [self dismissKeyboards];
-}
-
-
-- (void)showLoginAlertWithError:(NSError *)error {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [errorAlert addAction:okAction];
-    [self presentViewController:errorAlert animated:YES completion:nil];
 }
 
 - (void)setupTextFields {

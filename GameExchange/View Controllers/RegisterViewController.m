@@ -43,7 +43,8 @@
             [activityIndicator stopAnimating];
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
-                [self showRegisterAlertWithMessage:error.localizedDescription];
+                UIAlertController *errorAlert =  [Functions createErrorWithMessage:error.localizedDescription];
+                [self presentViewController:errorAlert animated:YES completion:nil];
             } else {
                 NSLog(@"User registered successfully");
                 
@@ -97,16 +98,10 @@
     [self.passwordField resignFirstResponder];
 }
 
-- (void)showRegisterAlertWithMessage:(NSString *)message {
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [errorAlert addAction:okAction];
-    [self presentViewController:errorAlert animated:YES completion:nil];
-}
-
 - (bool)checkValidName {
     if ([self.nameField.text isEqual:@""]) {
-        [self showRegisterAlertWithMessage:@"Name is required"];
+        UIAlertController *errorAlert =  [Functions createErrorWithMessage:@"Name is required"];
+        [self presentViewController:errorAlert animated:YES completion:nil];
         return NO;
     }
     return YES;

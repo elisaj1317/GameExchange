@@ -59,4 +59,11 @@
     [textField setUnderlineColor:royalBlue forState:MDCTextControlStateEditing];
 }
 
++ (UIAlertController *)createErrorWithMessage:(NSString *)message{
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [errorAlert addAction:okAction];
+    return errorAlert;
+}
+
 @end

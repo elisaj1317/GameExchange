@@ -96,7 +96,8 @@
 - (IBAction)didTapAddRow:(id)sender {   
     NSInteger oldRowValue = [self.numberOfRows intValue];
     if (oldRowValue == 5) {
-        [self showErrorWithMessage:@"A maximum of 5 offers can be made"];
+        UIAlertController *errorAlert =  [Functions createErrorWithMessage:@"A maximum of 5 offers can be made"];
+        [self presentViewController:errorAlert animated:YES completion:nil];
     } else {
         self.numberOfRows = @(oldRowValue + 1);
         
@@ -107,7 +108,8 @@
 - (IBAction)didTapRemoveRow:(id)sender {
     NSInteger oldRowValue = [self.numberOfRows intValue];
     if (oldRowValue == 1) {
-        [self showErrorWithMessage:@"At least one offer is required"];
+        UIAlertController *errorAlert =  [Functions createErrorWithMessage:@"At least one offer is required"];
+        [self presentViewController:errorAlert animated:YES completion:nil];
     } else {
         self.numberOfRows = @(oldRowValue - 1);
         
@@ -174,7 +176,8 @@
         valid = NO;
     }
     if (itemsRequested.count == 0) {
-        [self showErrorWithMessage:@"Enter name of item request"];
+        UIAlertController *errorAlert =  [Functions createErrorWithMessage:@"Enter name of item request"];
+        [self presentViewController:errorAlert animated:YES completion:nil];
         valid = NO;
     }
     if ([self.itemImage.image isEqual:[UIImage imageNamed:@"placeholder"]]) {
@@ -205,12 +208,6 @@
     [self.tableView reloadData];
 }
 
-- (void)showErrorWithMessage:(NSString *)message{
-    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [errorAlert addAction:okAction];
-    [self presentViewController:errorAlert animated:YES completion:nil];
-}
 
 - (void)segueToHome {
     SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
