@@ -51,6 +51,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView setHidden:YES];
+    [self addShadow];
     
     self.textField.delegate = self;
     self.textField.placeholder = @"Input text";
@@ -160,6 +161,15 @@
 - (void)resetAutocomplete {
     [self hideAutocomplete];
     self.textField.text = @"";
+}
+
+- (void)addShadow {
+    self.tableView.clipsToBounds = NO;
+    self.tableView.layer.masksToBounds = NO;
+    self.tableView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.tableView.layer.shadowRadius = 1.0;
+    self.tableView.layer.shadowOpacity = 0.7;
+
 }
 
 
