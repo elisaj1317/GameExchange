@@ -11,6 +11,7 @@ target 'GameExchange' do
   pod 'MaterialComponents/TextControls+FilledTextFields'
   pod 'MaterialComponents/ActivityIndicator'
   pod 'IQKeyboardManager'
+  pod 'DCAnimationKit'
 
   target 'GameExchangeTests' do
     inherit! :search_paths

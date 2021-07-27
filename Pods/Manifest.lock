@@ -1,5 +1,6 @@
 PODS:
   - Bolts/Tasks (1.9.1)
+  - DCAnimationKit (0.0.6)
   - IQKeyboardManager (6.5.6)
   - MaterialComponents/ActivityIndicator (124.2.0):
     - MaterialComponents/Palettes
@@ -55,6 +56,7 @@ PODS:
     - Parse/Core
 
 DEPENDENCIES:
+  - DCAnimationKit
   - IQKeyboardManager
   - MaterialComponents/ActivityIndicator
   - "MaterialComponents/TextControls+FilledTextFields"
@@ -64,6 +66,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Bolts
+    - DCAnimationKit
     - IQKeyboardManager
     - MaterialComponents
     - MDFInternationalization
@@ -73,6 +76,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  DCAnimationKit: 7133bef877ce1aa113dcfeea1380ca67f91f7608
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
@@ -80,6 +84,6 @@ SPEC CHECKSUMS:
   MotionInterchange: 13adae439b377e31d1674cc165539d50e1d1566a
   Parse: 081fb8755c3000fd11df817eec235def233d0af3
 
-PODFILE CHECKSUM: 839d3b6e1591612b84f7f674cdfed3a3bed5164a
+PODFILE CHECKSUM: 808cadcb45e5e040e89ac99b5835c3d87c2282ea
 
 COCOAPODS: 1.10.1

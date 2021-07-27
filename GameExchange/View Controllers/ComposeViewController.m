@@ -15,6 +15,8 @@
 
 #import "APIManager.h"
 
+#import <DCAnimationKit/UIView+DCAnimationKit.h>
+
 @interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 // MARK: Table Header Properties
 @property (weak, nonatomic) IBOutlet UIView *headerView;
@@ -154,23 +156,32 @@
 }
 
 - (bool)checkValidPostWithArray:(NSArray *)itemsRequested {
+    bool valid = YES;
     if ([self.nameView.textField.text isEqual:@""]) {
-        [self showErrorWithMessage:@"Enter name of item to exchange"];
-        return NO;
+        [self.nameView shake:NULL];
+        valid = NO;
     }
-    else if ([self.locationField.text isEqual:@""]) {
-        [self showErrorWithMessage:@"Enter a location"];
-        return NO;
+    if ([self.platformView.textField.text isEqual:@""]) {
+        [self.platformView shake:NULL];
+        valid = NO;
     }
-    else if (itemsRequested.count == 0) {
+    if ([self.genreView.textField.text isEqual:@""]) {
+        [self.genreView shake:NULL];
+        valid = NO;
+    }
+    if ([self.locationField.text isEqual:@""]) {
+        [self.locationField shake:NULL];
+        valid = NO;
+    }
+    if (itemsRequested.count == 0) {
         [self showErrorWithMessage:@"Enter name of item request"];
-        return NO;
+        valid = NO;
     }
-    else if ([self.itemImage.image isEqual:[UIImage imageNamed:@"placeholder"]]) {
-        [self showErrorWithMessage:@"Upload an image"];
-        return NO;
+    if ([self.itemImage.image isEqual:[UIImage imageNamed:@"placeholder"]]) {
+        [self.itemImage shake:NULL];
+        valid = NO;
     }
-    return YES;
+    return valid;
 }
 
 - (void)resetHeader {
