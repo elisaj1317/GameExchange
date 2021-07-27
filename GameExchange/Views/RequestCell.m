@@ -32,9 +32,9 @@
 
 - (void)setUpLabels {
     self.nameLabel.text = self.request.itemSelling;
-    self.usernameLabel.text = self.request.author.username;
+    self.usernameLabel.text = [NSString stringWithFormat:@"@%@", self.request.author.username];
     self.locationLabel.text = self.request.location;
-    self.itemRequestLabel.text = self.request.itemRequest[0];
+    self.platformName.text = self.request.platform;
 }
 
 @end
