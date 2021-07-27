@@ -126,6 +126,7 @@
     UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, header.frame.size.height/2.0 - 9, 18, 18)];
     arrowImageView.image = [UIImage imageNamed:@"down_arrow"];
     arrowImageView.tag = section + self.sectionNames.count;
+    arrowImageView.transform = CGAffineTransformMakeRotation((180.0 * M_PI) / 180.0);
     [header addSubview:arrowImageView];
 }
 

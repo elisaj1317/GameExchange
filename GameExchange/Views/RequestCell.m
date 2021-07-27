@@ -25,7 +25,12 @@
     
     // set up image
     self.itemImage.file = request.image;
-    [self.itemImage loadInBackground];
+    [self.itemImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        self.itemImage.alpha = 0.0;
+        [UIView animateWithDuration:0.3 animations:^{
+                self.itemImage.alpha = 1.0;
+        }];
+    }];
     
     [self setUpLabels];
 }
