@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSTimer * searchTimer;
 @property (strong, nonatomic) UIFont *regularFont;
 
+@property (strong, nonatomic) NSMutableArray *autocompleteArray;
 
 @end
 
@@ -70,10 +71,9 @@
     return NO;
 }
 
-- (void)setAutocompleteArray:(NSMutableArray *)autocompleteArray {
-    _autocompleteArray = autocompleteArray;
-    
-    [self.tableView reloadData];
+- (void)setStartData:(NSMutableArray *)startData {
+    _startData = startData;
+    self.autocompleteArray = startData;
 }
 
 - (IBAction)didChangeEditing:(id)sender {
@@ -84,8 +84,12 @@
     }
     
     // if textfield empty immediatly hide autocomplete results
-    if ([self.textField.text isEqual:@""]) {
+    if ([self.textField.text isEqual:@""] && self.startData == nil) {
         [self.tableView setHidden:YES];
+        return;
+    } else if ([self.textField.text isEqual:@""]) {
+        self.autocompleteArray = self.startData;
+        [self.tableView setHidden:NO];
         return;
     }
 
@@ -102,10 +106,12 @@
 - (void)fetchAutocomplete:(NSTimer *)timer {
     NSString *wordToSearch = (NSString *)timer.userInfo;
     
-    
     NSLog(@"search for: %@", wordToSearch);
     
-    if (self.game) {
+    if (self.startData != nil) {
+        [self limitDataWithStartDataWithWord:wordToSearch];
+    }
+    else if (self.game) {
         [self fetchGameWithWord:wordToSearch];
     } else if (self.platform) {
         [self fetchPlatformWithWord:wordToSearch];
@@ -114,6 +120,15 @@
     } else {
         NSLog(@"No fetching method specified");
     }
+}
+
+- (void)limitDataWithStartDataWithWord:(NSString *)wordToSearch {
+    
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return [evaluatedObject containsString:wordToSearch];
+    }];
+    
+    self.autocompleteArray = (NSMutableArray *)[self.startData filteredArrayUsingPredicate:predicate];
 }
 
 - (void)fetchGameWithWord:(NSString *)wordToSearch {
