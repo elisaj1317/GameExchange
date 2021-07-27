@@ -129,6 +129,7 @@
     }];
     
     self.autocompleteArray = (NSMutableArray *)[self.startData filteredArrayUsingPredicate:predicate];
+    [self.tableView reloadData];
 }
 
 - (void)fetchGameWithWord:(NSString *)wordToSearch {
@@ -190,11 +191,17 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    Game *currentGame = self.autocompleteArray[indexPath.row];
+    NSMutableAttributedString *cellContent;
     
-    NSMutableAttributedString *cellContent = [[NSMutableAttributedString alloc] initWithString:currentGame.name];
+    if (self.startData == nil) {
+        Game *currentGame = self.autocompleteArray[indexPath.row];
+        cellContent = [[NSMutableAttributedString alloc] initWithString:currentGame.name];
+    } else {
+        NSString *currentItem = self.autocompleteArray[indexPath.row];
+        cellContent = [[NSMutableAttributedString alloc] initWithString:currentItem];
+    }
+    
     [cellContent addAttribute:NSFontAttributeName value:self.regularFont range:NSMakeRange(0,cellContent.length)];
-    
     cell.textLabel.attributedText = cellContent;
     
     return cell;
@@ -208,9 +215,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    Game *currentGame = self.autocompleteArray[indexPath.row];
+    if (self.startData == nil) {
+        Game *currentGame = self.autocompleteArray[indexPath.row];
+        self.textField.text = currentGame.name;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameChosen" object:self userInfo:(NSDictionary *)currentGame];
+    } else {
+        self.textField.text = self.autocompleteArray[indexPath.row];
+    }
     
-    self.textField.text = currentGame.name;
     [self.tableView setHidden:YES];
     [self.textField resignFirstResponder];
 }

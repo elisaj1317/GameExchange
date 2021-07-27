@@ -11,6 +11,7 @@
 #import "ComposeOfferCell.h"
 #import "AutocompleteView.h"
 #import "Functions.h"
+#import "Game.h"
 
 #import "APIManager.h"
 
@@ -36,9 +37,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(didChooseGame:)
+            name:@"gameChosen"
+            object:nil];
+
+    
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
     [self setUpTableView];
     [self setupTextFields];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (IBAction)didTapImage:(id)sender {
@@ -282,6 +293,13 @@
             ComposeOfferCell *cell = [self.tableView cellForRowAtIndexPath:indexPath]; // change with your cell's class
             [cell.itemNameField resignFirstResponder];
         }
+}
+
+- (void)didChooseGame:(NSNotification *)notification {
+    Game *gameChosen = (Game *)notification.userInfo;
+    self.platformView.startData = (NSMutableArray *)gameChosen.platforms;
+    self.genreView.startData = (NSMutableArray *)gameChosen.genres;
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
