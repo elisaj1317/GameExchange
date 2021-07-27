@@ -16,8 +16,7 @@
 @interface FilterViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (assign) NSInteger expandedSectionHeaderNumber;
-@property (assign) UITableViewHeaderFooterView *expandedSectionHeader;
+@property (strong, nonatomic) NSMutableArray *collapsedSectionHeaderNumbers;
 
 @property (strong) NSMutableArray *sectionItems;
 @property (strong) NSArray *sectionNames;
@@ -31,7 +30,7 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.expandedSectionHeaderNumber = -1;
+    self.collapsedSectionHeaderNumbers = [NSMutableArray array];
     
     if (self.filtersDictionary == nil) {
         self.filtersDictionary = [NSMutableDictionary dictionary];
@@ -94,7 +93,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.expandedSectionHeaderNumber == section) {
+    if (![self.collapsedSectionHeaderNumbers containsObject:[NSNumber numberWithInteger:section]]) {
         NSMutableArray *arrayOfItems = [self.sectionItems objectAtIndex:section];
         return arrayOfItems.count;
     } else {
@@ -114,17 +113,20 @@
     header.contentView.backgroundColor = [UIColor grayColor];
     header.textLabel.textColor = [UIColor blackColor];
     
-    // add the arrow image
-    CGSize headerFrame = self.view.frame.size;
-    UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, header.frame.size.height/2.0 - 9, 18, 18)];
-    theImageView.image = [UIImage imageNamed:@"down_arrow"];
-    theImageView.tag = section + self.sectionNames.count;
-    [header addSubview:theImageView];
+    [self addArrowToHeader:header forSection:section];
     
     // make headers touchable
     header.tag = section;
-    UITapGestureRecognizer *headerTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sectionHeaderWasTouched:)];
+    UITapGestureRecognizer *headerTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSectionHeader:)];
     [header addGestureRecognizer:headerTapGesture];
+}
+
+- (void)addArrowToHeader:(UITableViewHeaderFooterView *)header forSection:(NSInteger)section {
+    CGSize headerFrame = self.view.frame.size;
+    UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(headerFrame.width - 32, header.frame.size.height/2.0 - 9, 18, 18)];
+    arrowImageView.image = [UIImage imageNamed:@"down_arrow"];
+    arrowImageView.tag = section + self.sectionNames.count;
+    [header addSubview:arrowImageView];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -171,32 +173,24 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)sectionHeaderWasTouched:(UITapGestureRecognizer *)sender {
+- (void)didTapSectionHeader:(UITapGestureRecognizer *)sender {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)sender.view;
-    NSInteger section = headerView.tag;
-    UIImageView *clickedImageView = (UIImageView *)[headerView viewWithTag:section + self.sectionNames.count];
-    self.expandedSectionHeader = headerView;
-    // no section is currently expanded
-    if (self.expandedSectionHeaderNumber == -1) {
-        self.expandedSectionHeaderNumber = section;
-        [self tableViewExpandSection:section withImage:clickedImageView];
+    NSInteger sectionInteger = headerView.tag;
+    NSNumber *sectionNumber = [NSNumber numberWithInteger:headerView.tag];
+    UIImageView *clickedImageView = (UIImageView *)[headerView viewWithTag:sectionInteger + self.sectionNames.count];
+    
+    if ([self.collapsedSectionHeaderNumbers containsObject:sectionNumber]) {
+        [self.collapsedSectionHeaderNumbers removeObject:sectionNumber];
+        [self tableViewExpandSection:sectionInteger withImage:clickedImageView];
+        
     } else {
-        // clicked on expanded section, collapse
-        if (self.expandedSectionHeaderNumber == section) {
-            [self tableViewCollapeSection:section withImage:clickedImageView];
-            self.expandedSectionHeader = nil;
-        // clicked on new section, collapse previous, expand new
-        } else {
-            UIImageView *expandedImageView  = (UIImageView *)[self.view viewWithTag:self.sectionNames.count + self.expandedSectionHeaderNumber];
-            [self tableViewCollapeSection:self.expandedSectionHeaderNumber withImage:expandedImageView];
-            [self tableViewExpandSection:section withImage:clickedImageView];
-        }
+        [self.collapsedSectionHeaderNumbers addObject:sectionNumber];
+        [self tableViewCollapseSection:sectionInteger withImage:clickedImageView];
     }
 }
 
-- (void)tableViewCollapeSection:(NSInteger)section withImage:(UIImageView *)imageView {
+- (void)tableViewCollapseSection:(NSInteger)section withImage:(UIImageView *)imageView {
     NSArray *sectionData = [self.sectionItems objectAtIndex:section];
-    self.expandedSectionHeaderNumber = -1;
     if (sectionData.count == 0) {
         return;
     } else {
@@ -219,7 +213,6 @@
 - (void)tableViewExpandSection:(NSInteger)section withImage:(UIImageView *)imageView {
     NSArray *sectionData = [self.sectionItems objectAtIndex:section];
     if (sectionData.count == 0) {
-        self.expandedSectionHeaderNumber = -1;
         return;
     } else {
         [UIView animateWithDuration:0.4 animations:^{
@@ -232,7 +225,6 @@
             [arrayOfIndexPaths addObject:index];
         }
         // expand section rows
-        self.expandedSectionHeaderNumber = section;
         [self.tableView beginUpdates];
         [self.tableView insertRowsAtIndexPaths:arrayOfIndexPaths withRowAnimation: UITableViewRowAnimationFade];
         [self.tableView endUpdates];
