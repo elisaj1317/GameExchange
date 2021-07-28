@@ -21,7 +21,15 @@
 }
 
 - (void)setGameName:(NSString *)gameName {
+    _gameName = gameName;
     self.offerNameLabel.text = gameName;
 }
+
+- (IBAction)didPressAccept:(id)sender {
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:self.gameName forKey:@"offerAccepted"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"offerAccepted" object:self userInfo:userInfo];
+}
+
 
 @end

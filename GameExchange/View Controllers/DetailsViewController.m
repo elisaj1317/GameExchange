@@ -8,8 +8,10 @@
 #import "DetailsViewController.h"
 #import "OfferCell.h"
 #import "Request.h"
+#import "Functions.h"
 
 #import <Parse/PFImageView.h>
+#import <MaterialComponents/MDCFilledTextField.h>
 
 @interface DetailsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -27,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *sellerUsernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
+//MARK: Custom Offer
+@property (weak, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet MDCFilledTextField *offerField;
 
 @end
 
@@ -37,11 +42,30 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = self.footerView;
     
     self.title = self.request.itemSelling;
     
     [self setUpHeader];
+    
+    self.offerField.label.text = @"Custom Offer";
+    self.offerField.placeholder = @"Input text";
+    [Functions setUpWithBlueMDCTextField:self.offerField];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(didAcceptOffer:)
+            name:@"offerAccepted"
+            object:nil];
 }
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (IBAction)didMakeOffer:(id)sender {
+    [self updateRequestStatusWithGame:self.offerField.text];
+}
+
 
 - (void)setUpHeader {
     // set up image
@@ -63,6 +87,18 @@
     self.sellerNameLabel.text = [self.request.author objectForKey:@"fullName"];
     self.sellerUsernameLabel.text = self.request.author.username;
     self.locationLabel.text = self.request.location;
+}
+
+- (void)didAcceptOffer:(NSNotification *)notification {
+    NSString *gameName = notification.userInfo[@"offerAccepted"];
+    
+    [self updateRequestStatusWithGame:gameName];
+}
+
+- (void)updateRequestStatusWithGame:(NSString *)gameName {
+    //TODO: Save offer accepted
+    self.request[@"requestStatus"] = @"progress";
+    [self.request saveInBackground];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
