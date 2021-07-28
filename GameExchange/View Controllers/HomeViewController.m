@@ -42,6 +42,13 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:selectedRow animated:YES];
+}
+
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
             if (!error) {
