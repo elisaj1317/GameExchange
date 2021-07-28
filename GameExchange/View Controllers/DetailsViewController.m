@@ -96,8 +96,18 @@
 }
 
 - (void)updateRequestStatusWithGame:(NSString *)gameName {
-    //TODO: Save offer accepted
     self.request[@"requestStatus"] = @"progress";
+    
+    // create offer
+    NSMutableDictionary *currentOffer = [NSMutableDictionary dictionary];
+    [currentOffer setValue:[PFUser currentUser] forKey:@"user"];
+    [currentOffer setValue:gameName forKey:@"name"];
+    
+    
+    NSMutableArray *offersMade = (NSMutableArray *)self.request.offers;
+    [offersMade addObject:currentOffer];
+    self.request[@"offers"] = offersMade;
+    
     [self.request saveInBackground];
 }
 

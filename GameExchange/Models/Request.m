@@ -18,6 +18,7 @@
 @dynamic requestStatus;
 @dynamic platform;
 @dynamic genre;
+@dynamic offers;
 
 + (nonnull NSString *)parseClassName {
     return @"Request";
@@ -35,6 +36,7 @@
     newRequest.location = dict[@"location"];
     newRequest.itemRequest = dict[@"itemRequest"];
     newRequest.requestStatus = @"active";
+    newRequest.offers = [NSArray array];
     
     [newRequest saveInBackgroundWithBlock: completion];
 }

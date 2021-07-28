@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *itemSelling;
 @property (nonatomic, strong) NSArray *itemRequest;
 @property (nonatomic, strong) NSString *requestStatus;
+@property (nonatomic, strong) NSArray *offers;
 
 + (void) postRequestImage: ( UIImage * _Nullable )image withValues: ( NSDictionary * _Nullable )dict  withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
