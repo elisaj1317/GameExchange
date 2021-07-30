@@ -17,7 +17,7 @@
 
 #import <DCAnimationKit/UIView+DCAnimationKit.h>
 
-@interface ComposeViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface ComposeViewController () <AutocompleteViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 // MARK: Table Header Properties
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
@@ -127,14 +127,14 @@
 }
 
 - (void)setupTextFields {
+    self.nameView.delegate = self;
     self.nameView.textField.label.text = @"Name";
-    self.nameView.game = YES;
     
+    self.platformView.delegate = self;
     self.platformView.textField.label.text = @"Platform";
-    self.platformView.platform = YES;
     
+    self.genreView.delegate = self;
     self.genreView.textField.label.text = @"Genre";
-    self.genreView.genre = YES;
     
     
     self.locationField.label.text = @"Location";
@@ -308,6 +308,37 @@
     self.platformView.startData = (NSMutableArray *)gameChosen.platforms;
     self.genreView.startData = (NSMutableArray *)gameChosen.genres;
     
+}
+
+- (void)fetchDataWithInView:(UIView *)view withWord:(NSString *)wordToSearch {
+    if (view == self.nameView) {
+        [[APIManager shared] getGameAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
+                if (!error) {
+                    self.nameView.autocompleteArray = [Game gamesWithArray:data];
+                    [self.nameView showTableView];
+                } else {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+        }];
+    } else if (view == self.platformView) {
+        [[APIManager shared] getPlatformAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
+                if (!error) {
+                    self.platformView.autocompleteArray = [Game gamesWithArray:data];
+                    [self.platformView showTableView];
+                } else {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+        }];
+    } else if (view == self.genreView) {
+        [[APIManager shared] getGenreAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
+                if (!error) {
+                    self.genreView.autocompleteArray = [Game gamesWithArray:data];
+                    [self.genreView showTableView];
+                } else {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+        }];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

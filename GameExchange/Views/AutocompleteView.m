@@ -18,8 +18,6 @@
 @property (strong, nonatomic) NSTimer * searchTimer;
 @property (strong, nonatomic) UIFont *regularFont;
 
-@property (strong, nonatomic) NSMutableArray *autocompleteArray;
-
 @end
 
 @implementation AutocompleteView
@@ -110,63 +108,18 @@
     
     if (self.startData != nil) {
         [self limitDataWithStartDataWithWord:wordToSearch];
-    }
-    else if (self.game) {
-        [self fetchGameWithWord:wordToSearch];
-    } else if (self.platform) {
-        [self fetchPlatformWithWord:wordToSearch];
-    } else if (self.genre) {
-        [self fetchGenreWithWord:wordToSearch];
     } else {
-        NSLog(@"No fetching method specified");
+        [self.delegate fetchDataWithInView:self withWord:wordToSearch];
     }
 }
 
 - (void)limitDataWithStartDataWithWord:(NSString *)wordToSearch {
-    
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
         return [evaluatedObject containsString:wordToSearch];
     }];
     
     self.autocompleteArray = (NSMutableArray *)[self.startData filteredArrayUsingPredicate:predicate];
     [self.tableView reloadData];
-}
-
-- (void)fetchGameWithWord:(NSString *)wordToSearch {
-    [[APIManager shared] getGameAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
-            if (!error) {
-                self.autocompleteArray = [Game gamesWithArray:data];
-                [self.tableView setHidden:NO];
-                [self.tableView reloadData];
-            } else {
-                NSLog(@"Error: %@", error.localizedDescription);
-            }
-    }];
-    
-}
-
-- (void)fetchPlatformWithWord:(NSString *)wordToSearch {
-    [[APIManager shared] getPlatformAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
-            if (!error) {
-                self.autocompleteArray = [Game gamesWithArray:data];
-                [self.tableView setHidden:NO];
-                [self.tableView reloadData];
-            } else {
-                NSLog(@"Error: %@", error.localizedDescription);
-            }
-    }];
-}
-
-- (void)fetchGenreWithWord:(NSString *)wordToSearch {
-    [[APIManager shared] getGenreAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
-            if (!error) {
-                self.autocompleteArray = [Game gamesWithArray:data];
-                [self.tableView setHidden:NO];
-                [self.tableView reloadData];
-            } else {
-                NSLog(@"Error: %@", error.localizedDescription);
-            }
-    }];
 }
 
 - (void)hideAutocomplete {
@@ -177,6 +130,11 @@
 - (void)resetAutocomplete {
     [self hideAutocomplete];
     self.textField.text = @"";
+}
+
+- (void)showTableView {
+    [self.tableView reloadData];
+    [self.tableView setHidden:NO];
 }
 
 - (void)addShadow {

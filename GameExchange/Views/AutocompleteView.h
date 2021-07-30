@@ -10,17 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol AutocompleteViewDelegate
+
+- (void)fetchDataWithInView:(UIView *)view withWord:(NSString *)wordToSearch;
+
+@end
+
 @interface AutocompleteView : UIView 
 
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *textField;
 
 @property (strong, nonatomic) NSMutableArray *startData;
-@property (assign) BOOL game;
-@property (assign) BOOL platform;
-@property (assign) BOOL genre;
+@property (strong, nonatomic) NSMutableArray *autocompleteArray;
+@property (nonatomic, weak) id<AutocompleteViewDelegate> delegate;
 
 - (void)resetAutocomplete;
 - (void)hideAutocomplete;
+- (void)showTableView;
 
 
 @end
