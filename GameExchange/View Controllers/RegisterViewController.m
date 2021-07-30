@@ -36,8 +36,10 @@
     
     PFUser *newUser = [self initializeUser];
     if ([self checkValidName]) {
+        
         MDCActivityIndicator *activityIndicator = [Functions startActivityIndicatorAtPosition:CGPointMake(self.view.bounds.size.width / 2, 4*self.view.bounds.size.height / 6)];
         [self.view addSubview:activityIndicator];
+        
         // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             [activityIndicator stopAnimating];
@@ -46,7 +48,6 @@
                 UIAlertController *errorAlert =  [Functions createErrorWithMessage:error.localizedDescription];
                 [self presentViewController:errorAlert animated:YES completion:nil];
             } else {
-                NSLog(@"User registered successfully");
                 
                 [self performSegueWithIdentifier:@"registerSegue" sender:nil];
             }
@@ -59,37 +60,27 @@
 }
 
 - (void)setUpTextFields {
-    UIColor *royalBlue = [UIColor colorNamed:@"royalBlue"];
-    [self setupNameFieldWithColor:royalBlue];
-    [self setupUsernameFieldWithColor:royalBlue];
-    [self setupPasswordFieldWithColor:royalBlue];
+    [self setupNameField];
+    [self setupUsernameField];
+    [self setupPasswordField];
 }
 
-- (void)setupNameFieldWithColor:(UIColor *)color {
+- (void)setupNameField {
     self.nameField.label.text = @"Full Name";
     self.nameField.placeholder = @"Input text";
-    
-    self.nameField.tintColor = color;
-    [self.nameField setFloatingLabelColor:color forState:MDCTextControlStateEditing];
-    [self.nameField setUnderlineColor:color forState:MDCTextControlStateEditing];
+    [Functions setUpWithBlueMDCTextField:self.nameField];
 }
 
-- (void)setupUsernameFieldWithColor:(UIColor *)color {
+- (void)setupUsernameField {
     self.usernameField.label.text = @"Username";
     self.usernameField.placeholder = @"Input text";
-    
-    self.usernameField.tintColor = color;
-    [self.usernameField setFloatingLabelColor:color forState:MDCTextControlStateEditing];
-    [self.usernameField setUnderlineColor:color forState:MDCTextControlStateEditing];
+    [Functions setUpWithBlueMDCTextField:self.usernameField];
 }
 
-- (void)setupPasswordFieldWithColor:(UIColor *)color {
+- (void)setupPasswordField{
     self.passwordField.label.text = @"Password";
     self.passwordField.placeholder = @"Input text";
-    
-    self.passwordField.tintColor = color;
-    [self.passwordField setFloatingLabelColor:color forState:MDCTextControlStateEditing];
-    [self. passwordField setUnderlineColor:color forState:MDCTextControlStateEditing];
+    [Functions setUpWithBlueMDCTextField:self.passwordField];
 }
 
 - (void)dismissKeyboards {

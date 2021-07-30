@@ -32,7 +32,6 @@
 - (IBAction)didTapLogin:(id)sender {
     [self dismissKeyboards];
     
-    // login user
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
@@ -58,14 +57,17 @@
 }
 
 - (void)setupTextFields {
-    // set up username text field
+    [self setupUsernameField];
+    [self setupPasswordField];
+}
+
+- (void)setupUsernameField {
     self.usernameField.label.text = @"Username";
     self.usernameField.placeholder = @"Input text";
     [Functions setUpWithBlueMDCTextField:self.usernameField];
-    
-    
-    
-    // set up password text field
+}
+
+- (void)setupPasswordField {
     self.passwordField.label.text = @"Password";
     self.passwordField.placeholder = @"Input text";
     [Functions setUpWithBlueMDCTextField:self.passwordField];
