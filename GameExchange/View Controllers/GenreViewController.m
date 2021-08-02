@@ -63,7 +63,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GenreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenreCell"];
-    cell.name = self.genres[indexPath.row];
+    NSString *genreName = self.genres[indexPath.row];
+    cell.name = genreName;
+    
+    if ([self.selectedGenres containsObject:genreName]) {
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
     return cell;
 }
 
