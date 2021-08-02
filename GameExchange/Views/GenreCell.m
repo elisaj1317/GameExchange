@@ -17,11 +17,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    if (selected) {
-        self.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        self.accessoryType = UITableViewCellAccessoryNone;
-    }
 }
 
 - (void)setName:(NSString *)name {

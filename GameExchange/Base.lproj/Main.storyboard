@@ -766,14 +766,14 @@
                                 <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GenreCell" id="0hf-B9-5Pf" customClass="GenreCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="35"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="39"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0hf-B9-5Pf" id="IaP-gs-lmX">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-HH-7U1">
-                                                    <rect key="frame" x="20" y="8" width="350" height="19"/>
+                                                    <rect key="frame" x="20" y="10" width="350" height="19"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -781,11 +781,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Afu-HH-7U1" firstAttribute="leading" secondItem="IaP-gs-lmX" secondAttribute="leading" constant="20" id="FdE-lU-pOQ"/>
-                                                <constraint firstItem="Afu-HH-7U1" firstAttribute="top" secondItem="IaP-gs-lmX" secondAttribute="top" constant="8" id="fEq-8A-pkW"/>
-                                                <constraint firstAttribute="bottom" secondItem="Afu-HH-7U1" secondAttribute="bottom" constant="8" id="qs2-Gg-tE7"/>
+                                                <constraint firstItem="Afu-HH-7U1" firstAttribute="top" secondItem="IaP-gs-lmX" secondAttribute="top" constant="10" id="fEq-8A-pkW"/>
+                                                <constraint firstAttribute="bottom" secondItem="Afu-HH-7U1" secondAttribute="bottom" constant="10" id="qs2-Gg-tE7"/>
                                                 <constraint firstAttribute="trailing" secondItem="Afu-HH-7U1" secondAttribute="trailing" constant="20" id="yxC-tf-Mex"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.96999999999999997" alpha="0.69803921568627447" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="Afu-HH-7U1" id="rZi-mu-cSh"/>
                                         </connections>
@@ -802,7 +803,14 @@
                             <constraint firstItem="3b4-Pv-U2f" firstAttribute="leading" secondItem="2Ub-gb-UOF" secondAttribute="leading" id="urQ-qY-dlD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Genres" id="WXK-I0-26k"/>
+                    <navigationItem key="navigationItem" title="Edit Genres" id="WXK-I0-26k">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kpv-Ot-VER">
+                            <connections>
+                                <action selector="didTapCancel:" destination="aLh-ow-xbc" id="j96-ge-bNS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="AzE-al-MLh"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="3b4-Pv-U2f" id="ybx-OZ-CrZ"/>
                     </connections>

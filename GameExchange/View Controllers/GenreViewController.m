@@ -27,8 +27,17 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    if (self.selectedGenres == nil) {
+        self.selectedGenres = [[NSMutableArray alloc] init];
+    }
+    
     [self fetchGenres];
 }
+
+- (IBAction)didTapCancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)fetchGenres {
     self.genres = [[NSMutableArray alloc] init];
@@ -55,6 +64,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.genres.count;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *currentGenre = self.genres[indexPath.row];
+    GenreCell *currentCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if ([self.selectedGenres containsObject:currentGenre]) {
+        [self.selectedGenres removeObject:currentGenre];
+        [currentCell setAccessoryType:UITableViewCellAccessoryNone];
+    } else {
+        [self.selectedGenres addObject:currentGenre];
+        [currentCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 /*
 #pragma mark - Navigation
