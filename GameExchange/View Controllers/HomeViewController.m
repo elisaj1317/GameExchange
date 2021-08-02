@@ -11,7 +11,6 @@
 #import "RequestCell.h"
 
 #import "SceneDelegate.h"
-#import "APIManager.h"
 #import <Parse/Parse.h>
 
 
