@@ -28,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *locationField;
 @property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
 @property (weak, nonatomic) IBOutlet AutocompleteView *platformView;
-@property (weak, nonatomic) IBOutlet AutocompleteView *genreView;
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (strong, nonatomic) NSArray *selectedGenres;
 
@@ -77,7 +76,7 @@
         NSMutableDictionary *requestValues = [NSMutableDictionary dictionary];
         [requestValues setValue:self.nameView.textField.text forKey:@"itemName"];
         [requestValues setValue:self.platformView.textField.text forKey:@"platform"];
-        [requestValues setValue:self.genreView.textField.text forKey:@"genre"];
+        [requestValues setValue:self.selectedGenres forKey:@"genre"];
         [requestValues setValue:self.locationField.text forKey:@"location"];
         [requestValues setValue:itemsRequested forKey:@"itemRequest"];
         
@@ -139,10 +138,6 @@
     self.platformView.delegate = self;
     self.platformView.textField.label.text = @"Platform";
     
-    self.genreView.delegate = self;
-    self.genreView.textField.label.text = @"Genre";
-    
-    
     self.locationField.label.text = @"Location";
     self.locationField.placeholder = @"Input text";
     [Functions setUpWithBlueMDCTextField:self.locationField];
@@ -173,8 +168,8 @@
         [self.platformView shake:NULL];
         valid = NO;
     }
-    if ([self.genreView.textField.text isEqual:@""]) {
-        [self.genreView shake:NULL];
+    if (self.selectedGenres.count == 0) {
+        [self.genreLabel shake:NULL];
         valid = NO;
     }
     if ([self.locationField.text isEqual:@""]) {
@@ -196,7 +191,8 @@
 - (void)resetHeader {
     [self.nameView resetAutocomplete];
     [self.platformView resetAutocomplete];
-    [self.genreView resetAutocomplete];
+    self.selectedGenres = [NSArray array];
+    self.genreLabel.text = @"Genres: None";
     
     self.locationField.text = @"";
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
@@ -299,7 +295,6 @@
 - (void)dismissKeyboards {
     [self.nameView hideAutocomplete];
     [self.platformView hideAutocomplete];
-    [self.genreView hideAutocomplete];
     
     [self.locationField resignFirstResponder];
     for (int i = 0; i< [self.numberOfRows intValue]; i++) {
@@ -335,7 +330,7 @@
 - (void)didChooseGame:(NSNotification *)notification {
     Game *gameChosen = (Game *)notification.userInfo;
     self.platformView.startData = (NSMutableArray *)gameChosen.platforms;
-    self.genreView.startData = (NSMutableArray *)gameChosen.genres;
+    self.selectedGenres = gameChosen.genres;
     
 }
 
@@ -354,15 +349,6 @@
                 if (!error) {
                     self.platformView.autocompleteArray = [Game gamesWithArray:data];
                     [self.platformView showTableView];
-                } else {
-                    NSLog(@"Error: %@", error.localizedDescription);
-                }
-        }];
-    } else if (view == self.genreView) {
-        [[APIManager shared] getGenreAutocompleteWithWord:wordToSearch completion:^(NSArray *data, NSError *error) {
-                if (!error) {
-                    self.genreView.autocompleteArray = [Game gamesWithArray:data];
-                    [self.genreView showTableView];
                 } else {
                     NSLog(@"Error: %@", error.localizedDescription);
                 }
