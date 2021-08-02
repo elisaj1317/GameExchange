@@ -38,6 +38,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)didTapSave:(id)sender {
+    [self.delegate didSelectGenres:self.selectedGenres];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 - (void)fetchGenres {
     self.genres = [[NSMutableArray alloc] init];

@@ -9,8 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol GenreViewControllerDelegate
+
+- (void)didSelectGenres:(NSArray *)genres;
+
+@end
+
 @interface GenreViewController : UIViewController
 
+@property (nonatomic, weak) id<GenreViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *selectedGenres;
 
 @end

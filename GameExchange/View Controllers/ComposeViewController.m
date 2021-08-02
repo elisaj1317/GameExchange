@@ -6,18 +6,22 @@
 //
 
 #import "ComposeViewController.h"
-#import "SceneDelegate.h"
-#import "Request.h"
+
+#import "GenreViewController.h"
+
 #import "ComposeOfferCell.h"
 #import "AutocompleteView.h"
+
+#import "Request.h"
 #import "Functions.h"
 #import "Game.h"
 
+#import "SceneDelegate.h"
 #import "APIManager.h"
 
 #import <DCAnimationKit/UIView+DCAnimationKit.h>
 
-@interface ComposeViewController () <AutocompleteViewDelegate,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface ComposeViewController () <AutocompleteViewDelegate, GenreViewControllerDelegate,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 // MARK: Table Header Properties
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
@@ -25,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
 @property (weak, nonatomic) IBOutlet AutocompleteView *platformView;
 @property (weak, nonatomic) IBOutlet AutocompleteView *genreView;
+@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
+@property (strong, nonatomic) NSArray *selectedGenres;
 
 // MARK: Table Footer Properties
 @property (weak, nonatomic) IBOutlet UIView *footerView;
@@ -303,6 +309,29 @@
         }
 }
 
+- (void)didSelectGenres:(NSArray *)genres {
+    self.selectedGenres = genres;
+    
+    NSMutableString *genreString = [self stringWithArray:genres];
+    [genreString insertString:@"Genres: " atIndex:0];
+    self.genreLabel.text = genreString;
+}
+
+- (NSMutableString *)stringWithArray:(NSArray *)array {
+    NSMutableString *string = [NSMutableString string];
+    
+    if (array.count == 0) {
+        [string appendString:@"None"];
+    } else {
+        for (NSString *item in array) {
+            [string appendString:[NSString stringWithFormat:@", %@", item]];
+        }
+        [string deleteCharactersInRange:NSMakeRange(0, 2)];
+    }
+    
+    return string;
+}
+
 - (void)didChooseGame:(NSNotification *)notification {
     Game *gameChosen = (Game *)notification.userInfo;
     self.platformView.startData = (NSMutableArray *)gameChosen.platforms;
@@ -373,14 +402,18 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"genreSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        GenreViewController *genreController = (GenreViewController*)navigationController.topViewController;
+        genreController.delegate = self;
+        genreController.selectedGenres = [NSMutableArray arrayWithArray:self.selectedGenres];
+    }
 }
-*/
+
 
 @end
