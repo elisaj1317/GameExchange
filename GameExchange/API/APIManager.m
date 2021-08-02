@@ -153,7 +153,7 @@ static NSString * const baseURLString = @"https://api.igdb.com/v4/";
 - (void)getGenresWithCompletion:(void (^)(NSArray *data, NSError *error))completion {
     NSURL *gameURL = [self createURLwithEndpoint:@"genres"];
     
-    [self sendNetworkRequestWithPath:gameURL withBody:@"fields *; limit 30;" completion:^(NSArray *data, NSError *error) {
+    [self sendNetworkRequestWithPath:gameURL withBody:@"fields name; limit 30;" completion:^(NSArray *data, NSError *error) {
             if(error != nil) {
                 completion(nil, error);
             } else {

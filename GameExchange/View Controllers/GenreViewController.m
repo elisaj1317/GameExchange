@@ -31,9 +31,13 @@
 }
 
 - (void)fetchGenres {
+    self.genres = [[NSMutableArray alloc] init];
     [[APIManager shared] getGenresWithCompletion:^(NSArray *data, NSError *error) {
             if (!error) {
-                self.genres = [NSMutableArray arrayWithArray:data];
+                for (NSDictionary *platform in data) {
+                    [self.genres addObject:platform[@"name"]];
+                }
+                [self.genres sortUsingSelector:@selector(compare:)];
                 
                 [self.tableView reloadData];
             } else {
@@ -44,8 +48,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GenreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GenreCell"];
-    NSDictionary *currentGenre = self.genres[indexPath.row];
-    cell.name = currentGenre[@"name"];
+    cell.name = self.genres[indexPath.row];
     return cell;
 }
 
