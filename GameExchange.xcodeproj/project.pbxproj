@@ -29,6 +29,8 @@
 		5EA7435E26AF4D90004A25E5 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435626AF4B04004A25E5 /* Montserrat-Light.ttf */; };
 		5EA7435F26AF4D90004A25E5 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435426AF4B04004A25E5 /* Montserrat-Regular.ttf */; };
 		5EA7436026AF4D90004A25E5 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA7435726AF4B04004A25E5 /* Montserrat-Thin.ttf */; };
+		5EACCB2526B88C9700352480 /* GenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACCB2426B88C9700352480 /* GenreViewController.m */; };
+		5EACCB2826B88E5800352480 /* GenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EACCB2726B88E5800352480 /* GenreCell.m */; };
 		5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */; };
 		5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF36D9269CDE2F00B63F5B /* SceneDelegate.m */; };
 		5EDF36E0269CDE3000B63F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF36DE269CDE2F00B63F5B /* Main.storyboard */; };
@@ -95,6 +97,10 @@
 		5EA7435726AF4B04004A25E5 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		5EA7435826AF4B04004A25E5 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		5EA7435926AF4B04004A25E5 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		5EACCB2326B88C9700352480 /* GenreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenreViewController.h; sourceTree = "<group>"; };
+		5EACCB2426B88C9700352480 /* GenreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenreViewController.m; sourceTree = "<group>"; };
+		5EACCB2626B88E5800352480 /* GenreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenreCell.h; sourceTree = "<group>"; };
+		5EACCB2726B88E5800352480 /* GenreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenreCell.m; sourceTree = "<group>"; };
 		5EDF36D2269CDE2F00B63F5B /* GameExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EDF36D5269CDE2F00B63F5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EDF36D6269CDE2F00B63F5B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -263,6 +269,8 @@
 				5E9B172026A897FE00CC92D5 /* AutocompleteView.xib */,
 				5E9B172226A89B1300CC92D5 /* AutocompleteView.h */,
 				5E9B172326A89B1300CC92D5 /* AutocompleteView.m */,
+				5EACCB2626B88E5800352480 /* GenreCell.h */,
+				5EACCB2726B88E5800352480 /* GenreCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +290,8 @@
 				5E4A2935269E484800B29ECC /* DetailsViewController.m */,
 				5E9B172526A8FABE00CC92D5 /* FilterViewController.h */,
 				5E9B172626A8FABE00CC92D5 /* FilterViewController.m */,
+				5EACCB2326B88C9700352480 /* GenreViewController.h */,
+				5EACCB2426B88C9700352480 /* GenreViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -559,6 +569,7 @@
 				5E4A2941269E6E1800B29ECC /* OfferCell.m in Sources */,
 				5EDF3715269D0F4900B63F5B /* RegisterViewController.m in Sources */,
 				5EA6EE07269E1CE70060F07E /* RequestCell.m in Sources */,
+				5EACCB2526B88C9700352480 /* GenreViewController.m in Sources */,
 				5E4A2944269F408000B29ECC /* ComposeOfferCell.m in Sources */,
 				5E96EB3C26A1E69F00EFBE9A /* APIManager.m in Sources */,
 				5E4A2936269E484800B29ECC /* DetailsViewController.m in Sources */,
@@ -567,6 +578,7 @@
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
 				5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */,
+				5EACCB2826B88E5800352480 /* GenreCell.m in Sources */,
 				5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */,
 				5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */,
 				5EA6EE11269E2F1F0060F07E /* Functions.m in Sources */,
