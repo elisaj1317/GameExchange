@@ -531,7 +531,6 @@
                     <navigationItem key="navigationItem" title="Detail" id="Zbw-N4-3Vg"/>
                     <connections>
                         <outlet property="footerView" destination="mNh-L6-WrL" id="6zo-tY-oAx"/>
-                        <outlet property="gameView" destination="edT-Rt-chb" id="HjE-ho-VIM"/>
                         <outlet property="genreLabel" destination="EuC-wV-1z1" id="0LK-NU-29X"/>
                         <outlet property="headerView" destination="d6f-b1-tFv" id="JxB-zb-wuq"/>
                         <outlet property="itemImageView" destination="fp5-NY-5z8" id="5mU-fE-gP0"/>

@@ -190,10 +190,9 @@
         // Passes selected Request into DetailsViewController
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-        Request *request = self.requests[indexPath.row];
+        Request *request = self.filteredRequests[indexPath.row];
         
         DetailsViewController *detailsViewController = [segue destinationViewController];
-        
         detailsViewController.request = request;
     } else if ([segue.identifier isEqual:@"filterSegue"]){
         UINavigationController *navigationController = [segue destinationViewController];
