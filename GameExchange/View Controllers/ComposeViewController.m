@@ -307,7 +307,7 @@
 - (void)didSelectGenres:(NSArray *)genres {
     self.selectedGenres = genres;
     
-    NSMutableString *genreString = [self stringWithArray:genres];
+    NSMutableString *genreString = [Functions stringWithArray:genres];
     [genreString insertString:@"Genres: " atIndex:0];
     self.genreLabel.text = genreString;
 }
@@ -331,6 +331,9 @@
     Game *gameChosen = (Game *)notification.userInfo;
     self.platformView.startData = (NSMutableArray *)gameChosen.platforms;
     self.selectedGenres = gameChosen.genres;
+    NSMutableString *genreString = [Functions stringWithArray:self.selectedGenres];
+    [genreString insertString:@"Genres: " atIndex:0];
+    self.genreLabel.text = genreString;
     
 }
 

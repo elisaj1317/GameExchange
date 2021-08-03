@@ -66,4 +66,19 @@
     return errorAlert;
 }
 
++ (NSMutableString *)stringWithArray:(NSArray *)array {
+    NSMutableString *string = [NSMutableString string];
+    
+    if (array.count == 0) {
+        [string appendString:@"None"];
+    } else {
+        for (NSString *item in array) {
+            [string appendString:[NSString stringWithFormat:@", %@", item]];
+        }
+        [string deleteCharactersInRange:NSMakeRange(0, 2)];
+    }
+    
+    return string;
+}
+
 @end

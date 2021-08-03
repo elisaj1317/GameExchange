@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (MDCActivityIndicator *)startActivityIndicatorAtPosition:(CGPoint)position;
 + (void)setUpWithBlueMDCTextField:(MDCFilledTextField *)textField;
 + (UIAlertController *)createErrorWithMessage:(NSString *)message;
++ (NSMutableString *)stringWithArray:(NSArray *)array;
 
 @end
 
