@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *locationField;
 @property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
 @property (weak, nonatomic) IBOutlet AutocompleteView *platformView;
+@property (weak, nonatomic) IBOutlet UIView *genreView;
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (strong, nonatomic) NSArray *selectedGenres;
 
@@ -54,6 +55,8 @@
     [self setUpTableView];
     [self setupTextFields];
     
+    self.genreView.layer.borderWidth = 1;
+    self.genreView.layer.borderColor = [[UIColor blackColor] CGColor];
     if (self.selectedGenres == nil) {
         self.selectedGenres = [NSArray array];
     }
@@ -101,6 +104,10 @@
     [self resetOfferTextBoxes];
 }
 
+- (IBAction)didTapGenre:(id)sender {
+    
+    [self performSegueWithIdentifier:@"genreSegue" sender:nil];
+}
 
 - (IBAction)didTapAddRow:(id)sender {   
     NSInteger oldRowValue = [self.numberOfRows intValue];
