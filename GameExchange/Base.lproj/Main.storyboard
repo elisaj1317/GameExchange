@@ -768,14 +768,14 @@
                                 <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GenreCell" id="0hf-B9-5Pf" customClass="GenreCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="38.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="39.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0hf-B9-5Pf" id="IaP-gs-lmX">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="38.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="39.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-HH-7U1">
-                                                    <rect key="frame" x="20" y="10.000000000000002" width="350" height="18.666666666666671"/>
+                                                    <rect key="frame" x="20" y="10.000000000000002" width="350" height="19.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

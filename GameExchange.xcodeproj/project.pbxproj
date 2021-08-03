@@ -17,6 +17,7 @@
 		5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172326A89B1300CC92D5 /* AutocompleteView.m */; };
 		5E9B172726A8FABE00CC92D5 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172626A8FABE00CC92D5 /* FilterViewController.m */; };
 		5E9B172A26AA1D3200CC92D5 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B172926AA1D3200CC92D5 /* Game.m */; };
+		5EA61B8C26B9D7B9008F2851 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA61B8B26B9D7B9008F2851 /* InfiniteScrollActivityView.m */; };
 		5EA6EDFE269DF4940060F07E /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EDFD269DF4940060F07E /* Request.m */; };
 		5EA6EE01269DFFA10060F07E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE00269DFFA10060F07E /* HomeViewController.m */; };
 		5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6EE03269E03D40060F07E /* ComposeViewController.m */; };
@@ -80,6 +81,8 @@
 		5E9B172626A8FABE00CC92D5 /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		5E9B172826AA1D3200CC92D5 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		5E9B172926AA1D3200CC92D5 /* Game.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		5EA61B8A26B9D7B9008F2851 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		5EA61B8B26B9D7B9008F2851 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 		5EA6EDFC269DF4940060F07E /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		5EA6EDFD269DF4940060F07E /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		5EA6EDFF269DFFA10060F07E /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 				5E9B172326A89B1300CC92D5 /* AutocompleteView.m */,
 				5EACCB2626B88E5800352480 /* GenreCell.h */,
 				5EACCB2726B88E5800352480 /* GenreCell.m */,
+				5EA61B8A26B9D7B9008F2851 /* InfiniteScrollActivityView.h */,
+				5EA61B8B26B9D7B9008F2851 /* InfiniteScrollActivityView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 				5EDF3712269D0F3500B63F5B /* LoginViewController.m in Sources */,
 				5EDF36D7269CDE2F00B63F5B /* AppDelegate.m in Sources */,
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
+				5EA61B8C26B9D7B9008F2851 /* InfiniteScrollActivityView.m in Sources */,
 				5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */,
 				5EACCB2826B88E5800352480 /* GenreCell.m in Sources */,
 				5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */,

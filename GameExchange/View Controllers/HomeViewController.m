@@ -9,18 +9,22 @@
 #import "DetailsViewController.h"
 #import "FilterViewController.h"
 #import "RequestCell.h"
+#import "InfiniteScrollActivityView.h"
 
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
 
 
-@interface HomeViewController () <FilterViewControllerDelegate,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface HomeViewController () <FilterViewControllerDelegate,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
+
 @property (strong, nonatomic) NSMutableArray *requests;
 @property (strong, nonatomic) NSMutableArray *filteredRequests;
 @property (strong, nonatomic) NSDictionary *filtersDictionary;
@@ -33,10 +37,14 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     
     self.searchBar.delegate = self;
     
+    self.isMoreDataLoading = NO;
+    
     [self setUpRefresh];
+    [self setupInfiniteScroll];
     [self fetchRequests];
     
 }
@@ -64,10 +72,22 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (void)setupInfiniteScroll {
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = YES;
+    [self.tableView addSubview:self.loadingMoreView];
+        
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
+}
+
 - (void)fetchRequests {
     // construct query
     PFQuery *query = [self setUpQueryWithFilters];
     [query orderByDescending:@"createdAt"];
+    [query setLimit:10];
     
     // fetch data
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
@@ -141,6 +161,8 @@
     return query;
 }
 
+//MARK: Table View
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
     cell.request = self.filteredRequests[indexPath.row];
@@ -150,6 +172,65 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredRequests.count;
 }
+
+//MARK: Infinite Scrolling
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!self.isMoreDataLoading && [self shouldLoadMoreDataWithScrollView:scrollView]) {
+        self.isMoreDataLoading = YES;
+        
+        CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+        self.loadingMoreView.frame = frame;
+        [self.loadingMoreView startAnimating];
+        
+        [self loadMoreData];
+    }
+}
+
+
+
+- (BOOL)shouldLoadMoreDataWithScrollView:(UIScrollView *)scrollView {
+    int scrollViewContentHeight = self.tableView.contentSize.height;
+    int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+    if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)loadMoreData {
+    // construct query
+    PFQuery *query = [self setUpQueryWithFilters];
+    [query orderByDescending:@"createdAt"];
+    [query setLimit:10];
+    [query setSkip:self.filteredRequests.count];
+    
+    // fetch data
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
+        if(!error) {
+            [self.requests addObjectsFromArray:requests];
+            self.filteredRequests = self.requests;
+            self.isMoreDataLoading = NO;
+            
+            if (requests.count != 10) {
+                self.isMoreDataLoading = YES;
+                UIEdgeInsets insets = self.tableView.contentInset;
+                insets.bottom = 0;
+                self.tableView.contentInset = insets;
+            }
+            
+            [self.tableView reloadData];
+            [self.loadingMoreView stopAnimating];
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
+    
+}
+
+//MARK: Search Bar
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length != 0) {
