@@ -369,7 +369,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ComposeOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ComposeOfferCell"];
-    NSLog(@"Frame: %f", cell.itemNameField.frame.size.height);
     cell.itemNameField.label.text = @"Item Name";
     cell.itemNameField.placeholder = @"Input text";
     [Functions setUpWithBlueMDCTextField:cell.itemNameField];

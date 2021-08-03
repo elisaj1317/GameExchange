@@ -6,7 +6,6 @@
 //
 
 #import "AutocompleteView.h"
-#import "APIManager.h"
 #import "Functions.h"
 #import "Game.h"
 
@@ -72,6 +71,9 @@
 - (void)setStartData:(NSMutableArray *)startData {
     _startData = startData;
     self.autocompleteArray = startData;
+    if (startData.count == 1) {
+        self.textField.text = startData[0];
+    }
 }
 
 - (IBAction)didChangeEditing:(id)sender {

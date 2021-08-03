@@ -31,6 +31,7 @@
     
     [IQKeyboardManager.sharedManager setToolbarTintColor:[UIColor colorNamed:@"royalBlue"]];
     [IQKeyboardManager.sharedManager setShouldShowToolbarPlaceholder:NO];
+    [IQKeyboardManager.sharedManager setKeyboardDistanceFromTextField:100];
     
 
     return YES;
