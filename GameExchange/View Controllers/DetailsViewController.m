@@ -80,7 +80,7 @@
 - (void)setUpHeaderGameLabels {
     self.itemSellingLabel.text = self.request.itemSelling;
     self.platformLabel.text = self.request.platform;
-    self.genreLabel.text = self.request.genre;
+    self.genreLabel.text = [Functions stringWithArray:self.request.genre];
 }
 
 - (void)setUpHeaderSellerLabels {
@@ -123,6 +123,19 @@
     OfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OfferCell"];
     cell.gameName = self.request.itemRequest[indexPath.row];
     return cell;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    UIView *header = self.tableView.tableHeaderView;
+    CGSize size = [header systemLayoutSizeFittingSize:CGSizeMake(self.tableView.frame.size.width, UILayoutFittingCompressedSize.height)];
+    
+    if (header.frame.size.height != size.height) {
+        header.frame = CGRectMake(header.frame.origin.x, header.frame.origin.y, header.frame.size.width, size.height);
+        
+        self.tableView.tableHeaderView = header;
+    }
 }
 
 
