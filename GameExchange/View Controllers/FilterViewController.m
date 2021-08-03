@@ -63,7 +63,9 @@
         if (!error) {
             for (Request *item in objects) {
                 [platformNames addObject:item.platform];
-                [genreNames addObject:item.genre];
+                if (item.genre != nil) {
+                    [genreNames addObjectsFromArray:item.genre];
+                }
             }
             self.sectionNames = @[ @"Platform", @"Genre"];
             NSArray *sortedPlatformNames = [[platformNames allObjects] sortedArrayUsingSelector:@selector(compare:)];
