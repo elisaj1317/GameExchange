@@ -53,6 +53,10 @@
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
     [self setUpTableView];
     [self setupTextFields];
+    
+    if (self.selectedGenres == nil) {
+        self.selectedGenres = [NSArray array];
+    }
 }
 
 - (void)dealloc {
@@ -166,10 +170,6 @@
     }
     if ([self.platformView.textField.text isEqual:@""]) {
         [self.platformView shake:NULL];
-        valid = NO;
-    }
-    if (self.selectedGenres.count == 0) {
-        [self.genreLabel shake:NULL];
         valid = NO;
     }
     if ([self.locationField.text isEqual:@""]) {
