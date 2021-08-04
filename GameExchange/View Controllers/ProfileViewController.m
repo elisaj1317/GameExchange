@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) NSArray *requestTypes;
 @property (strong, nonatomic) NSMutableArray *requests;
 
 @end
@@ -27,39 +28,88 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self fetchData];
+    self.requestTypes = @[@"Active", @"In Progress", @"Completed"];
+    self.requests = [NSMutableArray arrayWithArray:@[[NSMutableArray array], [NSMutableArray array], [NSMutableArray array]]];
+    
+    [self fetchActiveData];
+    [self fetchInProgressData];
+    [self fetchSoldData];
 }
 
-- (void)fetchData {
+- (void)fetchActiveData {
+    PFQuery *activeQuery = [self createProfileQuery];
+    [activeQuery whereKey:@"requestStatus" equalTo:@"active"];
+    
+    [activeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:0];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)fetchInProgressData {
+    PFQuery *progressQuery = [self createProfileQuery];
+    [progressQuery whereKey:@"requestStatus" equalTo:@"progress"];
+    
+    
+    [progressQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:1];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)fetchSoldData {
+    PFQuery *soldQuery = [self createProfileQuery];
+    [soldQuery whereKey:@"requestStatus" equalTo:@"sold"];
+    
+    
+    [soldQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:2];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (PFQuery *)createProfileQuery {
     PFQuery *query = [PFQuery queryWithClassName:@"Request"];
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
     [query orderByDescending:@"createdAt"];
     query.limit = 5;
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"Data: %@", objects);
-            self.requests = [NSMutableArray arrayWithArray:objects];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"Error: %@", error.localizedDescription);
-        }
-    }];
-    
-    
+    return query;
 }
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView registerNib:[UINib nibWithNibName:@"RequestCell" bundle:nil] forCellReuseIdentifier:@"RequestCell"];
     RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
-    cell.request = self.requests[indexPath.row];
+    cell.request = self.requests[indexPath.section][indexPath.row];
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.requestTypes[section];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.requestTypes.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.requests.count;
+    NSMutableArray *currentSection = self.requests[section];
+    return currentSection.count;
 }
 
 /*
