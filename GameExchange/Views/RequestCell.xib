@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RequestCell" rowHeight="270" id="c1d-wR-Wsw" customClass="RequestCell">
+            <rect key="frame" x="0.0" y="0.0" width="545" height="270"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c1d-wR-Wsw" id="eL0-pE-3Zg">
+                <rect key="frame" x="0.0" y="0.0" width="545" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9si-0Y-MBd" customClass="PFImageView">
+                        <rect key="frame" x="15" y="15" width="125" height="200"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="9OC-VN-Cwy"/>
+                            <constraint firstAttribute="width" constant="125" id="Q3H-G1-Mb8"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selling Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCb-Zu-ikV">
+                        <rect key="frame" x="150" y="15" width="139.5" height="24.5"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqO-5j-mDB">
+                        <rect key="frame" x="150" y="80.5" width="125" height="25"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platform" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1o-qM-GKv">
+                        <rect key="frame" x="150" y="47.5" width="88" height="25"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cil-pg-go4">
+                        <rect key="frame" x="150" y="113.5" width="87" height="25"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9si-0Y-MBd" firstAttribute="top" secondItem="eL0-pE-3Zg" secondAttribute="top" constant="15" id="A1b-Pg-sMw"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MqO-5j-mDB" secondAttribute="trailing" constant="15" id="Hp2-mO-L4y"/>
+                    <constraint firstItem="w1o-qM-GKv" firstAttribute="top" secondItem="OCb-Zu-ikV" secondAttribute="bottom" constant="8" id="JBr-Ho-ZxT"/>
+                    <constraint firstItem="w1o-qM-GKv" firstAttribute="leading" secondItem="9si-0Y-MBd" secondAttribute="trailing" constant="10" id="L5c-wW-8FK"/>
+                    <constraint firstItem="MqO-5j-mDB" firstAttribute="leading" secondItem="9si-0Y-MBd" secondAttribute="trailing" constant="10" id="P9L-RW-hek"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9si-0Y-MBd" secondAttribute="bottom" constant="15" id="PkB-V4-hhC"/>
+                    <constraint firstItem="Cil-pg-go4" firstAttribute="leading" secondItem="9si-0Y-MBd" secondAttribute="trailing" constant="10" id="U0q-Dv-F6H"/>
+                    <constraint firstItem="OCb-Zu-ikV" firstAttribute="leading" secondItem="9si-0Y-MBd" secondAttribute="trailing" constant="10" id="Ykr-gq-MrL"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Cil-pg-go4" secondAttribute="bottom" constant="15" id="ckX-Kp-D5b"/>
+                    <constraint firstItem="MqO-5j-mDB" firstAttribute="top" secondItem="w1o-qM-GKv" secondAttribute="bottom" constant="8" id="dtY-43-lPC"/>
+                    <constraint firstItem="9si-0Y-MBd" firstAttribute="leading" secondItem="eL0-pE-3Zg" secondAttribute="leading" constant="15" id="eAq-H0-sV2"/>
+                    <constraint firstItem="Cil-pg-go4" firstAttribute="top" secondItem="MqO-5j-mDB" secondAttribute="bottom" constant="8" id="gPw-vD-8SD"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OCb-Zu-ikV" secondAttribute="trailing" constant="15" id="l8G-Ve-cEF"/>
+                    <constraint firstItem="OCb-Zu-ikV" firstAttribute="top" secondItem="eL0-pE-3Zg" secondAttribute="top" constant="15" id="mvI-oV-19l"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Cil-pg-go4" secondAttribute="trailing" constant="15" id="o4m-VC-hJU"/>
+                    <constraint firstItem="Cil-pg-go4" firstAttribute="top" secondItem="MqO-5j-mDB" secondAttribute="bottom" constant="8" symbolic="YES" id="pHD-Vb-j3F"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w1o-qM-GKv" secondAttribute="trailing" constant="15" id="qOH-xl-iDs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="itemImage" destination="9si-0Y-MBd" id="b03-LL-8n2"/>
+                <outlet property="locationLabel" destination="Cil-pg-go4" id="F5M-lJ-HR6"/>
+                <outlet property="nameLabel" destination="OCb-Zu-ikV" id="hcb-Yc-GnF"/>
+                <outlet property="platformLabel" destination="w1o-qM-GKv" id="kSE-hf-x3C"/>
+                <outlet property="usernameLabel" destination="MqO-5j-mDB" id="5bA-iU-y8k"/>
+            </connections>
+            <point key="canvasLocation" x="341.304347826087" y="69.642857142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholder" width="900" height="497"/>
+    </resources>
+</document>

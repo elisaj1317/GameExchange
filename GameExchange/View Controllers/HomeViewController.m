@@ -164,6 +164,7 @@
 //MARK: Table View
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView registerNib:[UINib nibWithNibName:@"RequestCell" bundle:nil] forCellReuseIdentifier:@"RequestCell"];
     RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
     cell.request = self.filteredRequests[indexPath.row];
     return cell;
@@ -171,6 +172,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredRequests.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"detailsSegue" sender:indexPath];
 }
 
 //MARK: Infinite Scrolling
@@ -268,8 +273,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqual:@"detailsSegue"]) {
         // Passes selected Request into DetailsViewController
-        UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        NSIndexPath *indexPath = sender;
         Request *request = self.filteredRequests[indexPath.row];
         
         DetailsViewController *detailsViewController = [segue destinationViewController];

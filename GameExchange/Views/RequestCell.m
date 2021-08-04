@@ -41,7 +41,7 @@
     self.nameLabel.text = self.request.itemSelling;
     self.usernameLabel.text = [NSString stringWithFormat:@"@%@", self.request.author.username];
     self.locationLabel.text = self.request.location;
-    self.platformName.text = self.request.platform;
+    self.platformLabel.text = self.request.platform;
 }
 
 
