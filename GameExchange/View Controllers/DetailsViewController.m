@@ -96,7 +96,7 @@
 }
 
 - (void)updateRequestStatusWithGame:(NSString *)gameName {
-    self.request[@"requestStatus"] = @"progress";
+    self.request[@"requestStatus"] = @"in progress";
     
     // create offer
     NSMutableDictionary *currentOffer = [NSMutableDictionary dictionary];

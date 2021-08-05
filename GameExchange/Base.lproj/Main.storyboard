@@ -714,14 +714,14 @@
                                 <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GenreCell" id="0hf-B9-5Pf" customClass="GenreCell">
-                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="39"/>
+                                        <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="38.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0hf-B9-5Pf" id="IaP-gs-lmX">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="38.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afu-HH-7U1">
-                                                    <rect key="frame" x="20" y="10" width="350" height="19"/>
+                                                    <rect key="frame" x="20" y="10.000000000000002" width="350" height="18.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -872,7 +872,7 @@
             </objects>
             <point key="canvasLocation" x="725" y="846"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--My Exchanges-->
         <scene sceneID="Ttl-wZ-GCK">
             <objects>
                 <viewController id="vnc-Mu-jnm" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -894,9 +894,10 @@
                             <constraint firstItem="Mx8-O1-SUA" firstAttribute="trailing" secondItem="e25-R1-O56" secondAttribute="trailing" id="iuO-6N-VHp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CPn-u2-odH"/>
+                    <navigationItem key="navigationItem" title="My Exchanges" id="CPn-u2-odH"/>
                     <connections>
                         <outlet property="tableView" destination="Mx8-O1-SUA" id="5IZ-sN-qsD"/>
+                        <segue destination="TKC-gm-QlI" kind="show" identifier="profileDetailSegue" id="00g-k6-oHD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0o-R6-GnM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1086,6 +1087,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Wwh-cl-HM7"/>
+        <segue reference="00g-k6-oHD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Create" width="25" height="25"/>

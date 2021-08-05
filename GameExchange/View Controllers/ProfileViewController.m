@@ -31,61 +31,51 @@
     self.requestTypes = @[@"Active", @"In Progress", @"Completed"];
     self.requests = [NSMutableArray arrayWithArray:@[[NSMutableArray array], [NSMutableArray array], [NSMutableArray array]]];
     
-    [self fetchActiveData];
-    [self fetchInProgressData];
-    [self fetchSoldData];
+    [self fetchDataForSection:0];
+    [self fetchDataForSection:1];
+    [self fetchDataForSection:2];
 }
 
-- (void)fetchActiveData {
-    PFQuery *activeQuery = [self createProfileQuery];
-    [activeQuery whereKey:@"requestStatus" equalTo:@"active"];
+- (void)fetchDataForSection:(NSInteger)section {
+    PFQuery *query = [self createProfileQueryForSection:section];
     
-    [activeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:0];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"Error: %@", error.localizedDescription);
-        }
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            if(!error) {
+                [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:section];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
     }];
 }
 
-- (void)fetchInProgressData {
-    PFQuery *progressQuery = [self createProfileQuery];
-    [progressQuery whereKey:@"requestStatus" equalTo:@"progress"];
+- (void)fetchMoreDataForSection:(NSInteger)section {
+    NSMutableArray *currentSectionData = self.requests[section];
+    PFQuery *query = [self createProfileQueryForSection:section];
+    query.limit = 5;
+    query.skip = currentSectionData.count;
     
-    
-    [progressQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:1];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"Error: %@", error.localizedDescription);
-        }
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            if(!error) {
+                [currentSectionData addObjectsFromArray:[NSMutableArray arrayWithArray:objects]];
+                [self.requests setObject:currentSectionData atIndexedSubscript:section];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
     }];
 }
 
-- (void)fetchSoldData {
-    PFQuery *soldQuery = [self createProfileQuery];
-    [soldQuery whereKey:@"requestStatus" equalTo:@"sold"];
-    
-    
-    [soldQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error) {
-            [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:2];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"Error: %@", error.localizedDescription);
-        }
-    }];
-}
 
-- (PFQuery *)createProfileQuery {
+
+- (PFQuery *)createProfileQueryForSection:(NSInteger)section {
     PFQuery *query = [PFQuery queryWithClassName:@"Request"];
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
     [query orderByDescending:@"createdAt"];
-    query.limit = 5;
+    NSString *sectionName = self.requestTypes[section];
+    [query whereKey:@"requestStatus" equalTo:[sectionName lowercaseString]];
+    query.limit = 2;
     
     return query;
 }
@@ -97,6 +87,26 @@
     RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
     cell.request = self.requests[indexPath.section][indexPath.row];
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    return @"See more...";
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
+    UITableViewHeaderFooterView *footer = (UITableViewHeaderFooterView *)view;
+    footer.contentView.backgroundColor = [UIColor whiteColor];
+    footer.textLabel.textColor = [UIColor blueColor];
+    footer.textLabel.textAlignment = NSTextAlignmentCenter;
+    
+    // make headers touchable
+    UITapGestureRecognizer *footerTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSectionFooter:)];
+    [footer addGestureRecognizer:footerTapGesture];
+}
+
+- (void)didTapSectionFooter:(UITapGestureRecognizer *)sender {
+    UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)sender.view;
+    [self fetchMoreDataForSection:headerView.tag];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
