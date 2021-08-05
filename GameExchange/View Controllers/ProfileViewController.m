@@ -80,33 +80,30 @@
     return query;
 }
 
+//MARK: Table View Functions
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView registerNib:[UINib nibWithNibName:@"RequestCell" bundle:nil] forCellReuseIdentifier:@"RequestCell"];
-    RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
-    cell.request = self.requests[indexPath.section][indexPath.row];
-    return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    return @"See more...";
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
-    UITableViewHeaderFooterView *footer = (UITableViewHeaderFooterView *)view;
-    footer.contentView.backgroundColor = [UIColor whiteColor];
+- (UITableViewCell *)createFooterCell {
+    UITableViewCell *footer = [[UITableViewCell alloc] init];
     footer.textLabel.textColor = [UIColor blueColor];
     footer.textLabel.textAlignment = NSTextAlignmentCenter;
+    footer.textLabel.text = @"See more...";
     
-    // make headers touchable
-    UITapGestureRecognizer *footerTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSectionFooter:)];
-    [footer addGestureRecognizer:footerTapGesture];
+    return footer;
 }
 
-- (void)didTapSectionFooter:(UITapGestureRecognizer *)sender {
-    UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)sender.view;
-    [self fetchMoreDataForSection:headerView.tag];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSArray *currentSection = self.requests[indexPath.section];
+    
+    if (indexPath.row >= currentSection.count) {
+        return [self createFooterCell];
+    }
+    
+    
+    [tableView registerNib:[UINib nibWithNibName:@"RequestCell" bundle:nil] forCellReuseIdentifier:@"RequestCell"];
+    RequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RequestCell"];
+    cell.request = currentSection[indexPath.row];
+    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -118,8 +115,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     NSMutableArray *currentSection = self.requests[section];
-    return currentSection.count;
+    return currentSection.count + 1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *currentSection = self.requests[indexPath.section];
+    if (indexPath.row >= currentSection.count) {
+        [self fetchMoreDataForSection:indexPath.section];
+    }
 }
 
 /*
