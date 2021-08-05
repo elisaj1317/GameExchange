@@ -111,6 +111,17 @@
     [self.request saveInBackground];
 }
 
+- (void)setEditable:(BOOL *)editable {
+    _editable = editable;
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(sendToEdit:)];
+    
+    self.navigationItem.rightBarButtonItem = editButton;
+
+}
+
+//MARK: Table View Functions
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

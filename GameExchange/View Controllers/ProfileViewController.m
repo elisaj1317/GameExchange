@@ -6,6 +6,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "DetailsViewController.h"
 #import "RequestCell.h"
 
 
@@ -29,6 +30,18 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self setUpData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:selectedRow animated:YES];
+}
+
+
+- (void)setUpData {
     self.requestTypes = @[@"Active", @"In Progress", @"Completed"];
     self.requests = [NSMutableArray arrayWithArray:@[[NSMutableArray array], [NSMutableArray array], [NSMutableArray array]]];
     self.moreDataForSection = [NSMutableArray arrayWithArray:@[@YES, @YES, @YES]];
@@ -141,17 +154,24 @@
     NSArray *currentSection = self.requests[indexPath.section];
     if (indexPath.row >= currentSection.count) {
         [self fetchMoreDataForSection:indexPath.section];
+    } else {
+        [self performSegueWithIdentifier:@"profileDetailSegue" sender:indexPath];
     }
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"profileDetailSegue"]) {
+        NSIndexPath *indexPath = sender;
+        Request *request = self.requests[indexPath.section][indexPath.row];
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.request = request;
+        detailsViewController.editable = YES;
+    }
 }
-*/
+
 
 @end
