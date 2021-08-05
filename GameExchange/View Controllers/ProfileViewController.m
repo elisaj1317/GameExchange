@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) NSArray *requestTypes;
 @property (strong, nonatomic) NSMutableArray *requests;
+@property (strong, nonatomic) NSMutableArray *moreDataForSection;
 
 @end
 
@@ -30,6 +31,7 @@
     
     self.requestTypes = @[@"Active", @"In Progress", @"Completed"];
     self.requests = [NSMutableArray arrayWithArray:@[[NSMutableArray array], [NSMutableArray array], [NSMutableArray array]]];
+    self.moreDataForSection = [NSMutableArray arrayWithArray:@[@YES, @YES, @YES]];
     
     [self fetchDataForSection:0];
     [self fetchDataForSection:1];
@@ -42,7 +44,13 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if(!error) {
                 [self.requests setObject:[NSMutableArray arrayWithArray:objects] atIndexedSubscript:section];
+                
+                if (objects.count != query.limit) {
+                    [self.moreDataForSection setObject:@NO atIndexedSubscript:section];
+                }
+                
                 [self.tableView reloadData];
+                
             } else {
                 NSLog(@"Error: %@", error.localizedDescription);
             }
@@ -59,6 +67,11 @@
             if(!error) {
                 [currentSectionData addObjectsFromArray:[NSMutableArray arrayWithArray:objects]];
                 [self.requests setObject:currentSectionData atIndexedSubscript:section];
+                
+                if (objects.count != query.limit) {
+                    [self.moreDataForSection setObject:@NO atIndexedSubscript:section];
+                }
+                
                 [self.tableView reloadData];
             } else {
                 NSLog(@"Error: %@", error.localizedDescription);
@@ -117,7 +130,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSMutableArray *currentSection = self.requests[section];
-    return currentSection.count + 1;
+    
+    if ([self.moreDataForSection[section]  isEqual: @YES]) {
+        return currentSection.count + 1;
+    }
+    return currentSection.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
