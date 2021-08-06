@@ -6,6 +6,7 @@
 //
 
 #import "DetailsViewController.h"
+#import "ComposeViewController.h"
 #import "OfferCell.h"
 #import "Request.h"
 #import "Functions.h"
@@ -111,13 +112,17 @@
     [self.request saveInBackground];
 }
 
-- (void)setEditable:(BOOL *)editable {
+- (void)setEditable:(BOOL)editable {
     _editable = editable;
     
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(sendToEdit:)];
     
     self.navigationItem.rightBarButtonItem = editButton;
 
+}
+
+- (void)sendToEdit:(UIBarButtonItem *)barItem {
+    [self performSegueWithIdentifier:@"editDetailsSegue" sender:nil];
 }
 
 //MARK: Table View Functions
@@ -152,14 +157,17 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"editDetailsSegue"]) {
+        UINavigationController *composeNavController = [segue destinationViewController];
+        ComposeViewController *composeViewController = (ComposeViewController *)composeNavController.topViewController;
+        composeViewController.editRequest = self.request;
+    }
 }
-*/
+
 
 @end

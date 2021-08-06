@@ -12,7 +12,6 @@
 #import "ComposeOfferCell.h"
 #import "AutocompleteView.h"
 
-#import "Request.h"
 #import "Functions.h"
 #import "Game.h"
 
@@ -20,11 +19,12 @@
 #import "APIManager.h"
 
 #import <DCAnimationKit/UIView+DCAnimationKit.h>
+#import <Parse/PFImageView.h>
 
 @interface ComposeViewController () <AutocompleteViewDelegate, GenreViewControllerDelegate,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 // MARK: Table Header Properties
 @property (weak, nonatomic) IBOutlet UIView *headerView;
-@property (weak, nonatomic) IBOutlet UIImageView *itemImage;
+@property (weak, nonatomic) IBOutlet PFImageView *itemImage;
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *locationField;
 @property (weak, nonatomic) IBOutlet AutocompleteView *nameView;
 @property (weak, nonatomic) IBOutlet AutocompleteView *platformView;
@@ -50,22 +50,21 @@
             name:@"gameChosen"
             object:nil];
 
-    
     self.itemImage.image = [UIImage imageNamed:@"placeholder"];
     [self setUpTableView];
     [self setupTextFields];
     
-    self.genreView.layer.borderWidth = 1;
-    self.genreView.layer.borderColor = [[UIColor blackColor] CGColor];
-    if (self.selectedGenres == nil) {
-        self.selectedGenres = [NSArray array];
+    if (self.editRequest != nil) {
+        [self setUpViewEdit];
     }
+    
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+//MARK: Actions
 - (IBAction)didTapImage:(id)sender {
     [self chooseSourceType];
 }
@@ -133,6 +132,7 @@
     }
 }
 
+//MARK: Set Up Functions
 - (void)setUpTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -152,6 +152,49 @@
     self.locationField.label.text = @"Location";
     self.locationField.placeholder = @"Input text";
     [Functions setUpWithBlueMDCTextField:self.locationField];
+    
+    self.genreView.layer.borderWidth = 1;
+    self.genreView.layer.borderColor = [[UIColor blackColor] CGColor];
+    if (self.selectedGenres == nil) {
+        self.selectedGenres = [NSArray array];
+    }
+}
+
+- (void)setUpViewEdit {
+    self.itemImage.file = self.editRequest.image;
+    [self.itemImage loadInBackground];
+    
+    [self setUpEditTextFields];
+    
+    self.selectedGenres = self.editRequest.genre;
+    [self setUpGenreByArray];
+    
+    [self setUpEditRequests];
+}
+
+- (void)setUpEditTextFields {
+    self.nameView.textField.text = self.editRequest.itemSelling;
+    self.platformView.textField.text = self.editRequest.platform;
+    self.locationField.label.text = self.editRequest.location;
+}
+
+- (void)setUpGenreByArray {
+    NSMutableString *genreString = [Functions stringWithArray:self.selectedGenres];
+    [genreString insertString:@"Genres: " atIndex:0];
+    self.genreLabel.text = genreString;
+}
+
+- (void)setUpEditRequests {
+    self.numberOfRows = [NSNumber numberWithInteger:self.editRequest.itemRequest.count];
+    [self.tableView reloadData];
+    
+    
+    NSArray *cells = [self.tableView visibleCells];
+    
+    for (int index = 0; index < self.editRequest.itemRequest.count; index++) {
+        ComposeOfferCell *currentCell = cells[index];
+        currentCell.itemNameField.text = self.editRequest.itemRequest[index];
+    }
 }
 
 
@@ -195,6 +238,7 @@
     return valid;
 }
 
+//MARK: Reset Functions
 - (void)resetHeader {
     [self.nameView resetAutocomplete];
     [self.platformView resetAutocomplete];
@@ -226,6 +270,7 @@
     sceneDelegate.window.rootViewController = tabBarController;
 }
 
+//MARK: Image picker Functions
 - (void)chooseSourceType {
     // Create action sheet
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -314,9 +359,7 @@
 - (void)didSelectGenres:(NSArray *)genres {
     self.selectedGenres = genres;
     
-    NSMutableString *genreString = [Functions stringWithArray:genres];
-    [genreString insertString:@"Genres: " atIndex:0];
-    self.genreLabel.text = genreString;
+    [self setUpGenreByArray];
 }
 
 - (NSMutableString *)stringWithArray:(NSArray *)array {
@@ -338,9 +381,8 @@
     Game *gameChosen = (Game *)notification.userInfo;
     self.platformView.startData = (NSMutableArray *)gameChosen.platforms;
     self.selectedGenres = gameChosen.genres;
-    NSMutableString *genreString = [Functions stringWithArray:self.selectedGenres];
-    [genreString insertString:@"Genres: " atIndex:0];
-    self.genreLabel.text = genreString;
+    
+    [self setUpGenreByArray];
     
 }
 
