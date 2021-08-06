@@ -117,6 +117,8 @@
         [self updateRequestSold];
     }
     
+    [self showHomeScreen];
+    
 }
 
 - (void)showHomeScreen {
