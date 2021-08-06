@@ -33,6 +33,8 @@
 //MARK: Custom Offer
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet MDCFilledTextField *offerField;
+@property (weak, nonatomic) IBOutlet UIButton *offerButton;
+@property (weak, nonatomic) IBOutlet UIButton *viewOfferButton;
 
 @end
 
@@ -48,10 +50,7 @@
     self.title = self.request.itemSelling;
     
     [self setUpHeader];
-    
-    self.offerField.label.text = @"Custom Offer";
-    self.offerField.placeholder = @"Input text";
-    [Functions setUpWithBlueMDCTextField:self.offerField];
+    [self setUpFooter];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
             selector:@selector(didAcceptOffer:)
@@ -67,6 +66,8 @@
     [self updateRequestStatusWithGame:self.offerField.text];
 }
 
+- (IBAction)didViewOffer:(id)sender {
+}
 
 - (void)setUpHeader {
     // set up image
@@ -88,6 +89,18 @@
     self.sellerNameLabel.text = [self.request.author objectForKey:@"fullName"];
     self.sellerUsernameLabel.text = self.request.author.username;
     self.locationLabel.text = self.request.location;
+}
+
+- (void)setUpFooter {
+    self.offerField.label.text = @"Custom Offer";
+    self.offerField.placeholder = @"Input text";
+    [Functions setUpWithBlueMDCTextField:self.offerField];
+    if ([self.request.author.objectId isEqual:[PFUser currentUser].objectId]) {
+        [self.offerButton setHidden:YES];
+        [self.offerField setHidden:YES];
+        [self.viewOfferButton setHidden:NO];
+        
+    }
 }
 
 - (void)didAcceptOffer:(NSNotification *)notification {
@@ -138,6 +151,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OfferCell"];
     cell.gameName = self.request.itemRequest[indexPath.row];
+//    cell.userAuthor = self.editable;
+    if ([self.request.author.objectId isEqual:[PFUser currentUser].objectId]) {
+        cell.userAuthor = YES;
+    } else {
+        cell.userAuthor = NO;
+    }
     return cell;
 }
 

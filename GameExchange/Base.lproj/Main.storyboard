@@ -397,9 +397,22 @@
                                                 <action selector="didMakeOffer:" destination="TKC-gm-QlI" eventType="touchUpInside" id="MkN-oe-M5U"/>
                                             </connections>
                                         </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdt-aM-67w">
+                                            <rect key="frame" x="138" y="26.666666666666671" width="114" height="37"/>
+                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                                            <state key="normal" title="View Offers">
+                                                <color key="titleColor" name="royalBlue"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="didMakeOffer:" destination="TKC-gm-QlI" eventType="touchUpInside" id="KdP-aB-tvR"/>
+                                                <action selector="didViewOffer:" destination="TKC-gm-QlI" eventType="touchUpInside" id="PjO-XS-eYb"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="vdt-aM-67w" firstAttribute="centerX" secondItem="mNh-L6-WrL" secondAttribute="centerX" id="U8w-Ls-Q9Z"/>
+                                        <constraint firstItem="vdt-aM-67w" firstAttribute="centerY" secondItem="mNh-L6-WrL" secondAttribute="centerY" id="Wx2-oY-hDx"/>
                                         <constraint firstAttribute="bottom" secondItem="4QM-TU-7Vw" secondAttribute="bottom" constant="8" id="a3H-DB-N2a"/>
                                         <constraint firstItem="4QM-TU-7Vw" firstAttribute="leading" secondItem="Bsd-nY-q63" secondAttribute="trailing" constant="10" id="euA-RA-l85"/>
                                         <constraint firstAttribute="trailing" secondItem="4QM-TU-7Vw" secondAttribute="trailing" constant="15" id="hUw-sT-mmz"/>
@@ -445,6 +458,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="acceptButton" destination="fZb-kV-Elf" id="N1T-a3-TiL"/>
                                             <outlet property="offerNameLabel" destination="mOx-f2-IOB" id="xSj-V0-iuR"/>
                                         </connections>
                                     </tableViewCell>
@@ -468,11 +482,13 @@
                         <outlet property="itemImageView" destination="fp5-NY-5z8" id="5mU-fE-gP0"/>
                         <outlet property="itemSellingLabel" destination="fRZ-i3-z25" id="PZ9-TL-SJp"/>
                         <outlet property="locationLabel" destination="oWi-pj-70R" id="GAN-Jk-Bv7"/>
+                        <outlet property="offerButton" destination="4QM-TU-7Vw" id="urN-Co-lHt"/>
                         <outlet property="offerField" destination="Bsd-nY-q63" id="2dz-ON-oVX"/>
                         <outlet property="platformLabel" destination="OgS-NU-xiH" id="uxW-hF-Zom"/>
                         <outlet property="sellerNameLabel" destination="glZ-Sc-e6g" id="ixT-1O-jgQ"/>
                         <outlet property="sellerUsernameLabel" destination="6oZ-lb-ljj" id="sHK-r5-Hr5"/>
                         <outlet property="tableView" destination="FcA-uC-GiZ" id="LZd-sE-heN"/>
+                        <outlet property="viewOfferButton" destination="vdt-aM-67w" id="hyB-VQ-Bs7"/>
                         <segue destination="tFM-t1-NKO" kind="presentation" identifier="editDetailsSegue" id="4fC-Va-P2v"/>
                     </connections>
                 </viewController>

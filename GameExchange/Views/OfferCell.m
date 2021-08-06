@@ -25,6 +25,14 @@
     self.offerNameLabel.text = gameName;
 }
 
+- (void)setUserAuthor:(BOOL)userAuthor {
+    _userAuthor = userAuthor;
+    
+    if (self.userAuthor == YES) {
+        [self.acceptButton setHidden:YES];
+    }
+}
+
 - (IBAction)didPressAccept:(id)sender {
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:self.gameName forKey:@"offerAccepted"];
     

@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface OfferCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *offerNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *acceptButton;
+
 
 @property (strong, nonatomic) NSString *gameName;
+@property (assign, nonatomic) BOOL userAuthor;
 
 @end
 
