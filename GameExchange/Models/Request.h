@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *offers;
 
 + (void) postRequestImage: ( UIImage * _Nullable )image withValues: ( NSDictionary * _Nullable )dict  withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (void)updateRequestwithImage: ( UIImage * _Nullable )image withValues: ( NSDictionary * _Nullable )dict  withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

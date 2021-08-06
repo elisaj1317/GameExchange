@@ -161,6 +161,8 @@
 }
 
 - (void)setUpViewEdit {
+    [self setUpNavBar];
+    
     self.itemImage.file = self.editRequest.image;
     [self.itemImage loadInBackground];
     
@@ -172,10 +174,20 @@
     [self setUpEditRequests];
 }
 
+- (void)setUpNavBar {
+    UIBarButtonItem *leftBarItem = self.navigationItem.leftBarButtonItem;
+    leftBarItem.title = @"Cancel";
+    leftBarItem.action = @selector(didTapCancel:);
+    
+    UIBarButtonItem *rightBarItem = self.navigationItem.rightBarButtonItem;
+    rightBarItem.title = @"Update";
+    rightBarItem.action = @selector(didTapUpdate:);
+}
+
 - (void)setUpEditTextFields {
     self.nameView.textField.text = self.editRequest.itemSelling;
     self.platformView.textField.text = self.editRequest.platform;
-    self.locationField.label.text = self.editRequest.location;
+    self.locationField.text = self.editRequest.location;
 }
 
 - (void)setUpGenreByArray {
@@ -194,6 +206,34 @@
     for (int index = 0; index < self.editRequest.itemRequest.count; index++) {
         ComposeOfferCell *currentCell = cells[index];
         currentCell.itemNameField.text = self.editRequest.itemRequest[index];
+    }
+}
+
+- (void)didTapCancel:(UIBarButtonItem *)barItem {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didTapUpdate:(UIBarButtonItem *)barItem {
+    [self dismissKeyboards];
+    
+    NSArray *itemsRequested = [self createRequestedArray];
+    
+    if([self checkValidPostWithArray:itemsRequested]) {
+        NSMutableDictionary *requestValues = [NSMutableDictionary dictionary];
+        [requestValues setValue:self.nameView.textField.text forKey:@"itemName"];
+        [requestValues setValue:self.platformView.textField.text forKey:@"platform"];
+        [requestValues setValue:self.selectedGenres forKey:@"genre"];
+        [requestValues setValue:self.locationField.text forKey:@"location"];
+        [requestValues setValue:itemsRequested forKey:@"itemRequest"];
+        
+        [self.editRequest updateRequestwithImage:self.itemImage.image withValues:requestValues withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (!error) {
+                        [self segueToHome];
+                    } else {
+                        NSLog(@"Error: %@", error.localizedDescription);
+                    }
+        }];
+        
     }
 }
 
