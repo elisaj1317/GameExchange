@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1244A5AAC90C06BC1273CD09 /* Pods_GameExchange_GameExchangeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682C6C64DB11C62E06B3572 /* Pods_GameExchange_GameExchangeUITests.framework */; };
+		5E0C040C26BDDCE300032F87 /* ViewOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0C040B26BDDCE300032F87 /* ViewOfferCell.m */; };
+		5E0C040F26BDDE2B00032F87 /* ViewOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0C040E26BDDE2B00032F87 /* ViewOfferViewController.m */; };
 		5E4A2936269E484800B29ECC /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2935269E484800B29ECC /* DetailsViewController.m */; };
 		5E4A2941269E6E1800B29ECC /* OfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2940269E6E1800B29ECC /* OfferCell.m */; };
 		5E4A2944269F408000B29ECC /* ComposeOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A2943269F408000B29ECC /* ComposeOfferCell.m */; };
@@ -67,6 +69,10 @@
 
 /* Begin PBXFileReference section */
 		133A36AC62FD3AF772C7B5C3 /* Pods_GameExchangeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameExchangeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E0C040A26BDDCE300032F87 /* ViewOfferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewOfferCell.h; sourceTree = "<group>"; };
+		5E0C040B26BDDCE300032F87 /* ViewOfferCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewOfferCell.m; sourceTree = "<group>"; };
+		5E0C040D26BDDE2B00032F87 /* ViewOfferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewOfferViewController.h; sourceTree = "<group>"; };
+		5E0C040E26BDDE2B00032F87 /* ViewOfferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewOfferViewController.m; sourceTree = "<group>"; };
 		5E4A2934269E484800B29ECC /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		5E4A2935269E484800B29ECC /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		5E4A293F269E6E1800B29ECC /* OfferCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfferCell.h; sourceTree = "<group>"; };
@@ -282,6 +288,8 @@
 				5EACCB2726B88E5800352480 /* GenreCell.m */,
 				5EA61B8A26B9D7B9008F2851 /* InfiniteScrollActivityView.h */,
 				5EA61B8B26B9D7B9008F2851 /* InfiniteScrollActivityView.m */,
+				5E0C040A26BDDCE300032F87 /* ViewOfferCell.h */,
+				5E0C040B26BDDCE300032F87 /* ViewOfferCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -305,6 +313,8 @@
 				5EACCB2426B88C9700352480 /* GenreViewController.m */,
 				5EA61BA326BB2172008F2851 /* ProfileViewController.h */,
 				5EA61BA426BB2172008F2851 /* ProfileViewController.m */,
+				5E0C040D26BDDE2B00032F87 /* ViewOfferViewController.h */,
+				5E0C040E26BDDE2B00032F87 /* ViewOfferViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -594,6 +604,8 @@
 				5EDF36E8269CDE3000B63F5B /* main.m in Sources */,
 				5EA61B8C26B9D7B9008F2851 /* InfiniteScrollActivityView.m in Sources */,
 				5E9B172426A89B1300CC92D5 /* AutocompleteView.m in Sources */,
+				5E0C040F26BDDE2B00032F87 /* ViewOfferViewController.m in Sources */,
+				5E0C040C26BDDCE300032F87 /* ViewOfferCell.m in Sources */,
 				5EACCB2826B88E5800352480 /* GenreCell.m in Sources */,
 				5EA6EE04269E03D40060F07E /* ComposeViewController.m in Sources */,
 				5EDF36DA269CDE2F00B63F5B /* SceneDelegate.m in Sources */,

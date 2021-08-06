@@ -7,6 +7,10 @@
 
 #import "DetailsViewController.h"
 #import "ComposeViewController.h"
+#import "ViewOfferViewController.h"
+
+#import "SceneDelegate.h"
+
 #import "OfferCell.h"
 #import "Request.h"
 #import "Functions.h"
@@ -98,15 +102,30 @@
     if ([self.request.author.objectId isEqual:[PFUser currentUser].objectId]) {
         [self.offerButton setHidden:YES];
         [self.offerField setHidden:YES];
-        [self.viewOfferButton setHidden:NO];
+        if (self.request.offers.count != 0 && [self.request.requestStatus isEqual:@"in progress"]) {
+            [self.viewOfferButton setHidden:NO];
+        }
         
     }
 }
 
 - (void)didAcceptOffer:(NSNotification *)notification {
     NSString *gameName = notification.userInfo[@"offerAccepted"];
+    if (gameName != nil) {
+        [self updateRequestStatusWithGame:gameName];
+    } else {
+        [self updateRequestSold];
+    }
     
-    [self updateRequestStatusWithGame:gameName];
+}
+
+- (void)showHomeScreen {
+    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+    sceneDelegate.window.rootViewController = tabBarController;
+
 }
 
 - (void)updateRequestStatusWithGame:(NSString *)gameName {
@@ -124,6 +143,12 @@
     
     [self.request saveInBackground];
 }
+
+- (void)updateRequestSold {
+    self.request[@"requestStatus"] = @"completed";
+    [self.request saveInBackground];
+}
+
 
 - (void)setEditable:(BOOL)editable {
     _editable = editable;
@@ -185,6 +210,10 @@
         UINavigationController *composeNavController = [segue destinationViewController];
         ComposeViewController *composeViewController = (ComposeViewController *)composeNavController.topViewController;
         composeViewController.editRequest = self.request;
+    } else if ([segue.identifier isEqual:@"viewOfferSegue"]) {
+        ViewOfferViewController *offerViewController = [segue destinationViewController];
+        NSArray *offers = self.request.offers;
+        offerViewController.offers = offers;
     }
 }
 
