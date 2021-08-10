@@ -8,11 +8,14 @@
 #import "HomeViewController.h"
 #import "DetailsViewController.h"
 #import "FilterViewController.h"
+
+#import "Functions.h"
 #import "RequestCell.h"
 #import "InfiniteScrollActivityView.h"
 
 #import "SceneDelegate.h"
 #import <Parse/Parse.h>
+#import <MaterialComponents/MDCActivityIndicator.h>
 
 
 @interface HomeViewController () <FilterViewControllerDelegate,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIScrollViewDelegate>
@@ -24,6 +27,7 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
+@property (strong, nonatomic) MDCActivityIndicator *activityIndicator;
 
 @property (strong, nonatomic) NSMutableArray *requests;
 @property (strong, nonatomic) NSMutableArray *filteredRequests;
@@ -35,14 +39,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorInset = UIEdgeInsetsZero;
+    
+    [self setUpTableView];
     
     self.searchBar.delegate = self;
     
     self.isMoreDataLoading = NO;
     
+    [self setUpActivityIndicator];
     [self setUpRefresh];
     [self setupInfiniteScroll];
     [self fetchRequests];
@@ -64,6 +68,17 @@
                 NSLog(@"User log out failed: %@", error.localizedDescription);
             }
     }];
+}
+
+- (void)setUpTableView {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+}
+
+- (void)setUpActivityIndicator {
+    self.activityIndicator = [Functions startActivityIndicatorAtPosition:CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2)];
+    [self.view addSubview:self.activityIndicator];
 }
 
 - (void)setUpRefresh {
@@ -91,6 +106,7 @@
     
     // fetch data
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable requests, NSError * _Nullable error) {
+        [self.activityIndicator stopAnimating];
         if(!error) {
             self.requests = [NSMutableArray arrayWithArray:requests];
             self.filteredRequests = self.requests;

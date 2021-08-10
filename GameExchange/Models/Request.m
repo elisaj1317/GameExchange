@@ -29,6 +29,8 @@
     Request *newRequest = [Request new];
     [newRequest setRequestwithImage:image withValues:dict];
     newRequest.author = [PFUser currentUser];
+    newRequest.requestStatus = @"active";
+    newRequest.offers = [NSArray array];
     
     [newRequest saveInBackgroundWithBlock: completion];
 }
@@ -42,8 +44,6 @@
     self.genre = dict[@"genre"];
     self.location = dict[@"location"];
     self.itemRequest = dict[@"itemRequest"];
-    self.requestStatus = @"active";
-    self.offers = [NSArray array];
 }
 
 - (void)updateRequestwithImage: ( UIImage * _Nullable )image withValues: ( NSDictionary * _Nullable )dict  withCompletion: (PFBooleanResultBlock  _Nullable)completion {
